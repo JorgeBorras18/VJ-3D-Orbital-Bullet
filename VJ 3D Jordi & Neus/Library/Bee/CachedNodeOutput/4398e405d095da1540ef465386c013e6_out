@@ -1,0 +1,1 @@
+C:\Program Files\Unity\Hub\Editor\2022.3.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.2d.sprite\Editor\SpriteEditor\SpriteEditorMenu.cs(416,36): warning CS0618: 'TextureUtil.IsCompressedTextureFormat(TextureFormat)' is obsolete: 'IsCompressedTextureFormat has been moved to GraphicsFormatUtility.IsCompressedFormat(TextureFormat)'
