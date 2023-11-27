@@ -3,6 +3,11 @@ Game/Library/Bee/*
 Game/Library/PackageManager/*
 Game/Logs/*
 Game/Library/ArtifactDB/*
+Game/Library/ArtifactDB-lock/*
 Game/Unity.2D.Sprite.Editor.csproj
 Game/Assembly-CSharp.csproj
 Game/Temp/*
+Game/Library/ilpp.pid
+Game/Library/ScriptAssemblies/*
+Game/Library/APIUpdater/project-dependencies
+Game/Library/SceneVisibilityState.asset
