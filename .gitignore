@@ -11,3 +11,4 @@ Game/Library/ilpp.pid
 Game/Library/ScriptAssemblies/*
 Game/Library/APIUpdater/project-dependencies
 Game/Library/SceneVisibilityState.asset
+Game/Library/*
