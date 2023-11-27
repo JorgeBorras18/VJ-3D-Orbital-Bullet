@@ -1,0 +1,7 @@
+Game/Library/Artifacts/*
+Game/Library/Bee/*
+Game/Library/PackageManager/*
+Game/Logs/*
+Game/Library/ArtifactDB/*
+Game/Unity.2D.Sprite.Editor.csproj
+Game/Assembly-CSharp.csproj
