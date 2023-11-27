@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{950E8824-734E-F42F-28CE-D5C9915FC2D6}</ProjectGuid>
+    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -989,7 +989,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
-      <Project>{C19A8415-A1CF-97A5-76E0-288F8C567655}</Project>
+      <Project>{23C70C2E-092A-3ECA-1E4A-1C6C14059C62}</Project>
       <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
   </ItemGroup>

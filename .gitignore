@@ -5,3 +5,4 @@ Game/Logs/*
 Game/Library/ArtifactDB/*
 Game/Unity.2D.Sprite.Editor.csproj
 Game/Assembly-CSharp.csproj
+Game/Temp/*
