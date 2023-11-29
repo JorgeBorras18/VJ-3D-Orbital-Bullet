@@ -9,14 +9,14 @@ public class PlayerLogic : MonoBehaviour
     public Animation_Controller animationController;
     Angular_Physics angularPhysics;
 
-    public float moveSpeed = 5f, jumpSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
+    public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
     public float radiusRing = 9f;
 
     // JUMP LOGIC
     private bool doubled_jumped_already = false;
     private bool up_was_pressed = false;
     private bool up_is_still_pressed = false;
-    private bool facingRight = true;
+    private bool facingRight = false;
 
     void Start()
     {
@@ -38,7 +38,15 @@ public class PlayerLogic : MonoBehaviour
 
         float selected_gravity = fast_fall_gravity;
         float step = 0;
-        int next_Animation = 2;
+        string next_Animation = "Jump";
+
+        //Check animation
+        if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
+        {
+            if (facingRight) angularPhysics.moveObject(rollSpeed, selected_gravity);
+            else angularPhysics.moveObject(-rollSpeed, selected_gravity);
+            return;
+        }
 
         // SELECT GRAVITY
         if (up_was_pressed)
@@ -48,28 +56,26 @@ public class PlayerLogic : MonoBehaviour
                 angularPhysics.applyJump(jumpSpeed);
                 up_is_still_pressed = true;
                 doubled_jumped_already = false;
-                next_Animation = 2;
+                next_Animation = "Jump";
             }
             else if (!doubled_jumped_already)
             {
                 angularPhysics.applyJump(jumpSpeed);
                 up_is_still_pressed = true;
                 doubled_jumped_already = true;
-                next_Animation = 3;
+                next_Animation = "Mid_Air_Jump";
             }
             up_was_pressed = false;
         }
 
-        if (!controller.isGrounded && angularPhysics.getVerticalSpeed() <= jumpSpeed * 0.4f)
-            next_Animation = 4;
-
-        // FAST OR SLOW FALL
-        if (up_is_still_pressed)
-        {
-            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))) selected_gravity = slow_fall_gravity;
-            else up_is_still_pressed = false;
+        if (!controller.isGrounded) {
+            if (angularPhysics.getVerticalSpeed() <= jumpSpeed * 0.4f) next_Animation = "Air_Fall";
+            if (up_is_still_pressed)
+            {
+                if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))) selected_gravity = slow_fall_gravity;
+                else up_is_still_pressed = false;
+            }
         }
-
 
         // HORIZONTAL MOVEMENT
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -80,7 +86,7 @@ public class PlayerLogic : MonoBehaviour
                 facingRight = false;
                 animationController.flipX(false);
             }
-            if (controller.isGrounded) next_Animation = 1;
+            if (controller.isGrounded) next_Animation = "Run";
         }
 
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -91,14 +97,18 @@ public class PlayerLogic : MonoBehaviour
                 facingRight = true;
                 animationController.flipX(true);
             }
-            if (controller.isGrounded) next_Animation = 1;
+            if (controller.isGrounded) next_Animation = "Run";
         }
-        else if (controller.isGrounded) next_Animation = 0;
+        else if (controller.isGrounded)
+        {
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) next_Animation = "Crouch";
+            else if (Input.GetKey(KeyCode.Z)) next_Animation = "Roll";
+            else next_Animation = "Idle";
+        }
 
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
         animationController.changeAnimation(next_Animation);
-
 
         // KILL PLAYER
         if (Input.GetKey(KeyCode.X)) animationController.setAlive(false);

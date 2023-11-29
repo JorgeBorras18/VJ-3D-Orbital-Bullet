@@ -893,8 +893,9 @@ GameObject:
   m_Component:
   - component: {fileID: 986188357}
   - component: {fileID: 986188358}
+  - component: {fileID: 986188359}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,12 +910,12 @@ Transform:
   m_GameObject: {fileID: 986188356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.036, y: 0.099, z: -0.0112}
+  m_LocalPosition: {x: 0.036, y: 0.099, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1302838627}
-  m_Father: {fileID: 1842415439}
+  m_Father: {fileID: 2005325254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &986188358
 SpriteRenderer:
@@ -968,6 +969,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &986188359
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986188356}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 781beebda3c645a47b5f0225d9174201, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1302838626
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +1001,7 @@ GameObject:
   - component: {fileID: 1302838627}
   - component: {fileID: 1302838628}
   m_Layer: 0
-  m_Name: ScoutRifle_2
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,7 +1163,6 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 2005325254}
   - {fileID: 684635621}
-  - {fileID: 986188357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1842415440
@@ -1220,6 +1241,7 @@ MonoBehaviour:
   animationController: {fileID: 0}
   moveSpeed: 5
   jumpSpeed: 10
+  rollSpeed: 15
   slow_fall_gravity: 0.4
   fast_fall_gravity: 0.6
   radiusRing: 9
@@ -1249,10 +1271,11 @@ Transform:
   m_GameObject: {fileID: 2005325253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 986188357}
   m_Father: {fileID: 1842415439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2005325255
@@ -1269,8 +1292,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_animator: {fileID: 1842415440}
   healpot_animator: {fileID: 684635622}
+  gun_animator: {fileID: 986188359}
   player_sprite: {fileID: 1842415438}
   healpot_sprite: {fileID: 684635623}
+  shoulder_sprite: {fileID: 986188358}
+  gun_sprite: {fileID: 1302838628}
   ActualAnimation: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
