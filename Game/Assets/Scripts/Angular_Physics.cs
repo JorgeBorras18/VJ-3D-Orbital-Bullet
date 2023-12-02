@@ -35,7 +35,7 @@ public class Angular_Physics : MonoBehaviour
         speed.x = 0;
         speed.z = 0;
         float timeDelta = Time.deltaTime;
-        
+
         // Calculate Horitzontal desplacement && turn object so it faces camera
         actualAngle += (XSpeed / radiusRing) * timeDelta;
         speed.x = Mathf.Cos(actualAngle) * radiusRing - transform.position.x;
@@ -48,7 +48,6 @@ public class Angular_Physics : MonoBehaviour
         // Move object
         controller.Move(new Vector3(speed.x, verticalSpeed * timeDelta, speed.z));
     }
-
 
     // Apply Vertical Movement to Parent
     public void applyJump(float YSpeed)

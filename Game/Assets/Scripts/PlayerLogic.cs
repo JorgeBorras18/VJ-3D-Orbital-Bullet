@@ -11,6 +11,7 @@ public class PlayerLogic : MonoBehaviour
 
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
     public float radiusRing = 9f;
+    private bool isThereWallAhead = false;
 
     // JUMP LOGIC
     private bool doubled_jumped_already = false;
@@ -43,8 +44,11 @@ public class PlayerLogic : MonoBehaviour
         //Check animation
         if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
         {
-            if (facingRight) angularPhysics.moveObject(rollSpeed, selected_gravity);
-            else angularPhysics.moveObject(-rollSpeed, selected_gravity);
+            if (!isThereWallAhead)
+            {
+                if (facingRight) angularPhysics.moveObject(rollSpeed, selected_gravity);
+                else angularPhysics.moveObject(-rollSpeed, selected_gravity);
+            }
             return;
         }
 
@@ -68,7 +72,8 @@ public class PlayerLogic : MonoBehaviour
             up_was_pressed = false;
         }
 
-        if (!controller.isGrounded) {
+        if (!controller.isGrounded)
+        {
             if (angularPhysics.getVerticalSpeed() <= jumpSpeed * 0.4f) next_Animation = "Air_Fall";
             if (up_is_still_pressed)
             {
@@ -85,7 +90,9 @@ public class PlayerLogic : MonoBehaviour
             {
                 facingRight = false;
                 animationController.flipX(false);
+                GetComponent<BoxCollider>().center = new Vector3(-0.04f, 0.05f, 0);
             }
+            else if (isThereWallAhead) step = 0;
             if (controller.isGrounded) next_Animation = "Run";
         }
 
@@ -96,15 +103,17 @@ public class PlayerLogic : MonoBehaviour
             {
                 facingRight = true;
                 animationController.flipX(true);
+                GetComponent<BoxCollider>().center = new Vector3(0.04f, 0.05f, 0);
             }
+            else if (isThereWallAhead) step = 0;
             if (controller.isGrounded) next_Animation = "Run";
         }
         else if (controller.isGrounded)
         {
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) next_Animation = "Crouch";
-            else if (Input.GetKey(KeyCode.Z)) next_Animation = "Roll";
             else next_Animation = "Idle";
         }
+        if (Input.GetKey(KeyCode.Z)) next_Animation = "Roll";
 
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
@@ -112,6 +121,21 @@ public class PlayerLogic : MonoBehaviour
 
         // KILL PLAYER
         if (Input.GetKey(KeyCode.X)) animationController.setAlive(false);
+    }
+
+    private void OnTriggerEnter(Collider hit)
+    {
+        if (hit.gameObject.tag == ("Floor"))
+        {
+            isThereWallAhead = true;
+        }
+    }
+    private void OnTriggerExit(Collider hit)
+    {
+        if (hit.gameObject.tag == ("Floor"))
+        {
+            isThereWallAhead = false;
+        }
     }
 }
 

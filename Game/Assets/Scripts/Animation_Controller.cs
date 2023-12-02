@@ -21,8 +21,6 @@ public class Animation_Controller : MonoBehaviour
         healpot_animator.Play("Healpot_" + new_Animation, 0, 0f);
         gun_animator.Play("Gun_" + new_Animation, 0, 0f);
         ActualAnimation = new_Animation;
-
-        Debug.Log("Player_" + new_Animation);
     }
 
     public void flipX(bool facingRight)
