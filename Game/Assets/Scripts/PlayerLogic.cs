@@ -46,7 +46,8 @@ public class PlayerLogic : MonoBehaviour
         //Check animation
         if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
         {
-            if (!isThereWallAhead)
+            if (isThereWallAhead) angularPhysics.moveObject(0, selected_gravity);
+            else
             {
                 if (facingRight) angularPhysics.moveObject(rollSpeed, selected_gravity);
                 else angularPhysics.moveObject(-rollSpeed, selected_gravity);
@@ -92,7 +93,7 @@ public class PlayerLogic : MonoBehaviour
             {
                 facingRight = false;
                 animationController.flipX(false);
-                boxCollider.center = new Vector3(-0.04f, 0.05f, 0);
+                boxCollider.center = new Vector3(-0.04f, 0.038f, 0);
             }
             else if (isThereWallAhead) step = 0;
             if (controller.isGrounded) next_Animation = "Run";
@@ -105,7 +106,7 @@ public class PlayerLogic : MonoBehaviour
             {
                 facingRight = true;
                 animationController.flipX(true);
-                boxCollider.center = new Vector3(0.04f, 0.05f, 0);
+                boxCollider.center = new Vector3(0.04f, 0.038f, 0);
             }
             else if (isThereWallAhead) step = 0;
             if (controller.isGrounded) next_Animation = "Run";
@@ -132,6 +133,7 @@ public class PlayerLogic : MonoBehaviour
             isThereWallAhead = true;
         }
     }
+
     private void OnTriggerExit(Collider hit)
     {
         if (hit.gameObject.tag == ("Floor"))
