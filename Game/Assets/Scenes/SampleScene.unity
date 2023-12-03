@@ -1242,6 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1842415441}
   animationController: {fileID: 0}
+  boxCollider: {fileID: 1842415445}
   moveSpeed: 5
   jumpSpeed: 10
   rollSpeed: 15
