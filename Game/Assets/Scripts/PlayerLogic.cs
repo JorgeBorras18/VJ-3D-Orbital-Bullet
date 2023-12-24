@@ -36,7 +36,7 @@ public class PlayerLogic : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animationController = GameObject.Find("Player_Animation_Controller").gameObject.GetComponent<Animation_Controller>();
         angularPhysics = GetComponent<Angular_Physics>();
-        angularPhysics.init(radiusRing, 3f * Mathf.PI / 4f);
+        angularPhysics.init(radiusRing, 3f * Mathf.PI / 4f, 0f);
 
         //load input watchers
         _playerInput = GetComponent<PlayerInput>();
@@ -152,7 +152,7 @@ public class PlayerLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == ("Floor"))
+        if (hit.gameObject.tag == ("Terrain"))
         {
             isThereWallAhead = true;
         }
@@ -160,11 +160,13 @@ public class PlayerLogic : MonoBehaviour
 
     private void OnTriggerExit(Collider hit)
     {
-        if (hit.gameObject.tag == ("Floor"))
+        if (hit.gameObject.tag == ("Terrain"))
         {
             isThereWallAhead = false;
         }
     }
+
+    public bool isFacingRight() { return facingRight; }
 }
 
 public enum anim
