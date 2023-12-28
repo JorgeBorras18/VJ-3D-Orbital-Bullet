@@ -11,7 +11,7 @@ public class Angular_Physics : MonoBehaviour
     public float actualAngle = 0f;
 
     CharacterController controller;
-    private float radiusRing = 9f;
+    public float radiusRing = 9f;
     private float verticalSpeed = 0f;
     private Vector3 speed;
 
@@ -59,4 +59,7 @@ public class Angular_Physics : MonoBehaviour
     {
         return verticalSpeed;
     }
+
+    public float getActualAngle() { return actualAngle; }
+    public float getActualRadius() { return radiusRing; }
 }
