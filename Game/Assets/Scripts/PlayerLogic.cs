@@ -36,7 +36,7 @@ public class PlayerLogic : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animationController = GameObject.Find("Player_Animation_Controller").gameObject.GetComponent<Animation_Controller>();
         angularPhysics = GetComponent<Angular_Physics>();
-        angularPhysics.init(radiusRing, 3f * Mathf.PI / 4f, 0f);
+        angularPhysics.init(radiusRing, 3f * Mathf.PI / 4f);
 
         //load input watchers
         _playerInput = GetComponent<PlayerInput>();

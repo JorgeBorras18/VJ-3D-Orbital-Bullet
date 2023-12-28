@@ -11,7 +11,6 @@ public class Angular_Physics : MonoBehaviour
     public float actualAngle = 0f;
 
     CharacterController controller;
-    public float zTilt = 0f;
     public float radiusRing = 9f;
     private float verticalSpeed = 0f;
     private Vector3 speed;
@@ -23,11 +22,10 @@ public class Angular_Physics : MonoBehaviour
     }
 
 
-    public void init(float RadiusRing, float initialAngle, float tiltZAngle)
+    public void init(float RadiusRing, float initialAngle)
     {
         radiusRing = RadiusRing;
         actualAngle = initialAngle;
-        zTilt = tiltZAngle;
     }
 
 
@@ -43,7 +41,6 @@ public class Angular_Physics : MonoBehaviour
         speed.x = Mathf.Cos(actualAngle) * radiusRing - transform.position.x;
         speed.z = Mathf.Sin(actualAngle) * radiusRing - transform.position.z;
         transform.LookAt(new Vector3(0, transform.position.y, 0));
-        if (zTilt != 0) transform.Rotate(new Vector3 (0, 0, zTilt));
 
         // Vertical Movement
         verticalSpeed = Mathf.Max(-10, verticalSpeed - Gravity);

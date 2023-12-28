@@ -215,8 +215,8 @@
                 },
                 {
                     "name": "",
-                    "id": "6d5ae9ca-3893-4849-aa31-c92f1847d802",
-                    "path": "<AndroidJoystick>/stick/down",
+                    "id": "5a0e7d62-4266-426a-ac47-99cbc2f893fd",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -226,8 +226,8 @@
                 },
                 {
                     "name": "",
-                    "id": "5a0e7d62-4266-426a-ac47-99cbc2f893fd",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "452e6e61-c954-4963-98ba-e749e41fd425",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
