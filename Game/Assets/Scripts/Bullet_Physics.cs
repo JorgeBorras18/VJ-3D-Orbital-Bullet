@@ -13,6 +13,7 @@ public class Bullet_Physics : MonoBehaviour
     public float lifetime = 2f;
     public int allowed_bounces = 0;
     public bool explosive = false;
+    public int damage_per_bullet = 0;
 
     private float iniTimestamp;
     private bool visible = false;
@@ -111,13 +112,18 @@ public class Bullet_Physics : MonoBehaviour
     {
         if (hit.gameObject.tag == "Terrain")
         {
-            Debug.Log(hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position);
             if (allowed_bounces == 0 || (hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position).y >= 0) destroyBullet();
             else
             {
                 allowed_bounces -= 1;
                 speed.y = -speed.y;
             }
+        }
+
+        else if (hit.gameObject.tag == "Enemy")
+        {
+            hit.GetComponent<Enemy>().TakeDamage(damage_per_bullet);
+            destroyBullet();
         }
     }
 

@@ -152,7 +152,7 @@ public class PlayerLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain"))
+        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
         {
             isThereWallAhead = true;
         }
@@ -160,7 +160,7 @@ public class PlayerLogic : MonoBehaviour
 
     private void OnTriggerExit(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain"))
+        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
         {
             isThereWallAhead = false;
         }
