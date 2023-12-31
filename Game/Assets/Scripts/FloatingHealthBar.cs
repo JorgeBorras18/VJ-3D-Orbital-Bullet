@@ -7,9 +7,7 @@ public class FloatingHealthBar : MonoBehaviour
 {
 
     [SerializeField] private Slider slider;
-    [SerializeField] private Camera camara;
-    [SerializeField] private Transform target;
-    [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private Transform Camera;
 
     //newHealthValue must be a value between 0 and 100
     public void UpdateHealthBar(float newHealthValue)
@@ -20,7 +18,6 @@ public class FloatingHealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = camara.transform.rotation;
-        transform.position = target.position + positionOffset;
+        transform.LookAt(transform.position + Camera.forward);
     }
 }

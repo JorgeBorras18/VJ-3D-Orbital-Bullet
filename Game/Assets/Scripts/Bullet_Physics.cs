@@ -16,7 +16,6 @@ public class Bullet_Physics : MonoBehaviour
     public int damage_per_bullet = 0;
 
     private float iniTimestamp;
-    private bool visible = false;
     private bool destroyed;
 
     //Angular Movement
@@ -27,8 +26,6 @@ public class Bullet_Physics : MonoBehaviour
 
     private CharacterController controller;
     private GameObject Trail;
-
-    bool aux = true;
 
     // Start is called before the first frame update
     void Start()
