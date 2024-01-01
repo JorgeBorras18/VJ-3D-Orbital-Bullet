@@ -31,4 +31,9 @@ public class Static_Billboard_Facing_Player : MonoBehaviour
              facingRight = false;
     }
 
+    public bool isFacingRight()
+    {
+        return facingRight;
+    }
+
 }

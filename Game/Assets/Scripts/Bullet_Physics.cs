@@ -100,7 +100,6 @@ public class Bullet_Physics : MonoBehaviour
 
         // Move Bullet
         controller.Move(new Vector3(newX, speed.y * timeDelta, newZ));
-
     }
 
     private void OnTriggerEnter(Collider hit)
