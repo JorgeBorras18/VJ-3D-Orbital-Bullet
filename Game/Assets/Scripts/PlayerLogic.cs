@@ -150,6 +150,13 @@ public class PlayerLogic : MonoBehaviour
         //if (Input.GetKey(KeyCode.X)) animationController.setAlive(false);
     }
 
+    public void TakeDamage(int damage)
+    {
+        //health -= damage;
+        //healthBar.UpdateHealthBar(health / max_health);
+        //if (health <= 0) Die();
+    }
+
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))

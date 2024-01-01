@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
     [SerializeField] FloatingHealthBar healthBar;
-    [SerializeField] private Transform Camera;
 
     private void Awake()
     {
@@ -24,7 +23,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(transform.position + Camera.forward);
     }
 
     public void TakeDamage(int damage)
@@ -32,7 +30,6 @@ public class Enemy : MonoBehaviour
         health -= damage;
         healthBar.UpdateHealthBar(health / max_health);
         if (health <= 0) Die();
-        Debug.Log(health);
     }
 
     void Die()

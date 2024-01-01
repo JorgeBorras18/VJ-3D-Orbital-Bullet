@@ -63,4 +63,12 @@ public class Angular_Physics : MonoBehaviour
 
     public float getActualAngle() { return actualAngle; }
     public float getActualRadius() { return radiusRing; }
+
+    // Get angle relative to another (where 0 would be on the opposite side of ring and pi would be origin_angle = actual angle)
+    public float getRelativeAngle(float origin_angle)
+    {
+        float relative_angle = actualAngle % (Mathf.PI * 2) - (origin_angle - Mathf.PI);
+        if (relative_angle < 0) relative_angle = (relative_angle + 4 * Mathf.PI) % (Mathf.PI * 2);
+        return relative_angle;
+    }
 }
