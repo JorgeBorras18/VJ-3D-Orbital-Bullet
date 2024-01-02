@@ -20,6 +20,7 @@ public class LaserDrone : MonoBehaviour
     private float actual_angle;
     private float ring_radius;
     private float bullet_count;
+    private float temp_angle_to_player;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,12 @@ public class LaserDrone : MonoBehaviour
             if (Time.time - last_shot_timestamp > time_between_bullets)
             {
                 last_shot_timestamp = Time.time;
+                if (bullet_count == 0)
+                {
+                    float player_y = GameObject.Find("Player").transform.position.y;
+                    float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
+                    temp_angle_to_player = Mathf.Atan((player_y - Fire_Point.transform.position.y) / Mathf.Abs((player_ang - actual_angle) * ring_radius)) * (180f / Mathf.PI);
+                }
                 bullet_count++;
                 if (bullet_count == bullets_per_pulse)
                 {
@@ -53,9 +60,12 @@ public class LaserDrone : MonoBehaviour
                     else actual_state = STATE.IDLE;
                 }
 
+                //Point at player
+
                 //fire bullet
                 GameObject new_bullet = Instantiate(Bullet_Prefab, Fire_Point.transform.position, Fire_Point.transform.rotation);
-                new_bullet.GetComponent<Bullet_Physics>().init(actual_angle, ring_radius, 0f, billboard.isFacingRight(), 0f);
+                new_bullet.GetComponent<Bullet_Physics>().init(actual_angle, ring_radius, 0f, billboard.isFacingRight(), temp_angle_to_player);
+                Debug.Log(temp_angle_to_player);
             }
         }
     }

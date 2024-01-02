@@ -22,6 +22,8 @@ public class CrystalCharger : MonoBehaviour
     private float max_size_channeling_time;
     private float actual_angle;
     private float ring_radius;
+    private float temp_angle_to_player;
+    private bool calc_angle_player = true;
 
     private void Awake()
     {
@@ -51,6 +53,7 @@ public class CrystalCharger : MonoBehaviour
                 channeling_bullet.GetComponent<MeshRenderer>().enabled = true;
                 channeling_bullet.transform.localScale = original_scale_bullet;
                 last_shot_timestamp = Time.time;
+                calc_angle_player = true;
             }
         }
 
@@ -58,6 +61,14 @@ public class CrystalCharger : MonoBehaviour
         if (actual_state == STATE.FIRING || actual_state == STATE.FIRING_THEN_IDLE)
         {
             if (Time.time - last_shot_timestamp < max_size_channeling_time) channeling_bullet.transform.localScale *= (1 + (Time.time - last_frame) * scale_offset);
+            else if (calc_angle_player && Time.time - last_shot_timestamp > channeling_time - 0.15)
+            {
+                //locate player
+                float player_y = GameObject.Find("Player").transform.position.y;
+                float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
+                temp_angle_to_player = Mathf.Atan((player_y - channeling_bullet.transform.position.y) / Mathf.Abs((player_ang - actual_angle) * ring_radius)) * (180f / Mathf.PI);
+                calc_angle_player = false;
+            }
             else if (Time.time - last_shot_timestamp > channeling_time)
             {
                 channeling_bullet.GetComponent<MeshRenderer>().enabled = false;
@@ -68,7 +79,8 @@ public class CrystalCharger : MonoBehaviour
                 //fire bullet
                 Debug.Log(transform.rotation);
                 GameObject new_bullet = Instantiate(Launchable_Projectile_Prefab, channeling_bullet.transform.position, channeling_bullet.transform.rotation);
-                new_bullet.GetComponent<Bullet_Physics>().init(actual_angle, ring_radius, 0f, billboard.isFacingRight(), 0f);
+                new_bullet.GetComponent<Bullet_Physics>().init(actual_angle, ring_radius, 0f, billboard.isFacingRight(), temp_angle_to_player);
+                temp_angle_to_player = -90;
             }
         }
         last_frame = Time.time;

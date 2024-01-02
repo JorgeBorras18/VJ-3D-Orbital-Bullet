@@ -57,6 +57,7 @@ public class Bullet_Physics : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, -90));
         }
         speed.y = moveSpeed * Mathf.Sin(initialDeviation * Mathf.PI / 180f);
+        Debug.Log(speed.x +" - "+ speed.y);
     }
 
     // Update is called once per frame
@@ -96,7 +97,7 @@ public class Bullet_Physics : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, new_angle));
 
         // Vertical Movement
-        speed.y = Mathf.Max(-10, speed.y - gravity);
+        speed.y = Mathf.Max(-2*Mathf.Abs(speed.x), speed.y - gravity);
 
         // Move Bullet
         controller.Move(new Vector3(newX, speed.y * timeDelta, newZ));
