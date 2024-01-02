@@ -9,6 +9,7 @@ public class PlatformLogic : MonoBehaviour
     public int max_rotation_frames;
     private bool is_rotating;
     private bool rotated;
+    private string Identifier;
 
     void Start()
     {
@@ -20,44 +21,40 @@ public class PlatformLogic : MonoBehaviour
 
     void Update()
     {
-        MovementIfNeeded();
+        if (!rotated && is_rotating)
+        {
+            MovementIfNeeded();
+        }
     }
 
-    void MovementIfNeeded()
-    {
-        // Check if the "L" key is pressed
-        if (!rotated && Input.GetKeyDown(KeyCode.L))
-        {
-            is_rotating = true;
-
-        }
-
-        if (is_rotating)
-        {
-            if (rotation_frames <= max_rotation_frames)
-            {
+    public void MovementIfNeeded() {
+             
+        if (rotation_frames <= max_rotation_frames) {
                 // Rotate the component in the Y-axis
                 MovePlatformOneTick();
                 ++rotation_frames;
-            }
-            else
-            {
+        }
+        else {
                 is_rotating = false;
                 rotated = true;
-            }
         }
+        
+    }
 
+    public void triggerPlatformMovementToStart()
+    {
+        if (!rotated) is_rotating = true;
     }
 
     void MovePlatformOneTick()
     {
-        // Get the current rotation of the component
         Vector3 currentRotation = transform.eulerAngles;
-
-        // Update the Y-axis rotation
         currentRotation.y += rotationSpeed;
-
-        // Apply the new rotation to the component
         transform.eulerAngles = currentRotation;
     }
+    
+    public bool isFinished() {
+        return rotated;
+    }
+
 }
