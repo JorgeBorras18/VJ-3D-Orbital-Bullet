@@ -12,8 +12,8 @@ public class Static_Billboard_Facing_Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actual_angle = (Mathf.Atan(transform.position.z / transform.position.x) + Mathf.PI * 2) % (Mathf.PI * 2);
-        if (angular_physics_player != null) GameObject.Find("Player").GetComponent<Angular_Physics>();
+        actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
+        if (angular_physics_player == null) angular_physics_player = GameObject.Find("Player").GetComponent<Angular_Physics>();
         if (Player == null) Player = GameObject.Find("Player").GetComponent<Transform>();
     }
 

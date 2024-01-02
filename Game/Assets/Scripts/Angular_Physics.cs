@@ -56,10 +56,9 @@ public class Angular_Physics : MonoBehaviour
         verticalSpeed = YSpeed;
     }
 
-    public float getVerticalSpeed()
-    {
-        return verticalSpeed;
-    }
+    public float getVerticalSpeed() { return verticalSpeed; }
+
+    public void setVerticalSpeed(float new_vertical_speed) { verticalSpeed = new_vertical_speed; }
 
     public float getActualAngle() { return actualAngle; }
     public float getActualRadius() { return radiusRing; }
@@ -71,4 +70,22 @@ public class Angular_Physics : MonoBehaviour
         if (relative_angle < 0) relative_angle = (relative_angle + 4 * Mathf.PI) % (Mathf.PI * 2);
         return relative_angle;
     }
+
+    static public float getAngleFromCoordinades(float posX, float posZ)
+    {
+        if (posX == 0)
+        {
+            if (posZ > 0) return Mathf.PI / 2;
+            else return Mathf.PI * 3 / 2;
+        }
+        else if (posX > 0) return (Mathf.Atan(posZ / posX) + Mathf.PI * 2) % (Mathf.PI * 2);
+        Debug.Log(posX + " " + posZ + " " + Mathf.Atan(posZ / posX) + " " + 180 + Mathf.Atan(posZ / posX));
+        return Mathf.PI + Mathf.Atan(posZ / posX);
+    }
+
+    static public float getRadiusFromPosition(float angle, float posX, float posZ)
+    {
+        return Mathf.Max(Mathf.Abs(posZ / Mathf.Sin(angle)), Mathf.Abs(posX / Mathf.Cos(angle)));
+    }
+
 }

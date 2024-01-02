@@ -57,7 +57,6 @@ public class Bullet_Physics : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, -90));
         }
         speed.y = moveSpeed * Mathf.Sin(initialDeviation * Mathf.PI / 180f);
-        Debug.Log(speed.x +" - "+ speed.y);
     }
 
     // Update is called once per frame

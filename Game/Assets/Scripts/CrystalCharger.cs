@@ -37,8 +37,9 @@ public class CrystalCharger : MonoBehaviour
         original_scale_bullet = channeling_bullet.transform.localScale;
         channeling_bullet.GetComponent<MeshRenderer>().enabled = false;
         max_size_channeling_time = channeling_time * 4f / 5f;
-        actual_angle = (Mathf.Atan(transform.position.z / transform.position.x) + Mathf.PI * 2) % (Mathf.PI * 2);
-        ring_radius = Mathf.Max(Mathf.Abs(transform.position.z / Mathf.Sin(actual_angle)), Mathf.Abs(transform.position.x / Mathf.Cos(actual_angle)));
+        actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
+        ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
+        Debug.Log(actual_angle + " " + ring_radius);
     }
 
     // Update is called once per frame
@@ -77,7 +78,6 @@ public class CrystalCharger : MonoBehaviour
                 else actual_state = STATE.IDLE;
 
                 //fire bullet
-                Debug.Log(transform.rotation);
                 GameObject new_bullet = Instantiate(Launchable_Projectile_Prefab, channeling_bullet.transform.position, channeling_bullet.transform.rotation);
                 new_bullet.GetComponent<Bullet_Physics>().init(actual_angle, ring_radius, 0f, billboard.isFacingRight(), temp_angle_to_player);
                 temp_angle_to_player = -90;
