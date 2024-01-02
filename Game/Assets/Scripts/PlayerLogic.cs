@@ -163,7 +163,7 @@ public class PlayerLogic : MonoBehaviour
         else if (jumping_to_the_next_ring)
         {
             if (current_jump_frames <= max_jump_frames) {
-                angularPhysics.applyJump(jumpSpeed * 2.0f);
+                angularPhysics.applyJump(jumpSpeed * 2.5f);
                 next_Animation = "Jump";
                 ++current_jump_frames;
             }
