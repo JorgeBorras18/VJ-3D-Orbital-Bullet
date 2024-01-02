@@ -40,7 +40,7 @@ public class Ring : MonoBehaviour
 
     public bool playerIsInPositionToGoUp(Vector3 playerPosition, int last_ring_number)
     {
-        return Math.Abs(playerPosition.x - positionToGoUp.x) <= 2 && Math.Abs(playerPosition.z - positionToGoUp.z) <= 2 && last_ring_number + 1 == ringNum;
+        return Math.Abs(playerPosition.x - positionToGoUp.x) <= 1 && Math.Abs(playerPosition.z - positionToGoUp.z) <= 1 && last_ring_number + 1 == ringNum;
 
     }
 
