@@ -36,6 +36,9 @@ public class PlayerLogic : MonoBehaviour
     public int max_jump_frames;
     private int current_jump_frames = 0;
 
+    // INTERNAL-EXTERNAL RING MOVEMENT
+    private bool inInternalOrExternalPlatform;
+    private bool jumping_internally_or_externally;
 
     void Start()
     {
@@ -173,6 +176,12 @@ public class PlayerLogic : MonoBehaviour
                 current_jump_frames = 0;
             }
         }
+        else if (jumping_internally_or_externally)
+        {
+            angularPhysics.applyJump(jumpSpeed * 1.5f);
+            next_Animation = "Jump";
+            jumping_internally_or_externally = false;
+        }
 
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
@@ -185,6 +194,8 @@ public class PlayerLogic : MonoBehaviour
         {
             isThereWallAhead = true;
         }
+        else if (hit.gameObject.tag == ("Platform"))
+            inInternalOrExternalPlatform = true;
     }
 
     private void OnTriggerExit(Collider hit)
@@ -193,11 +204,12 @@ public class PlayerLogic : MonoBehaviour
         {
             isThereWallAhead = false;
         }
+        else if (hit.gameObject.tag == ("Platform")) inInternalOrExternalPlatform = false;
     }
 
     private void checkIfMovementIsBlocked()
     {
-        movement_is_blocked = jumping_to_the_next_ring; // ... && ... && ... missing
+        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally; // ... || ... || ... missing
     }
 
     public bool isFacingRight() { return facingRight; }
@@ -211,6 +223,16 @@ public class PlayerLogic : MonoBehaviour
     {
         return transform.position;
     }
+
+    public bool canChangeToInternalOrExternalRing() {
+        return inInternalOrExternalPlatform;
+    }
+
+    public void changeToInternalOrExternalRing(float newRadius) {
+        jumping_internally_or_externally = true;
+        angularPhysics.setActualRadius(newRadius);
+    }
+
 }
 
 public enum anim
