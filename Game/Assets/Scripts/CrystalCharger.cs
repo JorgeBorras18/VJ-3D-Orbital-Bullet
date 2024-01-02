@@ -39,7 +39,6 @@ public class CrystalCharger : MonoBehaviour
         max_size_channeling_time = channeling_time * 4f / 5f;
         actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
         ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
-        Debug.Log(actual_angle + " " + ring_radius);
     }
 
     // Update is called once per frame

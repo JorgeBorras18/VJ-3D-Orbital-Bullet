@@ -79,7 +79,6 @@ public class Angular_Physics : MonoBehaviour
             else return Mathf.PI * 3 / 2;
         }
         else if (posX > 0) return (Mathf.Atan(posZ / posX) + Mathf.PI * 2) % (Mathf.PI * 2);
-        Debug.Log(posX + " " + posZ + " " + Mathf.Atan(posZ / posX) + " " + 180 + Mathf.Atan(posZ / posX));
         return Mathf.PI + Mathf.Atan(posZ / posX);
     }
 

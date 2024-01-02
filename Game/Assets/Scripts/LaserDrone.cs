@@ -37,6 +37,7 @@ public class LaserDrone : MonoBehaviour
     private bool patrolling_to_left = false;
     private float patrol_centerpoint;
     private float actual_speed = 0f;
+    private bool just_look_at_player = false;
 
 
     // Start is called before the first frame update
@@ -143,7 +144,7 @@ public class LaserDrone : MonoBehaviour
         }
 
         // Activate billboard (must be done after moving object)
-        billboard.turn_to_camera(angularPhysics.getActualAngle(), offset_angle_rotation);
+        billboard.turn_to_camera(angularPhysics.getActualAngle(), offset_angle_rotation, just_look_at_player);
     }
 
     private void OnTriggerEnter(Collider hit)
@@ -152,6 +153,7 @@ public class LaserDrone : MonoBehaviour
         {
             actual_state = STATE.PLAYER_DETECTED;
             actual_speed = patrolling_speed;
+            just_look_at_player = true;
         }
     }
 
@@ -166,6 +168,7 @@ public class LaserDrone : MonoBehaviour
                 offset_angle_rotation = 0;
                 patrolling_to_left = true;
                 patrol_centerpoint = angularPhysics.getActualAngle();
+                just_look_at_player = false;
             }
         }
     }
