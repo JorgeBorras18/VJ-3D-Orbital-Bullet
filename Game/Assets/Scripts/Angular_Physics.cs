@@ -62,4 +62,9 @@ public class Angular_Physics : MonoBehaviour
 
     public float getActualAngle() { return actualAngle; }
     public float getActualRadius() { return radiusRing; }
+
+    public void setActualRadius (float radius)
+    {
+        radiusRing = radius;
+    }
 }
