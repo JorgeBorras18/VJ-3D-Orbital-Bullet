@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 /* CLASS THAT APPLIES ANGULAR PHYSICS TO OBJECTS,
@@ -61,7 +60,10 @@ public class Angular_Physics : MonoBehaviour
     public void setVerticalSpeed(float new_vertical_speed) { verticalSpeed = new_vertical_speed; }
 
     public float getActualAngle() { return actualAngle; }
+
     public float getActualRadius() { return radiusRing; }
+
+    public void setActualRadius (float radius) { radiusRing = radius; }
 
     // Get angle relative to another (where 0 would be on the opposite side of ring and pi would be origin_angle = actual angle)
     public float getRelativeAngle(float origin_angle)
