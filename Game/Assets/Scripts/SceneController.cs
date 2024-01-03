@@ -70,7 +70,7 @@ public class SceneController : MonoBehaviour
 
     private void init_player()
     {
-        player = GameObject.Find("2D_Player").GetComponent<PlayerLogic>();
+        player = GameObject.Find("Player").GetComponent<PlayerLogic>();
     }
 
 
@@ -94,7 +94,7 @@ public class SceneController : MonoBehaviour
 
 
     private bool playerIsInPositionToGoUp() {
-        return externalRings[currentRing + 1].playerIsInPositionToGoUp(GameObject.Find("2D_Player").transform.position, currentRing);
+        return externalRings[currentRing + 1].playerIsInPositionToGoUp(GameObject.Find("Player").transform.position, currentRing);
         
     }
     private bool currentRingIsFinished()
