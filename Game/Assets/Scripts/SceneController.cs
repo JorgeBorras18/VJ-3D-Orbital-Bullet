@@ -7,12 +7,12 @@ using System.Numerics;
 public class SceneController : MonoBehaviour
 {
     private int currentRing;
-    private int number_of_rings = 3; // to be 5
+    private int number_of_rings = 5;
 
     private bool gameIsFinished = false;
     private bool gameIsStarted = false;
-    private bool isInExternalRing = true;
-
+    public bool isInExternalRing = true;
+    public bool mec = false;
 
     //////////// Game elements ////////////
     
@@ -43,15 +43,16 @@ public class SceneController : MonoBehaviour
             if (currentRing != (number_of_rings - 1) && currentRingIsFinished()) {
                 // TODO HERE Interface shows possibility to go change ring
                 externalRings[currentRing].turnIndicadorOn();
-                if (Input.GetKeyDown(KeyCode.L) && playerIsInPositionToGoUp()) {
+                if (Input.GetKeyDown(KeyCode.E) && playerIsInPositionToGoUp()) {
                     externalRings[currentRing + 1].triggerPlatformMovementToStart();
                     player.triggerToJumpToTheNextRing();
                     ++currentRing;
                 }
             }
-            else if (playerCanChangeToInternalOrExternalRing()) {
+            if (playerCanChangeToInternalOrExternalRing()) {
                 // TODO HERE Interface shows possibility to go change ring
-                if (Input.GetKeyDown(KeyCode.Space))
+                mec = true;
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     UnityEngine.Vector3 newPlayerCoords;
                     float newRadius;
@@ -83,12 +84,16 @@ public class SceneController : MonoBehaviour
         internalRings.Add(null);
         externalRings.Add(GameObject.Find("collisionable/externes/" + "level2").GetComponent<Ring>());
         internalRings.Add(GameObject.Find("collisionable/internes/" + "level2 (cos de la nau)").GetComponent<Ring>());
-        // externalRings.Add(GameObject.Find("collisionable/externes/" + "level3").GetComponent<Ring>());
+        externalRings.Add(GameObject.Find("collisionable/externes/" + "level3").GetComponent<Ring>());
+        externalRings.Add(GameObject.Find("collisionable/externes/" + "level4").GetComponent<Ring>());
+        internalRings.Add(null);
+
         // externalRings.Add(GameObject.Find("collisionable/externes/" + "level4").GetComponent<Ring>());
         externalRings[0].setPlatformById();
         externalRings[1].setPlatformById();
         externalRings[2].setPlatformById();
-        // externalRings[3].setPlatformById();
+        externalRings[3].setPlatformById();
+        externalRings[4].setPlatformById();
         // externalRings[4].setPlatformById();
     }
 
