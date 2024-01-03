@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 1526391193, guid: 76a7001346ff9604c98b04682ffee941, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,12 +131,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 8721720807959094267}
   bulletPrefab: {fileID: 8532716960228633665, guid: 0ebda0805031eac47806fa8336c2fedf, type: 3}
+  playerAG: {fileID: 0}
+  playerLogic: {fileID: 0}
+  DropableWeaponPrefab: {fileID: 3767991804018702406, guid: b51b3d15794eaeb449a47015ab573ed2, type: 3}
   fireRate: 0.13
-  reloadSpeed: 2
   magazineSize: 32
   upperAccuracyLimit: 5
   lowerAccuracyLimit: -5
   barrelLength: 0.08
   automatic: 1
+  infinite_ammo: 0
   bullets_per_shot: 1
   bullet_spread: 0

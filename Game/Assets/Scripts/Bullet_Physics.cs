@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.XR;
 
 public class Bullet_Physics : MonoBehaviour
 {
-
+    public enum BULLET_TYPE { BULLET, ENERGY, EXPLOSIVE, SHELL }
 
     public float moveSpeed = 10f;
     public float gravity = 0f;
@@ -16,6 +16,7 @@ public class Bullet_Physics : MonoBehaviour
     public int damage_per_bullet = 0;
 
     public bool enemy_bullet = false;
+    [SerializeField] private BULLET_TYPE b_type = BULLET_TYPE.BULLET;
     private float iniTimestamp;
     private bool destroyed;
 

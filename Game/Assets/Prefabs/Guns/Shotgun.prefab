@@ -131,12 +131,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 175628205207300030}
   bulletPrefab: {fileID: 8532716960228633665, guid: e6d3b708d6d2bdd4fb1979a9b5031133, type: 3}
+  playerAG: {fileID: 0}
+  playerLogic: {fileID: 0}
+  DropableWeaponPrefab: {fileID: 8937866645208595767, guid: 00a1d93a969c83a4398fbdd0735efe6c, type: 3}
   fireRate: 0.8
-  reloadSpeed: 2
   magazineSize: 6
   upperAccuracyLimit: 7
   lowerAccuracyLimit: -7
   barrelLength: 0.12
   automatic: 0
+  infinite_ammo: 0
   bullets_per_shot: 7
   bullet_spread: 0.06
