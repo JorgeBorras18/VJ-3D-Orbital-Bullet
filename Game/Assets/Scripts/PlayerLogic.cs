@@ -186,33 +186,42 @@ public class PlayerLogic : MonoBehaviour
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
         animationController.changeAnimation(next_Animation);
+
+        // KILL PLAYER
+        //if (Input.GetKey(KeyCode.X)) animationController.setAlive(false);
     }
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain"))
+        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
         {
             isThereWallAhead = true;
         }
-        else if (hit.gameObject.tag == ("Platform"))
-            inInternalOrExternalPlatform = true;
+        else if (hit.gameObject.tag == ("Platform")) inInternalOrExternalPlatform = true;
     }
 
     private void OnTriggerExit(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain"))
+        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
         {
             isThereWallAhead = false;
         }
         else if (hit.gameObject.tag == ("Platform")) inInternalOrExternalPlatform = false;
     }
 
+    public bool isFacingRight() { return facingRight; }
+
+    public void TakeDamage(int damage)
+    {
+        //health -= damage;
+        //healthBar.UpdateHealthBar(health / max_health);
+        //if (health <= 0) Die();
+    }
+
     private void checkIfMovementIsBlocked()
     {
         movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally; // ... || ... || ... missing
     }
-
-    public bool isFacingRight() { return facingRight; }
 
     public void triggerToJumpToTheNextRing()
     {
@@ -232,13 +241,4 @@ public class PlayerLogic : MonoBehaviour
         jumping_internally_or_externally = true;
         angularPhysics.setActualRadius(newRadius);
     }
-
-}
-
-public enum anim
-{
-    IDLE,
-    RUNNING,
-    JUMP,
-    AIR_JUMP,
 }

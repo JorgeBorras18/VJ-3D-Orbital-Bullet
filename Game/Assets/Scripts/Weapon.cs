@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     private PlayerInput _playerInput;
     private InputAction shootAction;
+    [SerializeField] private Angular_Physics playerAG;
+    [SerializeField] private PlayerLogic playerLogic;
 
     public float fireRate = 1f;
     public float reloadSpeed = 2f;
@@ -29,6 +31,8 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
+        if (playerAG == null) playerAG = GameObject.Find("Player").GetComponent<Angular_Physics>();
+        if (playerLogic == null) playerLogic = GameObject.Find("Player").GetComponent<PlayerLogic>();
         _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
         shootAction = _playerInput.actions["Fire"];
 
@@ -63,11 +67,15 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
+        float ini_angle = playerAG.getActualAngle();
+        float ring_radius = playerAG.getActualRadius() + Random.Range(-0.5f, 0.5f);
+        bool PlayerFacingRight = playerLogic.isFacingRight();
+
         // 1 SHOT
         if (bullets_per_shot == 1)
         {
             GameObject new_bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            new_bullet.GetComponent<Bullet_Physics>().init(Random.Range(lowerAccuracyLimit, upperAccuracyLimit));
+            new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength,  PlayerFacingRight, Random.Range(lowerAccuracyLimit, upperAccuracyLimit));
         }
 
         // FIRE MANY SHOTS
@@ -77,7 +85,7 @@ public class Weapon : MonoBehaviour
             for (int i = 0; i < bullets_per_shot; i++)
             {
                 GameObject new_bullet = Instantiate(bulletPrefab, firePoint.position + new Vector3(0, (-bullets_per_shot / 2 + i) * bullet_spread, 0), firePoint.rotation);
-                new_bullet.GetComponent<Bullet_Physics>().init(lowerAccuracyLimit + angle_per_bullet * i * Random.Range(0.7f, 1.3f));
+                new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength, PlayerFacingRight, lowerAccuracyLimit + angle_per_bullet * i * Random.Range(0.7f, 1.3f));
             }
         }
     }

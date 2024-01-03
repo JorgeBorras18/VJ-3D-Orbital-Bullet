@@ -13,9 +13,10 @@ public class Bullet_Physics : MonoBehaviour
     public float lifetime = 2f;
     public int allowed_bounces = 0;
     public bool explosive = false;
+    public int damage_per_bullet = 0;
 
+    public bool enemy_bullet = false;
     private float iniTimestamp;
-    private bool visible = false;
     private bool destroyed;
 
     //Angular Movement
@@ -27,39 +28,34 @@ public class Bullet_Physics : MonoBehaviour
     private CharacterController controller;
     private GameObject Trail;
 
-    bool aux = true;
-
     // Start is called before the first frame update
     void Start()
     {
         // GET ORIENTATION, POSITION FROM FIREPOINT...
         Trail = transform.GetChild(1).gameObject;
         controller = GetComponent<CharacterController>();
-        Angular_Physics playerAG = GameObject.Find("Player").GetComponent<Angular_Physics>();
-        float barrelLengthOffset = GameObject.Find("Gun").GetComponent<Weapon>().getBarrelLengthOffset();
-        radiusRing = playerAG.getActualRadius() + Random.Range(-0.5f, 0.5f);
+        iniTimestamp = Time.time;
+    }
 
-        facingRight = GameObject.Find("Player").GetComponent<PlayerLogic>().isFacingRight();
+    // SET VERTICAL ANGULATION
+    public void init(float ini_angle, float ini_radius, float barrel_length_offset, bool isFacingRight, float initialDeviation)
+    {
+        radiusRing = ini_radius;
+        actualAngle = ini_angle;
+        facingRight = isFacingRight;
         if (!facingRight)
         {
             speed.x = moveSpeed * -1f;
-            actualAngle = playerAG.getActualAngle() - barrelLengthOffset;
+            actualAngle -= barrel_length_offset;
             transform.Rotate(new Vector3(0, 0, 90));
             if (explosive) transform.GetChild(2).transform.position += new Vector3(0, 1, 0);
         }
         else
         {
             speed.x = moveSpeed;
-            actualAngle = playerAG.getActualAngle() + barrelLengthOffset;
+            actualAngle += barrel_length_offset;
             transform.Rotate(new Vector3(0, 0, -90));
         }
-        iniTimestamp = Time.time;
-
-    }
-
-    // SET VERTICAL ANGULATION
-    public void init(float initialDeviation)
-    {
         speed.y = moveSpeed * Mathf.Sin(initialDeviation * Mathf.PI / 180f);
     }
 
@@ -87,7 +83,7 @@ public class Bullet_Physics : MonoBehaviour
         //MOVE BULLET
         float timeDelta = Time.deltaTime;
 
-        // Calculate Horitzontal desplacement && turn object so it faces camera
+        // Calculate Horitzontal desplacement && turn object so it faces center
         actualAngle += (speed.x / radiusRing) * timeDelta;
         float newX = Mathf.Cos(actualAngle) * radiusRing - transform.position.x;
         float newZ = Mathf.Sin(actualAngle) * radiusRing - transform.position.z;
@@ -100,24 +96,33 @@ public class Bullet_Physics : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, new_angle));
 
         // Vertical Movement
-        speed.y = Mathf.Max(-10, speed.y - gravity);
+        speed.y = Mathf.Max(-2*Mathf.Abs(speed.x), speed.y - gravity);
 
         // Move Bullet
         controller.Move(new Vector3(newX, speed.y * timeDelta, newZ));
-
     }
 
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == "Terrain")
         {
-            Debug.Log(hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position);
             if (allowed_bounces == 0 || (hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position).y >= 0) destroyBullet();
             else
             {
                 allowed_bounces -= 1;
                 speed.y = -speed.y;
             }
+        }
+        else if (enemy_bullet && hit.gameObject.tag == "Player")
+        {
+            hit.GetComponent<PlayerLogic>().TakeDamage(damage_per_bullet);
+            destroyBullet();
+        }
+
+        else if (!enemy_bullet && hit.gameObject.tag == "Enemy")
+        {
+            hit.GetComponent<Enemy>().TakeDamage(damage_per_bullet);
+            destroyBullet();
         }
     }
 
