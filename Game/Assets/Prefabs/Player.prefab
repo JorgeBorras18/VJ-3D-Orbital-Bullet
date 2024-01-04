@@ -258,6 +258,7 @@ MonoBehaviour:
   fast_fall_gravity: 0.5
   radiusRing: 9
   max_jump_frames: 0
+  jumping_internally_or_externally: 0
 --- !u!114 &459684114983004299
 MonoBehaviour:
   m_ObjectHideFlags: 0
