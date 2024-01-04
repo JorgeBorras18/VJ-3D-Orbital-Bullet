@@ -212,6 +212,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "0059a6072ab7483c99e53f47ce0cb227"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "cd2764ef93434c1b8d37f1f5d45a226a"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "09f1166e4b7e4eba8a405b0b08f598d0"
                 },
                 "m_SlotId": 1
@@ -1564,7 +1578,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"70554574ed58d204a87637d38be1de0f\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -3916,8 +3930,8 @@
     "m_Theme": 0,
     "m_Position": {
         "serializedVersion": "2",
-        "x": -611.5000610351563,
-        "y": 638.0000610351563,
+        "x": -611.0,
+        "y": 638.0,
         "width": 200.00003051757813,
         "height": 100.0
     },

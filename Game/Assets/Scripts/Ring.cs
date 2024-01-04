@@ -16,7 +16,8 @@ public class Ring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indicadorLogic = GameObject.Find("indicador" + ringNum.ToString()).GetComponent<IndicadorLogic>();
+        if (ringNum != 4)
+            indicadorLogic = GameObject.Find("indicador" + ringNum.ToString()).GetComponent<IndicadorLogic>();
     }
 
     // Update is called once per frame

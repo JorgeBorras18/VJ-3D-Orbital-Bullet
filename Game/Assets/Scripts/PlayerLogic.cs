@@ -39,7 +39,7 @@ public class PlayerLogic : MonoBehaviour
 
     // INTERNAL-EXTERNAL RING MOVEMENT
     private bool inInternalOrExternalPlatform;
-    private bool jumping_internally_or_externally;
+    public bool jumping_internally_or_externally;
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class PlayerLogic : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animationController = GameObject.Find("Player_Animation_Controller").gameObject.GetComponent<Animation_Controller>();
         angularPhysics = GetComponent<Angular_Physics>();
-        angularPhysics.init(radiusRing, 3f * Mathf.PI / 4f);
+        angularPhysics.init(radiusRing, 0);
 
         //load input watchers
         _playerInput = GetComponent<PlayerInput>();
@@ -201,7 +201,10 @@ public class PlayerLogic : MonoBehaviour
         {
             isThereWallAhead = true;
         }
-        else if (hit.gameObject.tag == ("Platform")) inInternalOrExternalPlatform = true;
+        else if (hit.gameObject.tag == ("Platform"))
+        {
+            inInternalOrExternalPlatform = true;
+        }
     }
 
     private void OnTriggerExit(Collider hit)

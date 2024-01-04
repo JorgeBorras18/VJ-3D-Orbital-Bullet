@@ -19,7 +19,7 @@ public class PlatformLogic : MonoBehaviour
         rotated = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!rotated && is_rotating)
         {
