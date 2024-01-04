@@ -16,11 +16,28 @@ public class Animation_Controller : MonoBehaviour
 
     public void changeAnimation(string new_Animation)
     {
+        /*
         if (new_Animation == ActualAnimation) return;
         player_animator.Play("Player_" + new_Animation, 0, 0f);
         healpot_animator.Play("Healpot_" + new_Animation, 0, 0f);
         gun_animator.Play("Gun_" + new_Animation, 0, 0f);
+        ActualAnimation = new_Animation;*/
+        
+        if (new_Animation == ActualAnimation) return;
         ActualAnimation = new_Animation;
+
+        if (new_Animation == "Roll")
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            player_animator.Play("Player_Roll", 0, 0f);
+            healpot_animator.Play("Healpot_Roll", 0, 0f);
+            return;
+        }
+        else if (transform.GetChild(0).gameObject.activeSelf == false) transform.GetChild(0).gameObject.SetActive(true);
+        player_animator.Play("Player_" + new_Animation, 0, 0f);
+        healpot_animator.Play("Healpot_" + new_Animation, 0, 0f);
+        gun_animator.Play("Gun_" + new_Animation, 0, 0f);
+        
     }
 
     public void flipX(bool facingRight)

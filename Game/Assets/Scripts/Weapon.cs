@@ -11,14 +11,15 @@ public class Weapon : MonoBehaviour
     private InputAction shootAction;
     [SerializeField] private Angular_Physics playerAG;
     [SerializeField] private PlayerLogic playerLogic;
+    [SerializeField] private GameObject DropableWeaponPrefab;
 
     public float fireRate = 1f;
-    public float reloadSpeed = 2f;
-    public float magazineSize = 20;
+    public int magazineSize = 20;
     public float upperAccuracyLimit = 0f;
     public float lowerAccuracyLimit = 0f;
     public float barrelLength = 0f;
     public bool automatic = false;
+    public bool infinite_ammo = false;
 
 
     //For certain weapons
@@ -26,7 +27,7 @@ public class Weapon : MonoBehaviour
     public float bullet_spread = 0.1f;
 
     private float lastShotTimestamp;
-    private float shotsInChamber;
+    private int shotsInChamber = -1;
     private bool released_trigger;
 
     void Start()
@@ -37,7 +38,7 @@ public class Weapon : MonoBehaviour
         shootAction = _playerInput.actions["Fire"];
 
         lastShotTimestamp = Time.time;
-        shotsInChamber = magazineSize;
+        if (shotsInChamber == -1) shotsInChamber = magazineSize * 2; //If initialized by Droppable then we don't want to rewrite the value
 
         //Assert correct values & no break
         lowerAccuracyLimit = Mathf.Min(lowerAccuracyLimit, upperAccuracyLimit);
@@ -48,20 +49,13 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!automatic)
-        {
-            if (!shootAction.IsPressed() && (Time.time - lastShotTimestamp) > fireRate) released_trigger = true;
-            else if (shootAction.IsPressed() && released_trigger)
-            {
-                Shoot();
-                released_trigger = false;
-                lastShotTimestamp = Time.time;
-            }
-        }
-        else if (shootAction.IsPressed() && (Time.time - lastShotTimestamp) > fireRate)
+        if (!shootAction.IsPressed()) released_trigger = true;
+        else if (shootAction.IsPressed() && (shotsInChamber > 0 || infinite_ammo) && (Time.time - lastShotTimestamp) > fireRate && (automatic || (released_trigger && !automatic)))
         {
             Shoot();
+            released_trigger = false;
             lastShotTimestamp = Time.time;
+            shotsInChamber--;
         }
     }
 
@@ -88,7 +82,14 @@ public class Weapon : MonoBehaviour
                 new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength, PlayerFacingRight, lowerAccuracyLimit + angle_per_bullet * i * Random.Range(0.7f, 1.3f));
             }
         }
+        FindObjectOfType<WeaponsControllerUI>().DecreaseAmmoByOne();
     }
 
     public float getBarrelLengthOffset() { return barrelLength; }
+
+    public int getBulletsLeftInMagazine() { return shotsInChamber; }
+
+    public void setBulletsLeftInMagazien(int bullet_amount) { shotsInChamber = bullet_amount; }
+
+    public GameObject getDroppableVersion() { return DropableWeaponPrefab; }
 }

@@ -6,8 +6,6 @@ using UnityEngine.InputSystem.XR;
 
 public class Bullet_Physics : MonoBehaviour
 {
-
-
     public float moveSpeed = 10f;
     public float gravity = 0f;
     public float lifetime = 2f;

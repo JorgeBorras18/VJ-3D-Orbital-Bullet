@@ -11,6 +11,7 @@ public class PlayerLogic : MonoBehaviour
     Angular_Physics angularPhysics;
     public BoxCollider boxCollider;
     public PlayerInput _playerInput;
+    [SerializeField] private int player_health = 125;
 
     // PHYSISCS VALUES
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
@@ -54,6 +55,9 @@ public class PlayerLogic : MonoBehaviour
         RollAction = _playerInput.actions["Roll"];
         JumpAction = _playerInput.actions["Jump"];
         CrouchAction = _playerInput.actions["Crouch"];
+
+        //set health
+        FindObjectOfType<PlayerHealthBar>().SetMaxHealth(player_health);
     }
 
     // Catch 
