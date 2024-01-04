@@ -21,7 +21,6 @@ public class Billboard_Facing_Player : MonoBehaviour
     {
         //Should be facing Left or Right?
         float player_angle = angular_physics_player.getRelativeAngle(new_angle);
-        Debug.Log(player_angle * 180 / Mathf.PI + " - " + offset_angle);
         if (!facingRight && ((player_angle < Mathf.PI / 2f) || (player_angle > Mathf.PI && player_angle < Mathf.PI * 3f / 2f)))
             facingRight = true;
         else if (facingRight && ((player_angle > Mathf.PI * 3f / 2f) || (player_angle > Mathf.PI / 2f && player_angle < Mathf.PI)))
