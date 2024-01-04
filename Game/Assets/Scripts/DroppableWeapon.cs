@@ -7,12 +7,6 @@ public class DroppableWeapon : MonoBehaviour
     [SerializeField] private GameObject OnHandWeaponPrefab;
     [SerializeField] private int BulletsInMagazine;
 
-
-    private void Update()
-    {
-        Debug.Log(transform.position);
-    }
-
     public int getBulletsInMagazine () { return BulletsInMagazine; }
 
     public void setBulletsInMagazine(int bullet_quantity) { BulletsInMagazine = bullet_quantity; }

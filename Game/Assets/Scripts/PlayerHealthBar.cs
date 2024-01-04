@@ -35,10 +35,11 @@ public class PlayerHealthBar : MonoBehaviour
         health_number.text = ((int)Mathf.Round(actual_health)).ToString();
     }
 
-    private void Start()
-    {
-        UpdateHealthBar(125);
+    public void SetMaxHealth(int max_health_value) {
+        actual_health = max_health = max_health_value;
+        UpdateHealthBar(max_health);
     }
+
     private void FixedUpdate()
     {
         if (Input.GetKey("space")) TakeDamage(1);

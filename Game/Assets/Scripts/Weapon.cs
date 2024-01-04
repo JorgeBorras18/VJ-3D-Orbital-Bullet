@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
     public float bullet_spread = 0.1f;
 
     private float lastShotTimestamp;
-    private int shotsInChamber;
+    private int shotsInChamber = -1;
     private bool released_trigger;
 
     void Start()
@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
         shootAction = _playerInput.actions["Fire"];
 
         lastShotTimestamp = Time.time;
-        shotsInChamber = magazineSize * 3;
+        if (shotsInChamber == -1) shotsInChamber = magazineSize * 2; //If initialized by Droppable then we don't want to rewrite the value
 
         //Assert correct values & no break
         lowerAccuracyLimit = Mathf.Min(lowerAccuracyLimit, upperAccuracyLimit);
@@ -82,6 +82,7 @@ public class Weapon : MonoBehaviour
                 new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength, PlayerFacingRight, lowerAccuracyLimit + angle_per_bullet * i * Random.Range(0.7f, 1.3f));
             }
         }
+        FindObjectOfType<WeaponsControllerUI>().DecreaseAmmoByOne();
     }
 
     public float getBarrelLengthOffset() { return barrelLength; }

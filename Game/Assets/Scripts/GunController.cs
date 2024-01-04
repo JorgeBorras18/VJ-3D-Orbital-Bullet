@@ -15,6 +15,7 @@ public class Gun_Controller : MonoBehaviour
 
     [SerializeField] private GameObject Main_Weapon;
     [SerializeField] private GameObject Offhand_Weapon;
+    [SerializeField] private WeaponsControllerUI WeaponInventoryPlaceholder;
 
     private PlayerInput _playerInput;
     private InputAction swapWeaponAction;
@@ -24,12 +25,21 @@ public class Gun_Controller : MonoBehaviour
 
     void Start()
     {
+        if (WeaponInventoryPlaceholder == null) WeaponInventoryPlaceholder = FindObjectOfType<WeaponsControllerUI>();
+
         _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
         swapWeaponAction = _playerInput.actions["Swap Weapon"];
         pickUpWeaponAction = _playerInput.actions["Use"];
 
         Main_Weapon.SetActive(true);
-        if (Offhand_Weapon != null) Offhand_Weapon.SetActive(false);
+        WeaponInventoryPlaceholder.SubstituteWeaponByNew(Main_Weapon.name, Main_Weapon.GetComponent<Weapon>().getBulletsLeftInMagazine());
+        if (Offhand_Weapon != null)
+        {
+            WeaponInventoryPlaceholder.SwapToOffhandWeapon();
+            WeaponInventoryPlaceholder.SubstituteWeaponByNew(Offhand_Weapon.name, Offhand_Weapon.GetComponent<Weapon>().getBulletsLeftInMagazine());
+            WeaponInventoryPlaceholder.SwapToOffhandWeapon();
+            Offhand_Weapon.SetActive(false);
+        }
 
     }
 
@@ -55,6 +65,9 @@ public class Gun_Controller : MonoBehaviour
         // Physically Swap
         Main_Weapon.SetActive(true);
         Offhand_Weapon.SetActive(false);
+
+        // Modify Player UI
+        FindObjectOfType<WeaponsControllerUI>().SwapToOffhandWeapon();
     }
 
     private void PickUpWeapon(GameObject NewGun, int BulletsInNewGun)
@@ -63,6 +76,8 @@ public class Gun_Controller : MonoBehaviour
         {
             Offhand_Weapon = Main_Weapon;
             Offhand_Weapon.SetActive(false);
+            FindObjectOfType<WeaponsControllerUI>().SwapToOffhandWeapon();
+
         }
         else
         {
@@ -70,7 +85,7 @@ public class Gun_Controller : MonoBehaviour
             Weapon old_weapon = Main_Weapon.GetComponent<Weapon>();
             GameObject DroppableWeaponPrefab = old_weapon.getDroppableVersion();
             GameObject DroppedWeapon = Instantiate(DroppableWeaponPrefab, transform.position + new Vector3(0, -0.25f, 0), transform.rotation);
-            DroppedWeapon.GetComponent<Weapon>().setBulletsLeftInMagazien(old_weapon.getBulletsLeftInMagazine());
+            DroppedWeapon.transform.GetChild(0).GetComponent<DroppableWeapon>().setBulletsInMagazine(old_weapon.getBulletsLeftInMagazine());
             Destroy(Main_Weapon);
         }
 
@@ -79,7 +94,11 @@ public class Gun_Controller : MonoBehaviour
         Main_Weapon.transform.parent = transform;
         Main_Weapon.transform.localScale = NewGun.transform.localScale;
         Main_Weapon.transform.localPosition = NewGun.transform.localPosition;
-        Main_Weapon.GetComponent<Weapon>().setBulletsLeftInMagazien(BulletsInNewGun);
+        Weapon weapon_script = Main_Weapon.GetComponent<Weapon>();
+        weapon_script.setBulletsLeftInMagazien(BulletsInNewGun);
+
+        //Modify Player UI
+        WeaponInventoryPlaceholder.SubstituteWeaponByNew(Main_Weapon.name, BulletsInNewGun);
     }
 
     private void OnTriggerEnter(Collider hit)

@@ -250,6 +250,7 @@ MonoBehaviour:
   animationController: {fileID: 0}
   boxCollider: {fileID: 0}
   _playerInput: {fileID: 0}
+  player_health: 155
   moveSpeed: 9
   jumpSpeed: 11
   rollSpeed: 15
@@ -338,7 +339,7 @@ MonoBehaviour:
   player_sprite: {fileID: 4371008327270737663}
   healpot_sprite: {fileID: 5940137601341963064}
   shoulder_sprite: {fileID: 7843072500361063400}
-  gun_sprite: {fileID: 0}
+  gun_sprite: {fileID: 8753460744497063295}
   ActualAnimation: 0
 --- !u!1 &6456012984635168318
 GameObject:
@@ -548,6 +549,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8532716960228633665, guid: 10990ecc8f7c6944fb4efe47ae6b1036, type: 3}
   playerAG: {fileID: 0}
   playerLogic: {fileID: 0}
+  DropableWeaponPrefab: {fileID: 3746922494329145514, guid: ef488f4e7f68df649b19fef0556d1fc7, type: 3}
   fireRate: 0.1
   magazineSize: 13
   upperAccuracyLimit: 4
@@ -788,7 +790,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 955064b1e7286d6479db4bb12bc468f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -835,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Main_Weapon: {fileID: 7469567913673940685}
   Offhand_Weapon: {fileID: 0}
+  WeaponInventoryPlaceholder: {fileID: 0}
 --- !u!135 &8349536980112414977
 SphereCollider:
   m_ObjectHideFlags: 0
