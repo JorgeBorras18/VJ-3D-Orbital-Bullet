@@ -80,14 +80,15 @@ public class SceneController : MonoBehaviour
        
         //string ringId = "level" + i.ToString();
         externalRings.Add(GameObject.Find("collisionable/externes/" + "level0").GetComponent<Ring>());
-        internalRings.Add(null);
+        internalRings.Add(GameObject.Find("collisionable/internes/" + "level0").GetComponent<Ring>());
         externalRings.Add(GameObject.Find("collisionable/externes/" + "level1").GetComponent<Ring>());
         internalRings.Add(null);
         externalRings.Add(GameObject.Find("collisionable/externes/" + "level2").GetComponent<Ring>());
         internalRings.Add(GameObject.Find("collisionable/internes/" + "level2 (cos de la nau)").GetComponent<Ring>());
         externalRings.Add(GameObject.Find("collisionable/externes/" + "level3").GetComponent<Ring>());
-        externalRings.Add(GameObject.Find("collisionable/externes/" + "level4").GetComponent<Ring>());
         internalRings.Add(null);
+        externalRings.Add(GameObject.Find("collisionable/externes/" + "level4").GetComponent<Ring>());
+        internalRings.Add(GameObject.Find("collisionable/internes/" + "level4").GetComponent<Ring>());
 
         // externalRings.Add(GameObject.Find("collisionable/externes/" + "level4").GetComponent<Ring>());
         externalRings[0].setPlatformById();
@@ -106,7 +107,7 @@ public class SceneController : MonoBehaviour
     private bool currentRingIsFinished()
     {
         int currentRing = ringIdentifierLogic.getRingId();
-        return externalRings[currentRing].isFinished();
+        return externalRings[currentRing].isFinished() && (currentRing % 2 != 0 || internalRings[currentRing].isFinished());
     }
 
     private bool playerCanChangeToInternalOrExternalRing() {

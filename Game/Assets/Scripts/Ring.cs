@@ -9,13 +9,15 @@ public class Ring : MonoBehaviour
     public string platformId;
     public int missingEnemies;
     public Vector3 positionToGoUp;
-    public int ringNum;
+    RingIdentifierLogic identifierLogic;
     IndicadorLogic indicadorLogic = new IndicadorLogic();
 
 
     // Start is called before the first frame update
     void Start()
     {
+        identifierLogic = GetComponent<RingIdentifierLogic>();
+        int ringNum = identifierLogic.getRingId();
         if (ringNum != 4)
             indicadorLogic = GameObject.Find("indicador" + ringNum.ToString()).GetComponent<IndicadorLogic>();
     }
@@ -30,7 +32,10 @@ public class Ring : MonoBehaviour
     }
 
     public bool isFinished() {
-        return platformId == "none" || (platformLogic.isFinished() && missingEnemies == 0);
+        int ringNum = identifierLogic.getRingId();
+        int inside = (identifierLogic.isExternal()) ? 0 : 1;
+        missingEnemies = GameObject.Find("enemics_" + ringNum.ToString() + "." + inside.ToString()).gameObject.transform.childCount;
+        return ((platformId == "none" || platformLogic.isFinished()) && missingEnemies == 0);
     }
 
     public void triggerPlatformMovementToStart() { 
@@ -38,6 +43,7 @@ public class Ring : MonoBehaviour
     }
 
     public bool playerIsInPositionToGoUp(Vector3 playerPosition, int last_ring_number) {
+        int ringNum = identifierLogic.getRingId();
         return Math.Abs(playerPosition.x - positionToGoUp.x) <= 1 && Math.Abs(playerPosition.z - positionToGoUp.z) <= 1 && last_ring_number + 1 == ringNum;
 
     }

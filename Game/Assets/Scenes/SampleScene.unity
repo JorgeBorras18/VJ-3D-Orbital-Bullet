@@ -339,7 +339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20072599}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_4.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1443,7 +1443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339656066}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_2.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,7 +2202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 579778567}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_0.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2876,7 +2876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693615639}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_3.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3405,7 +3405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767619053}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_0.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3634,7 +3634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 833737525}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_4.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3990,7 +3990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 980795323}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_1.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224160661}
   m_Layer: 0
-  m_Name: enemics
+  m_Name: enemics_2.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6864,7 +6864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce71876dbb0e3b4e8a932d67724ecb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mec: 0
 --- !u!4 &1653028906
 Transform:
   m_ObjectHideFlags: 0
@@ -8305,6 +8304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2088678220}
   - component: {fileID: 2088678221}
+  - component: {fileID: 2088678222}
   m_Layer: 0
   m_Name: level4
   m_TagString: Untagged
@@ -8345,6 +8345,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   external: 0
   ringId: 4
+--- !u!114 &2088678222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088678219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2f37a60a284ec44a0df3beee20c073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformId: none
+  missingEnemies: 0
+  positionToGoUp: {x: 0, y: 0, z: 0}
+  ringNum: 4
 --- !u!1001 &2097678925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9425,6 +9441,7 @@ GameObject:
   - component: {fileID: 6579780983175537644}
   - component: {fileID: 6579780983175537645}
   - component: {fileID: 6579780983175537646}
+  - component: {fileID: 6579780983175537647}
   m_Layer: 0
   m_Name: level0
   m_TagString: Untagged
@@ -10256,6 +10273,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   external: 0
   ringId: 0
+--- !u!114 &6579780983175537647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067727712875021138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2f37a60a284ec44a0df3beee20c073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformId: none
+  missingEnemies: 0
+  positionToGoUp: {x: 0, y: 0, z: 0}
+  ringNum: 0
 --- !u!23 &6745847445349860220
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10806,6 +10839,7 @@ GameObject:
   - component: {fileID: 6317578923383195695}
   - component: {fileID: 8632055957295217588}
   - component: {fileID: 8632055957295217589}
+  - component: {fileID: 8632055957295217590}
   m_Layer: 0
   m_Name: level2 (cos de la nau)
   m_TagString: Terrain
@@ -11131,6 +11165,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   external: 0
   ringId: 2
+--- !u!114 &8632055957295217590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204707764633678531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2f37a60a284ec44a0df3beee20c073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformId: none
+  missingEnemies: 0
+  positionToGoUp: {x: 0, y: 0, z: 0}
+  ringNum: 0
 --- !u!4 &8632055958397632500
 Transform:
   m_ObjectHideFlags: 0
