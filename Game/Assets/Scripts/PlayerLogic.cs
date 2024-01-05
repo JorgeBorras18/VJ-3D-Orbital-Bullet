@@ -14,6 +14,11 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField] private int player_health = 125;
     [SerializeField] private PlayerHealthBar PlayerHealthBar;
 
+    // DMG Handlers
+    public float IFramesDuration = 1.5f;
+    private float timestamp_last_dmg_taken = 0;
+    private DMG_Flash _DamageFlashEffect;
+
     // PHYSISCS VALUES
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
     public float radiusRing = 17f;
@@ -46,6 +51,7 @@ public class PlayerLogic : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider>();
         controller = GetComponent<CharacterController>();
+        _DamageFlashEffect = GetComponent<DMG_Flash>();
         animationController = GameObject.Find("Player_Animation_Controller").gameObject.GetComponent<Animation_Controller>();
         angularPhysics = GetComponent<Angular_Physics>();
         angularPhysics.init(radiusRing, 0);
@@ -225,12 +231,19 @@ public class PlayerLogic : MonoBehaviour
     // Take DMG and handle death
     public void TakeDamage(int damage)
     {
-        player_health -= damage;
-        PlayerHealthBar.TakeDamage(damage);
-        if (player_health <= 0)
+        if (player_health > 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration)
         {
-            animationController.changeAnimation("Death");
+            player_health -= damage;
+            PlayerHealthBar.TakeDamage(damage);
+            timestamp_last_dmg_taken = Time.time;
+
+            //Die
+            if (player_health <= 0) animationController.changeAnimation("Death");
+
+            //activate Iframes
+            else _DamageFlashEffect.GenerateDamageFlash();
         }
+        
     }
 
     private void checkIfMovementIsBlocked()
