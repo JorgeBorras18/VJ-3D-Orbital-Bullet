@@ -381,6 +381,10 @@ MonoBehaviour:
   moveSpeed: 60
   gravity: 0
   lifetime: 0.35
+  allowed_bounces: 0
+  explosive: 0
+  damage_per_bullet: 35
+  enemy_bullet: 0
 --- !u!143 &6565535809177042944
 CharacterController:
   m_ObjectHideFlags: 0

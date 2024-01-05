@@ -146,7 +146,7 @@ public class Reaper : MonoBehaviour
             else if (actual_state == STATE.SLASHING)
             {
                 //Deal Dmg To Player
-                hit.GetComponent<PlayerLogic>().TakeDamage(slash_damage);
+                hit.GetComponent<PlayerLogic>().TakeDamageAndHitBack(slash_damage);
             }
         }
     }

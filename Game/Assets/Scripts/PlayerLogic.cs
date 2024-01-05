@@ -23,6 +23,7 @@ public class PlayerLogic : MonoBehaviour
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
     public float radiusRing = 17f;
     private bool isThereWallAhead = false;
+    private bool isThereEnemyAhead = false;
 
     //INPUT VALUES
     private InputAction MoveAction;
@@ -100,6 +101,7 @@ public class PlayerLogic : MonoBehaviour
             }
             return;
         }
+        else if (animationController.getActualState() == "Roll") Debug.Log(Time.time);
 
         if (!movement_is_blocked)
         {
@@ -144,7 +146,7 @@ public class PlayerLogic : MonoBehaviour
                     animationController.flipX(false);
                     boxCollider.center = new Vector3(-0.04f, 0.038f, 0);
                 }
-                else if (isThereWallAhead) step = 0;
+                else if (isThereWallAhead || isThereEnemyAhead) step = 0;
                 if (controller.isGrounded) next_Animation = "Run";
             }
             else if (movementInput == 1f)
@@ -156,7 +158,7 @@ public class PlayerLogic : MonoBehaviour
                     animationController.flipX(true);
                     boxCollider.center = new Vector3(0.04f, 0.038f, 0);
                 }
-                else if (isThereWallAhead) step = 0;
+                else if (isThereWallAhead || isThereEnemyAhead) step = 0;
                 if (controller.isGrounded) next_Animation = "Run";
             }
             else if (controller.isGrounded)
@@ -170,6 +172,8 @@ public class PlayerLogic : MonoBehaviour
             {
                 next_Animation = "Roll";
                 roll_was_pressed = false;
+                isThereEnemyAhead = false;
+                Debug.Log(Time.time);
             }
 
             // KILL PLAYER
@@ -200,16 +204,16 @@ public class PlayerLogic : MonoBehaviour
         angularPhysics.moveObject(step, selected_gravity);
         animationController.changeAnimation(next_Animation);
 
-        // KILL PLAYER
-        //if (Input.GetKey(KeyCode.X)) animationController.setAlive(false);
     }
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
-        {
+        if (hit.gameObject.tag == ("Terrain"))
             isThereWallAhead = true;
-        }
+
+        else if (hit.gameObject.tag == ("Enemy"))
+            isThereEnemyAhead = true;
+
         else if (hit.gameObject.tag == ("Platform"))
         {
             inInternalOrExternalPlatform = true;
@@ -218,21 +222,25 @@ public class PlayerLogic : MonoBehaviour
 
     private void OnTriggerExit(Collider hit)
     {
-        if (hit.gameObject.tag == ("Terrain") || hit.gameObject.tag == ("Enemy"))
-        {
+        if (hit.gameObject.tag == ("Terrain"))
             isThereWallAhead = false;
-        }
-        else if (hit.gameObject.tag == ("Platform")) inInternalOrExternalPlatform = false;
+
+        else if (hit.gameObject.tag == ("Enemy")) 
+            isThereEnemyAhead = false;
+
+        else if (hit.gameObject.tag == ("Platform")) 
+            inInternalOrExternalPlatform = false;
     }
 
     public bool isFacingRight() { return facingRight; }
 
 
     // Take DMG and handle death
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
-        if (player_health > 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration)
+        if (player_health > 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration && animationController.getActualState() != "Roll")
         {
+            Debug.Log(animationController.getActualState());
             player_health -= damage;
             PlayerHealthBar.TakeDamage(damage);
             timestamp_last_dmg_taken = Time.time;
@@ -241,9 +249,26 @@ public class PlayerLogic : MonoBehaviour
             if (player_health <= 0) animationController.changeAnimation("Death");
 
             //activate Iframes
-            else _DamageFlashEffect.GenerateDamageFlash();
+            else
+            {
+                _DamageFlashEffect.GenerateDamageFlash();
+                return true;
+            }
         }
+        return false;
         
+    }
+
+    public bool TakeDamageAndHitBack(int damage)
+    {
+        if (TakeDamage(damage))
+        {
+            angularPhysics.applyJump(jumpSpeed*2/3);
+            animationController.changeAnimation("Jump");
+            doubled_jumped_already = false;
+            return true;
+        }
+        return false;
     }
 
     private void checkIfMovementIsBlocked()
