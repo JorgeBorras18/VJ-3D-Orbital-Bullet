@@ -49,7 +49,7 @@ public class CrystalCharger : MonoBehaviour
     void Update()
     {
         // Wait for channeling
-        if (actual_state == STATE.PLAYER_DETECTED && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic))
+        if (actual_state == STATE.PLAYER_DETECTED)
         {
             if (last_shot_timestamp + time_between_shoots < Time.time)
             {
@@ -91,7 +91,7 @@ public class CrystalCharger : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (actual_state == STATE.IDLE && hit.tag == "Player")
+        if (actual_state == STATE.IDLE && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic) && hit.tag == "Player")
         {
             actual_state = STATE.PLAYER_DETECTED;
         }

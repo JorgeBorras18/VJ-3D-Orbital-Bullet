@@ -152,7 +152,7 @@ public class LaserDrone : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (actual_state == STATE.PATROLING && hit.tag == "Player")
+        if (actual_state == STATE.PATROLING && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic) && hit.tag == "Player")
         {
             actual_state = STATE.PLAYER_DETECTED;
             actual_speed = patrolling_speed;
