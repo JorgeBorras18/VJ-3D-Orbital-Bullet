@@ -33,6 +33,8 @@ public class Reaper : MonoBehaviour
     private bool just_look_at_player = false;
     private float original_radar_size;
 
+    public RingIdentifierLogic ringIdentifierLogic;
+    public RingIdentifierLogic playerRingIdentifierLogic;
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +111,7 @@ public class Reaper : MonoBehaviour
         else if (actual_state == STATE.SLASHING)
         {
             // Already finished Slashing?
-            if (hit_wall || (max_charge_range < distance_slashed))
+            if ((hit_wall || (max_charge_range < distance_slashed)) && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic))
             {
                 just_look_at_player = true;
                 actual_state = STATE.PLAYER_DETECTED;
@@ -133,7 +135,7 @@ public class Reaper : MonoBehaviour
     {
         if (hit.tag == "Player")
         {
-            if (actual_state == STATE.PATROLING) 
+            if (actual_state == STATE.PATROLING && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic)) 
             {
                 actual_state = STATE.PLAYER_DETECTED;
                 just_look_at_player = true;

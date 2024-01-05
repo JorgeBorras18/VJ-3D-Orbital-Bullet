@@ -6,19 +6,17 @@ using System.Numerics;
 
 public class SceneController : MonoBehaviour
 {
-    private int currentRing;
     private int number_of_rings = 5;
 
     private bool gameIsFinished = false;
     private bool gameIsStarted = false;
-    public bool isInExternalRing = true;
-    public bool mec = false;
 
     //////////// Game elements ////////////
     
     // Player
     private PlayerLogic player;
-    
+    RingIdentifierLogic ringIdentifierLogic;
+
     // Rings
     private List<Ring> internalRings = new List<Ring>();
     private List<Ring> externalRings = new List<Ring>();
@@ -29,7 +27,6 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       currentRing = 0;
        init_rings();
        init_player();
        gameIsStarted = true;
@@ -40,27 +37,30 @@ public class SceneController : MonoBehaviour
     {
         if (gameIsStarted)
         {
+            int currentRing = ringIdentifierLogic.getRingId();
             if (currentRing != (number_of_rings - 1) && currentRingIsFinished()) {
                 // TODO HERE Interface shows possibility to go change ring
                 externalRings[currentRing].turnIndicadorOn();
                 if (Input.GetKeyDown(KeyCode.E) && playerIsInPositionToGoUp()) {
                     externalRings[currentRing + 1].triggerPlatformMovementToStart();
                     player.triggerToJumpToTheNextRing();
-                    ++currentRing;
+                    ringIdentifierLogic.setRingId(currentRing+1);
                 }
             }
+     
             if (playerCanChangeToInternalOrExternalRing()) {
                 // TODO HERE Interface shows possibility to go change ring
-                mec = true;
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     UnityEngine.Vector3 newPlayerCoords;
                     float newRadius;
+                    bool isInExternalRing = ringIdentifierLogic.isExternal();
                     if(isInExternalRing) newRadius = internalRingRadius;
                     else newRadius = extrenalRingRadius;
 
                     player.changeToInternalOrExternalRing(newRadius);
-                    isInExternalRing = !isInExternalRing;
+                    ringIdentifierLogic.setExternal(!isInExternalRing);
                     
                 }
                 
@@ -72,6 +72,7 @@ public class SceneController : MonoBehaviour
     private void init_player()
     {
         player = GameObject.Find("Player").GetComponent<PlayerLogic>();
+        ringIdentifierLogic = GameObject.Find("Player").GetComponent<RingIdentifierLogic>();
     }
 
 
@@ -98,11 +99,13 @@ public class SceneController : MonoBehaviour
 
 
     private bool playerIsInPositionToGoUp() {
+        int currentRing = ringIdentifierLogic.getRingId();
         return externalRings[currentRing + 1].playerIsInPositionToGoUp(GameObject.Find("Player").transform.position, currentRing);
         
     }
     private bool currentRingIsFinished()
     {
+        int currentRing = ringIdentifierLogic.getRingId();
         return externalRings[currentRing].isFinished();
     }
 

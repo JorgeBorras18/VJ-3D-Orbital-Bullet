@@ -25,6 +25,10 @@ public class CrystalCharger : MonoBehaviour
     private float temp_angle_to_player;
     private bool calc_angle_player = true;
 
+    public RingIdentifierLogic ringIdentifierLogic;
+    public RingIdentifierLogic playerRingIdentifierLogic;
+
+
     private void Awake()
     {
         if (channeling_bullet == null) channeling_bullet = transform.GetChild(0).gameObject;
@@ -45,7 +49,7 @@ public class CrystalCharger : MonoBehaviour
     void Update()
     {
         // Wait for channeling
-        if (actual_state == STATE.PLAYER_DETECTED)
+        if (actual_state == STATE.PLAYER_DETECTED && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic))
         {
             if (last_shot_timestamp + time_between_shoots < Time.time)
             {
