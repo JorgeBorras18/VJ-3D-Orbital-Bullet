@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
     private List<Ring> internalRings = new List<Ring>();
     private List<Ring> externalRings = new List<Ring>();
     private float internalRingRadius = 4.5f;
-    private float extrenalRingRadius = 9.0f;
+    private float extrenalRingRadius = 17.0f;
 
 
     // Start is called before the first frame update
@@ -94,7 +94,6 @@ public class SceneController : MonoBehaviour
         externalRings[2].setPlatformById();
         externalRings[3].setPlatformById();
         externalRings[4].setPlatformById();
-        // externalRings[4].setPlatformById();
     }
 
 

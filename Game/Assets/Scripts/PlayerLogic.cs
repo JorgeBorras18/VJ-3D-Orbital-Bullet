@@ -15,7 +15,7 @@ public class PlayerLogic : MonoBehaviour
 
     // PHYSISCS VALUES
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
-    public float radiusRing = 9f;
+    public float radiusRing = 17f;
     private bool isThereWallAhead = false;
 
     //INPUT VALUES
@@ -170,7 +170,7 @@ public class PlayerLogic : MonoBehaviour
         else if (jumping_to_the_next_ring)
         {
             if (current_jump_frames <= max_jump_frames) {
-                angularPhysics.applyJump(jumpSpeed * 2.5f);
+                angularPhysics.applyJump(jumpSpeed * 3.7f);
                 next_Animation = "Jump";
                 ++current_jump_frames;
             }
@@ -182,7 +182,7 @@ public class PlayerLogic : MonoBehaviour
         }
         else if (jumping_internally_or_externally)
         {
-            angularPhysics.applyJump(jumpSpeed * 1.5f);
+            angularPhysics.applyJump(jumpSpeed * 2.0f);
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }
