@@ -7,7 +7,7 @@ public class FloatingHealthBar : MonoBehaviour
 {
 
     [SerializeField] private Slider slider;
-    [SerializeField] private Transform Camera;
+    [SerializeField] public Transform Camera;
 
     //newHealthValue must be a value between 0 and 100
     public void UpdateHealthBar(float newHealthValue)

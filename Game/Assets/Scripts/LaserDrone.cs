@@ -39,6 +39,9 @@ public class LaserDrone : MonoBehaviour
     private float actual_speed = 0f;
     private bool just_look_at_player = false;
 
+    public RingIdentifierLogic ringIdentifierLogic;
+    public RingIdentifierLogic playerRingIdentifierLogic;
+
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +134,7 @@ public class LaserDrone : MonoBehaviour
                     bullet_count++;
                     if (bullet_count == bullets_per_pulse)
                     {
-                        if (actual_state == STATE.FIRING) actual_state = STATE.PLAYER_DETECTED;
+                        if (actual_state == STATE.FIRING && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic)) actual_state = STATE.PLAYER_DETECTED;
                         else actual_state = STATE.PATROLING;
                     }
 
@@ -149,7 +152,7 @@ public class LaserDrone : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (actual_state == STATE.PATROLING && hit.tag == "Player")
+        if (actual_state == STATE.PATROLING && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic) && hit.tag == "Player")
         {
             actual_state = STATE.PLAYER_DETECTED;
             actual_speed = patrolling_speed;

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float max_health = 100;
     private float health;
 
+
     public GameObject deathEffect;
     [SerializeField] FloatingHealthBar healthBar;
     private DMG_Flash DamageFlashComponent;
