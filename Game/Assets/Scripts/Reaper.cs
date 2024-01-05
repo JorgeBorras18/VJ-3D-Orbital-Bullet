@@ -14,11 +14,13 @@ public class Reaper : MonoBehaviour
     [SerializeField] private float max_charge_range = 10;
     [SerializeField] private float patrolling_speed = 8;
     [SerializeField] private float slash_speed = 20;
+    [SerializeField] private int slash_damage = 20;
     [SerializeField] private float gravity = 0.7f;
 
     private Billboard_Facing_Player billboard;
     private Angular_Physics angularPhysics;
     private TrailRenderer ownTrail;
+    private WallDetector wallDetector;
 
     private Animator animator;
     private STATE actual_state = STATE.PATROLING;
@@ -27,7 +29,6 @@ public class Reaper : MonoBehaviour
     private float offset_angle_rotation = 0f;
 
     private bool going_to_left = false;
-    private bool hit_wall = false;
     private float patrol_centerpoint;
     private float distance_slashed;
     private bool just_look_at_player = false;
@@ -51,11 +52,14 @@ public class Reaper : MonoBehaviour
 
         //radar detection radius
         original_radar_size = GetComponent<CapsuleCollider>().radius;
+        wallDetector = GetComponentInChildren<WallDetector>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        bool hit_wall = wallDetector.isWallAhead();
+
         // If player not detected, Roam Area
         if (actual_state == STATE.PATROLING)
         {
@@ -64,6 +68,7 @@ public class Reaper : MonoBehaviour
             {
                 if (!hit_wall) angularPhysics.moveObject(-patrolling_speed, gravity);
                 offset_angle_rotation = 180;
+                wallDetector.UpdateOrientation(false);
                 if (hit_wall || angularPhysics.getActualAngle() < patrol_centerpoint - patrol_range) going_to_left = false;
             }
             //Roam Right
@@ -71,6 +76,7 @@ public class Reaper : MonoBehaviour
             {
                 if (!hit_wall) angularPhysics.moveObject(patrolling_speed, gravity);
                 offset_angle_rotation = 0;
+                wallDetector.UpdateOrientation(true);
                 if (hit_wall || angularPhysics.getActualAngle() > patrol_centerpoint + patrol_range) going_to_left = true;
             }
         }
@@ -89,21 +95,36 @@ public class Reaper : MonoBehaviour
             {
                 //move towards playerd
                 float relative_angle_player = GameObject.Find("Player").GetComponent<Angular_Physics>().getRelativeAngle(angularPhysics.getActualAngle());
-                if (relative_angle_player > Mathf.PI*1.15) angularPhysics.moveObject(patrolling_speed*1.3f, gravity);
-                else if (relative_angle_player < Mathf.PI * 0.85) angularPhysics.moveObject(-patrolling_speed*1.3f, gravity);
+                if (relative_angle_player > Mathf.PI)
+                {
+                    wallDetector.UpdateOrientation(true);
+                    if (relative_angle_player > Mathf.PI * 1.15) angularPhysics.moveObject(patrolling_speed * 1.3f, gravity);
+                }
+                else if (relative_angle_player < Mathf.PI)
+                {
+                    wallDetector.UpdateOrientation(false);
+                    if (relative_angle_player < Mathf.PI * 0.85) angularPhysics.moveObject(-patrolling_speed * 1.3f, gravity);
+                }
             }
         }
 
         // Charge Slash Animation, Wait for Slash Start Timestamp
-        else if (actual_state == STATE.CHARGING && Time.time - last_charge_timestamp > charge_time)
+        else if (actual_state == STATE.CHARGING) 
         {
-            // just_look_at_player = true;
-            actual_state = STATE.SLASHING;
-            distance_slashed = 0;
-            ownTrail.enabled = true;
-            just_look_at_player = false;
-            if (billboard.isFacingRight()) slash_speed = Mathf.Abs(slash_speed);
-            else slash_speed = Mathf.Abs(slash_speed) * -1;
+            float relative_angle_player = GameObject.Find("Player").GetComponent<Angular_Physics>().getRelativeAngle(angularPhysics.getActualAngle());
+            if (relative_angle_player > Mathf.PI) wallDetector.UpdateOrientation(true);
+            else wallDetector.UpdateOrientation(false);
+
+            if (Time.time - last_charge_timestamp > charge_time)
+            {
+                // just_look_at_player = true;
+                actual_state = STATE.SLASHING;
+                distance_slashed = 0;
+                ownTrail.enabled = true;
+                just_look_at_player = false;
+                if (relative_angle_player > Mathf.PI) slash_speed = Mathf.Abs(slash_speed);
+                else slash_speed = Mathf.Abs(slash_speed) * -1;
+            }
         }
 
         else if (actual_state == STATE.SLASHING)
@@ -145,7 +166,7 @@ public class Reaper : MonoBehaviour
             else if (actual_state == STATE.SLASHING)
             {
                 //Deal Dmg To Player
-                Debug.Log("Player_DMG");
+                hit.GetComponent<PlayerLogic>().TakeDamageAndHitBack(slash_damage);
             }
         }
     }

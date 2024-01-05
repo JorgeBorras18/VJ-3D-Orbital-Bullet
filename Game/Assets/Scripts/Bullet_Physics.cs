@@ -113,8 +113,13 @@ public class Bullet_Physics : MonoBehaviour
         }
         else if (enemy_bullet && hit.gameObject.tag == "Player")
         {
-            hit.GetComponent<PlayerLogic>().TakeDamage(damage_per_bullet);
-            destroyBullet();
+            bool dealt_dmg = false;
+            if (transform.lossyScale.x > 0.5) dealt_dmg = hit.GetComponent<PlayerLogic>().TakeDamageAndHitBack(damage_per_bullet);
+            else
+            {
+                if (hit.GetComponent<PlayerLogic>().TakeDamage(damage_per_bullet));
+                if (dealt_dmg) destroyBullet();
+            }
         }
 
         else if (!enemy_bullet && hit.gameObject.tag == "Enemy")
@@ -130,6 +135,10 @@ public class Bullet_Physics : MonoBehaviour
         iniTimestamp = Time.time;
         GetComponent<MeshRenderer>().enabled = false;
         transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
-        if (explosive) transform.GetChild(2).GetComponent<ParticleSystem>().Play(true);
+        if (explosive)
+        {
+            GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+            transform.GetChild(2).GetComponent<ParticleSystem>().Play(true);
+        }
     }
 }

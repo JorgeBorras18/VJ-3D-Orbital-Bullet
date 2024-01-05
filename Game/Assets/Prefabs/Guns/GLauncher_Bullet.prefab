@@ -19899,6 +19899,8 @@ MonoBehaviour:
   lifetime: 2
   allowed_bounces: 1
   explosive: 1
+  damage_per_bullet: 150
+  enemy_bullet: 0
 --- !u!143 &6565535809177042944
 CharacterController:
   m_ObjectHideFlags: 0
@@ -19944,7 +19946,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 0.01}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7733491367879128774
 Rigidbody:

@@ -39,9 +39,4 @@ public class PlayerHealthBar : MonoBehaviour
         actual_health = max_health = max_health_value;
         UpdateHealthBar(max_health);
     }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetKey("space")) TakeDamage(1);
-    }
 }

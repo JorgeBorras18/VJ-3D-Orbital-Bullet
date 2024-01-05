@@ -9,10 +9,12 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
     [SerializeField] FloatingHealthBar healthBar;
+    private DMG_Flash DamageFlashComponent;
 
     private void Awake()
     {
-        if (healthBar == null) healthBar = GetComponentInChildren<FloatingHealthBar>(); 
+        if (healthBar == null) healthBar = GetComponentInChildren<FloatingHealthBar>();
+        DamageFlashComponent = GetComponent<DMG_Flash>();
     }
 
     private void Start()
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         healthBar.UpdateHealthBar(health / max_health);
         if (health <= 0) Die();
+        else DamageFlashComponent.GenerateDamageFlash();
     }
 
     void Die()

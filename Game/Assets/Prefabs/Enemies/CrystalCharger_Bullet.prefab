@@ -365,7 +365,7 @@ MonoBehaviour:
   lifetime: 0.7
   allowed_bounces: 0
   explosive: 0
-  damage_per_bullet: 10
+  damage_per_bullet: 15
   enemy_bullet: 1
 --- !u!143 &6565535809177042944
 CharacterController:

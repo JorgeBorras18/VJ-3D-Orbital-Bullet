@@ -26,11 +26,11 @@ public class Animation_Controller : MonoBehaviour
         if (new_Animation == ActualAnimation) return;
         ActualAnimation = new_Animation;
 
-        if (new_Animation == "Roll")
+        if (new_Animation == "Roll" || new_Animation == "Death")
         {
             transform.GetChild(0).gameObject.SetActive(false);
-            player_animator.Play("Player_Roll", 0, 0f);
-            healpot_animator.Play("Healpot_Roll", 0, 0f);
+            player_animator.Play("Player_" + new_Animation, 0, 0f);
+            healpot_animator.Play("Healpot_" + new_Animation, 0, 0f);
             return;
         }
         else if (transform.GetChild(0).gameObject.activeSelf == false) transform.GetChild(0).gameObject.SetActive(true);

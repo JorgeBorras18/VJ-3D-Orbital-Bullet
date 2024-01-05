@@ -16,6 +16,7 @@ public class Gun_Controller : MonoBehaviour
     [SerializeField] private GameObject Main_Weapon;
     [SerializeField] private GameObject Offhand_Weapon;
     [SerializeField] private WeaponsControllerUI WeaponInventoryPlaceholder;
+    [SerializeField] private GameObject PickUpWeaponBillboard;
 
     private PlayerInput _playerInput;
     private InputAction swapWeaponAction;
@@ -40,6 +41,8 @@ public class Gun_Controller : MonoBehaviour
             WeaponInventoryPlaceholder.SwapToOffhandWeapon();
             Offhand_Weapon.SetActive(false);
         }
+
+        PickUpWeaponBillboard.SetActive(false);
 
     }
 
@@ -105,27 +108,32 @@ public class Gun_Controller : MonoBehaviour
     {
         if (hit.tag == "DropeableWeapon")
         {
-            //Show "Pick Up Weapon Prompt"
+            PickUpWeaponBillboard.SetActive(true);
         }
     }
 
     private void OnTriggerStay(Collider hit)
     {
-        if (hit.tag == "DropeableWeapon" && pickUpWeaponAction.IsPressed() && pickup_button_released)
+        if (hit.tag == "DropeableWeapon")
         {
-            pickup_button_released = false;
-            DroppableWeapon drop = hit.gameObject.GetComponent<DroppableWeapon>();
-            PickUpWeapon(drop.PickUpWeapon(), drop.getBulletsInMagazine());
+            PickUpWeaponBillboard.SetActive(true);
+            if (pickUpWeaponAction.IsPressed() && pickup_button_released)
+            {
+                pickup_button_released = false;
+                DroppableWeapon drop = hit.gameObject.GetComponent<DroppableWeapon>();
+                PickUpWeapon(drop.PickUpWeapon(), drop.getBulletsInMagazine());
+                PickUpWeaponBillboard.SetActive(false);
 
-            // Delete Picked Up Weapon from Ground
-            Destroy(hit.transform.parent.gameObject);
+                // Delete Picked Up Weapon from Ground
+                Destroy(hit.transform.parent.gameObject);
+            }
         }
     }
     private void OnTriggerExit(Collider hit)
     {
         if (hit.tag == "DropeableWeapon")
         {
-            //Hide "Pick Up Weapon Prompt"
+            PickUpWeaponBillboard.SetActive(false);
         }
     }
 }
