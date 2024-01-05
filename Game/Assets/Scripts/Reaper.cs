@@ -14,6 +14,7 @@ public class Reaper : MonoBehaviour
     [SerializeField] private float max_charge_range = 10;
     [SerializeField] private float patrolling_speed = 8;
     [SerializeField] private float slash_speed = 20;
+    [SerializeField] private int slash_damage = 20;
     [SerializeField] private float gravity = 0.7f;
 
     private Billboard_Facing_Player billboard;
@@ -145,7 +146,7 @@ public class Reaper : MonoBehaviour
             else if (actual_state == STATE.SLASHING)
             {
                 //Deal Dmg To Player
-                Debug.Log("Player_DMG");
+                hit.GetComponent<PlayerLogic>().TakeDamage(slash_damage);
             }
         }
     }

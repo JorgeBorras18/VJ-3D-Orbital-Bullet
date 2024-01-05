@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6660087447661303354, guid: 41d24881a68516d488c3116e878be8af, type: 3}
+      propertyPath: player_health
+      value: 135
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -993,6 +997,7 @@ MonoBehaviour:
   max_charge_range: 30
   patrolling_speed: 3.5
   slash_speed: 70
+  slash_damage: 20
   gravity: 0.7
 --- !u!1 &1636970728
 GameObject:

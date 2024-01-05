@@ -12,6 +12,7 @@ public class PlayerLogic : MonoBehaviour
     public BoxCollider boxCollider;
     public PlayerInput _playerInput;
     [SerializeField] private int player_health = 125;
+    [SerializeField] private PlayerHealthBar PlayerHealthBar;
 
     // PHYSISCS VALUES
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
@@ -57,7 +58,8 @@ public class PlayerLogic : MonoBehaviour
         CrouchAction = _playerInput.actions["Crouch"];
 
         //set health
-        FindObjectOfType<PlayerHealthBar>().SetMaxHealth(player_health);
+        PlayerHealthBar = FindObjectOfType<PlayerHealthBar>();
+        PlayerHealthBar.SetMaxHealth(player_health);
     }
 
     // Catch 
@@ -81,6 +83,7 @@ public class PlayerLogic : MonoBehaviour
         float movementInput = MoveAction.ReadValue<Vector2>().x;
 
         //Check animation
+        if (animationController.getActualState() == "Death") return;
         if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
         {
             if (isThereWallAhead) angularPhysics.moveObject(0, selected_gravity);
@@ -218,11 +221,16 @@ public class PlayerLogic : MonoBehaviour
 
     public bool isFacingRight() { return facingRight; }
 
+
+    // Take DMG and handle death
     public void TakeDamage(int damage)
     {
-        //health -= damage;
-        //healthBar.UpdateHealthBar(health / max_health);
-        //if (health <= 0) Die();
+        player_health -= damage;
+        PlayerHealthBar.TakeDamage(damage);
+        if (player_health <= 0)
+        {
+            animationController.changeAnimation("Death");
+        }
     }
 
     private void checkIfMovementIsBlocked()
