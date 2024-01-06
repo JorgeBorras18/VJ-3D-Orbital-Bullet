@@ -318,6 +318,7 @@ MonoBehaviour:
   max_health: 180
   deathEffect: {fileID: 0}
   healthBar: {fileID: 5753416079056745057}
+  AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
 --- !u!136 &4625812998547428662
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -738,6 +739,8 @@ MonoBehaviour:
   channeling_bullet: {fileID: 6757207370123660771}
   Launchable_Projectile_Prefab: {fileID: 8532716960228633665, guid: f52345541c7e45d43ba0eb18110a4b3c, type: 3}
   billboard: {fileID: 8213947038573669844}
+  ringIdentifierLogic: {fileID: 0}
+  playerRingIdentifierLogic: {fileID: 0}
 --- !u!136 &3014737763960825591
 CapsuleCollider:
   m_ObjectHideFlags: 0

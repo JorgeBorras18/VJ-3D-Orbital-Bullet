@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using static AmmoBox;
 
 
 // This Class holds the key to grab and swap Weapons
@@ -102,6 +103,43 @@ public class Gun_Controller : MonoBehaviour
         //Modify Player UI
         WeaponInventoryPlaceholder.SubstituteWeaponByNew(Main_Weapon.name, BulletsInNewGun);
     }
+
+    // Called by Ammo Box (initialize based on actual ammo Type)
+    // Returns the type of Bullets that at least One of the Weapons Consume
+    public AMMO_TYPE getRandomAvailableAmmoType()
+    {
+        if (Offhand_Weapon == null) return Main_Weapon.GetComponent<Weapon>().GetAmmoType();
+        else if (Random.Range(0, 2) < 1) return Main_Weapon.GetComponent<Weapon>().GetAmmoType();
+        return Offhand_Weapon.GetComponent<Weapon>().GetAmmoType();
+    }
+
+    // Add ammo to Weapons that ammo_type = Weapon.ammo_type
+    // if both share same ammo type then divide by half the amount
+    public void addAmmoToCurrentWeapons(AMMO_TYPE ammo_type)
+    {
+        int ammo_added = 0;
+        if (Offhand_Weapon != null && ammo_type == Offhand_Weapon.GetComponent<Weapon>().GetAmmoType())
+        {
+            // Share ammo between both weapons ?
+            bool divide_ammo_in_half = (ammo_type == Main_Weapon.GetComponent<Weapon>().GetAmmoType());
+            if (divide_ammo_in_half)
+            {
+                ammo_added = Main_Weapon.GetComponent<Weapon>().increaseBulletReserves(true);
+                WeaponInventoryPlaceholder.IncreaseAmmoMainWeapon(ammo_added);
+            }
+
+            Offhand_Weapon.SetActive(true);
+            ammo_added = Offhand_Weapon.GetComponent<Weapon>().increaseBulletReserves(divide_ammo_in_half);
+            Offhand_Weapon.SetActive(false);
+            WeaponInventoryPlaceholder.IncreaseAmmoOffHandWeapon(ammo_added);
+        }
+        else if (ammo_type == Main_Weapon.GetComponent<Weapon>().GetAmmoType())
+        {
+            ammo_added = Main_Weapon.GetComponent<Weapon>().increaseBulletReserves(false);
+            WeaponInventoryPlaceholder.IncreaseAmmoMainWeapon(ammo_added);
+        }
+    }
+
 
     private void OnTriggerEnter(Collider hit)
     {

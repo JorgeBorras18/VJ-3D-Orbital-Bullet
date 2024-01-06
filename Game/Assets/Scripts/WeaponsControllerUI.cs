@@ -120,4 +120,42 @@ public class WeaponsControllerUI : MonoBehaviour
         else aux.color = Color.white;
         active_gun_id = inactive_gun_id;
     }
+
+    public void IncreaseAmmoMainWeapon(int amount)
+    {
+        if (amount < 0) return;
+
+        TextMeshProUGUI aux = transform.GetChild(active_gun_id).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
+        if (aux.color == Color.red) aux.color = Color.white;
+        if (active_gun_id == 0)
+        {
+            ammo_primari_weapon += amount;
+            aux.text = ammo_primari_weapon.ToString();
+        }
+        else
+        {
+            ammo_secondary_weapon += amount;
+            aux.text = ammo_secondary_weapon.ToString();
+        }
+    }
+
+    public void IncreaseAmmoOffHandWeapon(int amount)
+    {
+        if (amount < 0) return;
+
+        int inactive_gun_id = 0;
+        if (active_gun_id == 0) inactive_gun_id = 1;
+        TextMeshProUGUI aux = transform.GetChild(inactive_gun_id).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
+        if (aux.color == Color.red) aux.color = Color.white;
+        if (inactive_gun_id == 0)
+        {
+            ammo_primari_weapon += amount;
+            aux.text = ammo_primari_weapon.ToString();
+        }
+        else
+        {
+            ammo_secondary_weapon += amount;
+            aux.text = ammo_secondary_weapon.ToString();
+        }
+    }
 }

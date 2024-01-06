@@ -416,6 +416,8 @@ MonoBehaviour:
   Fire_Point: {fileID: 6706540231347123928}
   billboard: {fileID: 4822015210112181652}
   angularPhysics: {fileID: 6594209148464590953}
+  ringIdentifierLogic: {fileID: 0}
+  playerRingIdentifierLogic: {fileID: 0}
 --- !u!136 &7405605452869011106
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -613,6 +615,7 @@ MonoBehaviour:
   max_health: 100
   deathEffect: {fileID: 0}
   healthBar: {fileID: 3072433398188389459}
+  AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
 --- !u!114 &6594209148464590953
 MonoBehaviour:
   m_ObjectHideFlags: 0

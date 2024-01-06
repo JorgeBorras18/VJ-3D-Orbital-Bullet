@@ -430,6 +430,8 @@ MonoBehaviour:
   slash_speed: 70
   slash_damage: 20
   gravity: 0.7
+  ringIdentifierLogic: {fileID: 0}
+  playerRingIdentifierLogic: {fileID: 0}
 --- !u!136 &3811203622803927635
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -793,6 +795,7 @@ MonoBehaviour:
   max_health: 150
   deathEffect: {fileID: 0}
   healthBar: {fileID: 2766698217805422355}
+  AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
 --- !u!114 &4085533895377818062
 MonoBehaviour:
   m_ObjectHideFlags: 0
