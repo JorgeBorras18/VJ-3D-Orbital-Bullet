@@ -145,15 +145,6 @@ public class PlayerLogic : MonoBehaviour
                     if (JumpAction.IsPressed()) selected_gravity = slow_fall_gravity;
                     else up_is_still_pressed = false;
                 }
-
-                // HIT ENEMY AND PROPEL UPWARD
-                if (_FeetDetector.isThereEnemyBellow() && angularPhysics.getVerticalSpeed() < 0)
-                {
-                    RollingUpwards = true;
-                    next_Animation = "Fast_Roll";
-                    doubled_jumped_already = false;
-                    angularPhysics.applyJump(jumpSpeed*1.2f);
-                }
             }
 
             // HORIZONTAL MOVEMENT
@@ -188,7 +179,7 @@ public class PlayerLogic : MonoBehaviour
             }
 
 
-            if (roll_was_pressed && !RollingUpwards)
+            if (roll_was_pressed)
             {
                 next_Animation = "Roll";
                 roll_was_pressed = false;
@@ -249,6 +240,20 @@ public class PlayerLogic : MonoBehaviour
 
         else if (hit.gameObject.tag == ("Platform")) 
             inInternalOrExternalPlatform = false;
+    }
+
+    public bool TriggerUppwardRollAfterEnemyStomp()
+    {
+        // HIT ENEMY AND PROPEL UPWARD
+        if (_FeetDetector.isThereEnemyBellow() && angularPhysics.getVerticalSpeed() < 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration)
+        {
+            RollingUpwards = true;
+            animationController.changeAnimation("Fast_Roll");
+            doubled_jumped_already = false;
+            angularPhysics.applyJump(jumpSpeed * 1.25f);
+            return true;
+        }
+        return false;
     }
 
     public bool isFacingRight() { return facingRight; }
