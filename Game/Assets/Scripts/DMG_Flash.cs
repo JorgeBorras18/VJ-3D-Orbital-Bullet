@@ -56,10 +56,4 @@ public class DMG_Flash : MonoBehaviour
         for (int i = 0; i < _materials.Length; i++)
             _materials[i].SetFloat("_FlashAmount", amount);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp("space")) GenerateDamageFlash();
-    }
-
 }

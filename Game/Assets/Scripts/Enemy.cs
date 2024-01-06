@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
     [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] GameObject AmmoBoxReward;
     private DMG_Flash DamageFlashComponent;
 
     private void Awake()
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        if (Random.Range(0, 1) > 0.5) Instantiate(AmmoBoxReward, transform.position, Quaternion.identity); //if lucky drop Ammo Box
         Destroy(gameObject);
     }
 }

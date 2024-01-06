@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static AmmoBox;
 
 public class Weapon : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Angular_Physics playerAG;
     [SerializeField] private PlayerLogic playerLogic;
     [SerializeField] private GameObject DropableWeaponPrefab;
+    [SerializeField] private AMMO_TYPE AmmoTypeUsed = AMMO_TYPE.BULLET;
 
     public float fireRate = 1f;
     public int magazineSize = 20;
@@ -90,6 +92,22 @@ public class Weapon : MonoBehaviour
     public int getBulletsLeftInMagazine() { return shotsInChamber; }
 
     public void setBulletsLeftInMagazien(int bullet_amount) { shotsInChamber = bullet_amount; }
+
+
+    // Increase by 1 Magazine Size to Bullet Reserves
+    // returns amount added to magazine
+    public int increaseBulletReserves(bool half_amount) 
+    {
+        int total_ammo_added;
+        if (half_amount) total_ammo_added = Mathf.RoundToInt(magazineSize * Random.Range(0.8f, 1.4f) / 2);
+        else total_ammo_added = Mathf.RoundToInt(magazineSize * Random.Range(0.5f, 1.3f));
+
+        shotsInChamber += total_ammo_added;
+        Debug.Log(name + " - " + total_ammo_added);
+        return total_ammo_added;
+    }
+
+    public AMMO_TYPE GetAmmoType() { return AmmoTypeUsed; }
 
     public GameObject getDroppableVersion() { return DropableWeaponPrefab; }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 11}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -626,7 +626,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Prefabs/Guns
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -634,16 +634,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Prefabs/Guns
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jordi\Documents\GitHub\VJ-3D-Orbital-Bullet\Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 12750000
-    m_LastClickedID: 29970
-    m_ExpandedIDs: 000000000c7500000e75000010750000127500001475000016750000187500002275000000ca9a3b
+    m_SelectedIDs: 90750000
+    m_LastClickedID: 30096
+    m_ExpandedIDs: 000000008c7500008e75000090750000927500009475000096750000987500009a7500009c7500009e750000a675000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -671,7 +671,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 240}
     m_SelectedIDs: d2590000
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c7500000e7500001075000012750000147500001675000018750000
+    m_ExpandedIDs: 000000008c7500008e75000090750000927500009475000096750000987500009a7500009c7500009e750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -811,9 +811,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 48700000
+      m_SelectedIDs: 94350000
       m_LastClickedID: 0
-      m_ExpandedIDs: 76fafffffefaffffe26f0000
+      m_ExpandedIDs: 48faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.2821209, y: 2.845345, z: 10.235695}
+    m_Target: {x: 4.4916024, y: -0.7400017, z: -6.3366547}
     speed: 2
     m_Value: {x: -0.2821209, y: 2.845345, z: 10.235695}
   m_RenderMode: 0
@@ -1319,11 +1319,11 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0018176609, y: 0.97675794, z: -0.21432452, w: -0.008509156}
+    m_Target: {x: 0.1705595, y: 0.5543552, z: -0.11728795, w: 0.80614144}
     speed: 2
     m_Value: {x: -0.0018176609, y: 0.9767579, z: -0.21432452, w: -0.008509156}
   m_Size:
-    m_Target: 5.6707993
+    m_Target: 11.082593
     speed: 2
     m_Value: 5.6707993
   m_Ortho:
