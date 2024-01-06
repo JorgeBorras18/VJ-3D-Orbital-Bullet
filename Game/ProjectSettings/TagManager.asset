@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Platform
   - DropeableWeapon
+  - Detector
   layers:
   - Default
   - TransparentFX

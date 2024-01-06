@@ -18,6 +18,7 @@ public class PlayerLogic : MonoBehaviour
     public float IFramesDuration = 1.5f;
     private float timestamp_last_dmg_taken = 0;
     private DMG_Flash _DamageFlashEffect;
+    private FeetDetector _FeetDetector;
 
     // PHYSISCS VALUES
     public float moveSpeed = 5f, jumpSpeed = 10f, rollSpeed = 10f, slow_fall_gravity = 0.45f, fast_fall_gravity = 0.7f;
@@ -37,6 +38,7 @@ public class PlayerLogic : MonoBehaviour
     private bool doubled_jumped_already = false;
     private bool up_is_still_pressed = false;
     private bool facingRight = false;
+    private bool RollingUpwards = false;
     private bool movement_is_blocked = false;
 
     // NEXT RING JUMPING PHYSICS
@@ -67,6 +69,7 @@ public class PlayerLogic : MonoBehaviour
         //set health
         PlayerHealthBar = FindObjectOfType<PlayerHealthBar>();
         PlayerHealthBar.SetMaxHealth(player_health);
+        _FeetDetector = GetComponentInChildren<FeetDetector>();
     }
 
     // Catch 
@@ -91,7 +94,16 @@ public class PlayerLogic : MonoBehaviour
 
         //Check animation
         if (animationController.getActualState() == "Death") return;
-        if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
+        if (RollingUpwards)
+        {
+            if (animationController.getActualState() == "Fast_Roll" && !animationController.animationHasFinished()) next_Animation = "Fast_Roll";
+            else
+            {
+                next_Animation = "Air_Fall";
+                RollingUpwards = false;
+            }
+        }
+        else if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
         {
             if (isThereWallAhead) angularPhysics.moveObject(0, selected_gravity);
             else
@@ -101,7 +113,6 @@ public class PlayerLogic : MonoBehaviour
             }
             return;
         }
-        else if (animationController.getActualState() == "Roll") Debug.Log(Time.time);
 
         if (!movement_is_blocked)
         {
@@ -128,11 +139,20 @@ public class PlayerLogic : MonoBehaviour
 
             if (!controller.isGrounded)
             {
-                if (angularPhysics.getVerticalSpeed() <= jumpSpeed * 0.4f) next_Animation = "Air_Fall";
+                if (!RollingUpwards && angularPhysics.getVerticalSpeed() <= jumpSpeed * 0.4f) next_Animation = "Air_Fall";
                 if (up_is_still_pressed)
                 {
                     if (JumpAction.IsPressed()) selected_gravity = slow_fall_gravity;
                     else up_is_still_pressed = false;
+                }
+
+                // HIT ENEMY AND PROPEL UPWARD
+                if (_FeetDetector.isThereEnemyBellow() && angularPhysics.getVerticalSpeed() < 0)
+                {
+                    RollingUpwards = true;
+                    next_Animation = "Fast_Roll";
+                    doubled_jumped_already = false;
+                    angularPhysics.applyJump(jumpSpeed*1.2f);
                 }
             }
 
@@ -168,12 +188,11 @@ public class PlayerLogic : MonoBehaviour
             }
 
 
-            if (roll_was_pressed)
+            if (roll_was_pressed && !RollingUpwards)
             {
                 next_Animation = "Roll";
                 roll_was_pressed = false;
                 isThereEnemyAhead = false;
-                Debug.Log(Time.time);
             }
 
             // KILL PLAYER
@@ -240,7 +259,7 @@ public class PlayerLogic : MonoBehaviour
     {
         if (player_health > 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration && animationController.getActualState() != "Roll")
         {
-            Debug.Log(animationController.getActualState());
+            if (animationController.getActualState() != "Fast_Roll") animationController.changeAnimation("Air_Fall");
             player_health -= damage;
             PlayerHealthBar.TakeDamage(damage);
             timestamp_last_dmg_taken = Time.time;
