@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -113,6 +114,7 @@ public class PlayerLogic : MonoBehaviour
             }
             return;
         }
+        else if (animationController.getActualState() == "Roll") Debug.Log(Time.time);
 
         if (!movement_is_blocked)
         {

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private float health;
     private float last_damage_timestamp = 0;
 
+
     public GameObject deathEffect;
     [SerializeField] FloatingHealthBar healthBar;
     private DMG_Flash DamageFlashComponent;
@@ -32,8 +33,6 @@ public class Enemy : MonoBehaviour
             if (health <= 0) Die();
             else DamageFlashComponent.GenerateDamageFlash();
             last_damage_timestamp = Time.time;
-
-            Debug.Log("DMG -> " + Time.time);
         }
     }
 
