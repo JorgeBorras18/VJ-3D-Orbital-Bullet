@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerLogic : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class PlayerLogic : MonoBehaviour
     private bool inInternalOrExternalPlatform;
     public bool jumping_internally_or_externally;
 
+    // player death controller
+    public int dyingFrames = 0;
+    private int maxDyingFrames = 60;
+    public bool isDead = false;
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -91,7 +97,17 @@ public class PlayerLogic : MonoBehaviour
         float movementInput = MoveAction.ReadValue<Vector2>().x;
 
         //Check animation
-        if (animationController.getActualState() == "Death") return;
+        if (isDead && dyingFrames <= maxDyingFrames)
+        {
+            dyingFrames = dyingFrames + 1;
+            return;
+        }
+        else if (dyingFrames == maxDyingFrames + 1)
+        {
+            SceneManager.LoadScene("GameOver");
+            return;
+        }
+
         if (animationController.getActualState() == "Roll" && !animationController.animationHasFinished())
         {
             if (isThereWallAhead) angularPhysics.moveObject(0, selected_gravity);
@@ -200,7 +216,7 @@ public class PlayerLogic : MonoBehaviour
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }
-
+        
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
         animationController.changeAnimation(next_Animation);
@@ -247,8 +263,11 @@ public class PlayerLogic : MonoBehaviour
             timestamp_last_dmg_taken = Time.time;
 
             //Die
-            if (player_health <= 0) animationController.changeAnimation("Death");
-
+            if (player_health <= 0)
+            {
+                isDead = true;
+                animationController.changeAnimation("Death");
+            }
             //activate Iframes
             else
             {
@@ -274,7 +293,7 @@ public class PlayerLogic : MonoBehaviour
 
     private void checkIfMovementIsBlocked()
     {
-        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally; // ... || ... || ... missing
+        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally || isDead; // ... || ... || ... missing
     }
 
     public void triggerToJumpToTheNextRing()

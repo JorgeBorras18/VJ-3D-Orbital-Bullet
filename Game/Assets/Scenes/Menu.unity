@@ -443,8 +443,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 901603478}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 901603479}
+        m_TargetAssemblyTypeName: ChangeScreen, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -454,7 +454,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &154330361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,8 +1746,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 901603478}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 901603479}
+        m_TargetAssemblyTypeName: ChangeScreen, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -2553,7 +2553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &773065128
 Transform:
   m_ObjectHideFlags: 0
@@ -2885,13 +2885,14 @@ GameObject:
   m_Component:
   - component: {fileID: 901603477}
   - component: {fileID: 901603478}
+  - component: {fileID: 901603479}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &901603477
 Transform:
   m_ObjectHideFlags: 0
@@ -2923,6 +2924,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4559dc871cb257147be1c666c6e7fa31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &901603479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901603476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2a7ae89ade3df4d99c21520a140545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &909184555

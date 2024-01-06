@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 8db5b7f5a708f994a9c3363329f6d904
+  - enabled: 1
+    path: Assets/Scenes/GamePassed.unity
+    guid: d81ecccf7e9afa64db5d1904830d5db1
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 004341c10c69a53439057ac466e75bcc
   m_configObjects: {}
