@@ -134,7 +134,7 @@ MonoBehaviour:
   playerAG: {fileID: 0}
   playerLogic: {fileID: 0}
   DropableWeaponPrefab: {fileID: 3746922494329145514, guid: ef488f4e7f68df649b19fef0556d1fc7, type: 3}
-  fireRate: 0.1
+  fireRate: 0.2
   magazineSize: 13
   upperAccuracyLimit: 4
   lowerAccuracyLimit: -4

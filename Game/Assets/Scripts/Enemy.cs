@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float max_health = 100;
     private float health;
+    private float last_damage_timestamp = 0;
 
 
     public GameObject deathEffect;
@@ -23,17 +24,16 @@ public class Enemy : MonoBehaviour
         health = max_health;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        healthBar.UpdateHealthBar(health / max_health);
-        if (health <= 0) Die();
-        else DamageFlashComponent.GenerateDamageFlash();
+        if (Time.time - last_damage_timestamp > 0.1) // Avoid 2-Times Dmg Bug
+        {
+            health -= damage;
+            healthBar.UpdateHealthBar(health / max_health);
+            if (health <= 0) Die();
+            else DamageFlashComponent.GenerateDamageFlash();
+            last_damage_timestamp = Time.time;
+        }
     }
 
     void Die()
