@@ -107,7 +107,7 @@ MonoBehaviour:
   fireRate: 0.8
   magazineSize: 25
   upperAccuracyLimit: 17
-  lowerAccuracyLimit: -10
+  lowerAccuracyLimit: -13
   barrelLength: 0.08
   automatic: 1
   infinite_ammo: 0

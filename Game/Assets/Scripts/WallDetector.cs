@@ -13,7 +13,6 @@ public class WallDetector : MonoBehaviour
     {
         if (hit.gameObject.tag == ("Terrain"))
         {
-            Debug.Log("Terrain");
             isThereWallAhead = true;
         }
     }
