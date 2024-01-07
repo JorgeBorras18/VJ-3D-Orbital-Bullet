@@ -230,6 +230,10 @@ public class PlayerLogic : MonoBehaviour
         {
             inInternalOrExternalPlatform = true;
         }
+        else if ((hit.gameObject.tag == ("Trap"))) 
+        {
+            TakeDamageAndHitBack(15);
+        }
     }
 
     private void OnTriggerExit(Collider hit)

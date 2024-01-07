@@ -4,15 +4,60 @@ using UnityEngine;
 
 public class LightPilarController : MonoBehaviour
 {
+    [SerializeField] private GameObject LightPillarPrefab;
+    [SerializeField] private int number_of_pillars = 360;
+    [SerializeField] private float RingRadius = 9;
+
+    // Diferent Pattern Values
+    [SerializeField] private float LineAttackDelay = 0.5f;
+
+
+
+    private LightPilar[] pilar_Array;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector3(0, transform.position.y, 0);
+        pilar_Array = new LightPilar[number_of_pillars];
+
+        for (int i = 0; i < number_of_pillars; i++) {
+            float angle = 2 * Mathf.PI / number_of_pillars * i;
+            Vector3 pilar_pos = new Vector3(Mathf.Cos(angle) * RingRadius, transform.position.y, Mathf.Sin(angle) * RingRadius);
+            GameObject new_pilar = Instantiate(LightPillarPrefab, pilar_pos, Quaternion.identity);
+            new_pilar.transform.parent = transform;
+            pilar_Array[i] = new_pilar.GetComponent<LightPilar>();
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DeployLineAttack()
     {
-        
+        for (int i = 0; i < number_of_pillars; i++)
+        {
+            pilar_Array[i].RaisePillar(0f, 2.5f, true);
+        }
+    }
+
+    public void DeployByGroups(int Agrupations)
+    {
+        Debug.Log(Agrupations);
+        for (int i = 0; i < Agrupations; ++i)
+        {
+            for (int j = 0; j < number_of_pillars / Agrupations + 1; j += Agrupations)
+            {
+                for (int k = 0; k < Agrupations; ++k)
+                {
+                    Debug.Log("GTotal = " + Agrupations + ", [Pilar " + ((i + j) * Agrupations + k) + "] is group: ");
+                    if ((i + j) * Agrupations + k < number_of_pillars) pilar_Array[(i + j) * Agrupations + k].RaisePillar(i * 1f, 2.5f, false);
+                }
+            }
+        }
+        /*int actual_group_id = 0;
+        for (int i = (number_of_pillars/Agrupations)*Agrupations; i < number_of_pillars; ++i)
+        {
+            pilar_Array[i].RaisePillar(actual_group_id/Agrupations * 2.5f, 2.5f, true);
+            actual_group_id++;
+        }*/
     }
 }

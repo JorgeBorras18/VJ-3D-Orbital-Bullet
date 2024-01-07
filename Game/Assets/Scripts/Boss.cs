@@ -16,6 +16,9 @@ public class Boss : MonoBehaviour
     // vertical Movement
     [SerializeField] private float up_down_range = 0.25f;
     [SerializeField] private float vertical_speed = 0.75f;
+    [SerializeField] private float y_tp_range = 1f;
+    private float y_tp_bottom_limit;
+    private float y_tp_upper_limit;
     private float ideal_y;
     private bool going_up = true;
     private float ring_radius = 0;
@@ -37,6 +40,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private float circle_cooldown = 3f;
     [SerializeField] private GameObject CircleProjectile;
     [SerializeField] private float barrel_Length_Offset;
+    [SerializeField] private LightPilarController _LightPilarController;
+    [SerializeField] private float line_cooldown;
     private int action_count = 0;
 
     private void Awake()
@@ -45,6 +50,7 @@ public class Boss : MonoBehaviour
         _Animator = GetComponent<Animator>();
         _Angular_Physics = GetComponent<Angular_Physics>();
         _Billboard = GetComponent<Billboard_Facing_Player>();
+        _LightPilarController = FindAnyObjectByType<LightPilarController>();
     }
 
     // Start is called before the first frame update
@@ -55,6 +61,9 @@ public class Boss : MonoBehaviour
         _Angular_Physics.init(ring_radius, actual_angle);
         ideal_y = transform.position.y;
         _Angular_Physics.setVerticalSpeed(vertical_speed);
+
+        y_tp_bottom_limit = transform.position.y - y_tp_range;
+        y_tp_upper_limit = transform.position.y + y_tp_range;
     }
 
     // Decide next action
@@ -117,10 +126,52 @@ public class Boss : MonoBehaviour
             }
         }
 
+        // PERFORM LINE PILAR ATTACK AGAINST PLAYER
+        if (ActualAction == BATTLE_ACTION.SQUARE_ATTACK)
+        {
+            if (decidedActionThisFrame)
+            {
+                _Animator.Play("Square_Attack", 0, 0f);
+                decidedActionThisFrame = false;
+                last_action_timestamp = Time.time;
+            }
+            else if (Time.time - last_action_timestamp > circle_delay)
+            {
+                _LightPilarController.DeployByGroups(Random.Range(2,6));
+                last_action_timestamp = Time.time;
+                time_cooldown = line_cooldown;
+                ActualAction = BATTLE_ACTION.COOLDOWN;
+            }
+        }
+
+        // PERFORM LINE PILAR ATTACK AGAINST PLAYER
+        if (ActualAction == BATTLE_ACTION.LINE_ATTACK) 
+        {
+            if (decidedActionThisFrame) 
+            {
+                _Animator.Play("Line_Attack", 0, 0f);
+                decidedActionThisFrame = false;
+                last_action_timestamp = Time.time;
+            }
+            else if (Time.time - last_action_timestamp > circle_delay)
+            {
+                _LightPilarController.DeployLineAttack();
+                last_action_timestamp = Time.time;
+                time_cooldown = line_cooldown;
+                ActualAction = BATTLE_ACTION.COOLDOWN;
+            }
+        }
+
         // PERFORM CIRCLE ATTACK AGAINST PLAYER
         if (ActualAction == BATTLE_ACTION.CIRCLE_ATTACK)
         {
-            if (Time.time - last_action_timestamp > circle_delay) 
+            if (decidedActionThisFrame)
+            {
+                _Animator.Play("Circle_Attack", 0, 0f);
+                decidedActionThisFrame = false;
+                last_action_timestamp = Time.time;
+            }
+            else if (Time.time - last_action_timestamp > circle_delay) 
             {
                 float angle = _Angular_Physics.getActualAngle();
                 float relative_angle_player = GameObject.Find("Player").GetComponent<Angular_Physics>().getRelativeAngle(angle);
@@ -138,7 +189,6 @@ public class Boss : MonoBehaviour
                 projectile = Instantiate(CircleProjectile, transform.GetChild(2).transform.position, transform.rotation);
                 projectile.GetComponent<Homing_Bullet_Physics>().init(angle, ring_radius, !PlayerIsRightSide, Mathf.PI / 4, -aux_l);
 
-                decidedActionThisFrame = false;
                 last_action_timestamp = Time.time;
                 time_cooldown = circle_cooldown;
                 ActualAction = BATTLE_ACTION.COOLDOWN;
@@ -162,6 +212,11 @@ public class Boss : MonoBehaviour
                 if (ang_diff < Mathf.PI * 1.5 && ang_diff > Mathf.PI) new_angle += Mathf.PI / 2;
                 else if (ang_diff > Mathf.PI * 0.5f && ang_diff < Mathf.PI) new_angle -= Mathf.PI / 2;
                 _Angular_Physics.setActualAngle((new_angle + Mathf.PI * 2) % (Mathf.PI * 2));
+
+                // Y movement
+                transform.position = new Vector3(transform.position.x, Random.Range(y_tp_bottom_limit, y_tp_upper_limit), transform.position.z);
+                ideal_y = transform.position.y;
+
                 last_action_timestamp = Time.time;
                 time_cooldown = tp_cooldown;
                 ActualAction = BATTLE_ACTION.COOLDOWN;

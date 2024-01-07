@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - DropeableWeapon
   - Detector
+  - Trap
   layers:
   - Default
   - TransparentFX
