@@ -22,7 +22,6 @@ public class Homing_Bullet_Physics : MonoBehaviour
     private bool facingRight;
     private Vector2 speed;
     private float linear_speed = 0;
-    private bool FilpedAngle = false;
 
     //Follow
     [SerializeField] private int delay_frames = 10;
@@ -87,7 +86,6 @@ public class Homing_Bullet_Physics : MonoBehaviour
         }
         else delay_frames--;
 
-        if (Mathf.Abs(angle_diff) < 0.1) FilpedAngle = true;
         if (facingRight) angle_diff = ((angle_diff - actualAngle) + 2 * Mathf.PI) % (Mathf.PI * 2);
         else angle_diff = ((actualAngle-angle_diff) + 2 * Mathf.PI) % (Mathf.PI * 2);
         float temp_angle_to_player = Mathf.Atan((player_y - transform.position.y) / Mathf.Abs(angle_diff * radiusRing));

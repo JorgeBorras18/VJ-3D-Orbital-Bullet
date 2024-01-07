@@ -117,7 +117,7 @@ public class Bullet_Physics : MonoBehaviour
             if (transform.lossyScale.x > 0.5) dealt_dmg = hit.GetComponent<PlayerLogic>().TakeDamageAndHitBack(damage_per_bullet);
             else
             {
-                if (hit.GetComponent<PlayerLogic>().TakeDamage(damage_per_bullet));
+                dealt_dmg = hit.GetComponent<PlayerLogic>().TakeDamage(damage_per_bullet);
                 if (dealt_dmg) destroyBullet();
             }
         }
