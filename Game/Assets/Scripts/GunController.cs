@@ -17,6 +17,7 @@ public class Gun_Controller : MonoBehaviour
     [SerializeField] private GameObject Offhand_Weapon;
     [SerializeField] private WeaponsControllerUI WeaponInventoryPlaceholder;
     [SerializeField] private GameObject PickUpWeaponBillboard;
+    [SerializeField] private GameObject OpenLootBoxBillboard;
 
     private PlayerInput _playerInput;
     private InputAction swapWeaponAction;
@@ -43,6 +44,7 @@ public class Gun_Controller : MonoBehaviour
         }
 
         PickUpWeaponBillboard.SetActive(false);
+        OpenLootBoxBillboard.SetActive(false);
 
     }
 
@@ -140,12 +142,21 @@ public class Gun_Controller : MonoBehaviour
         }
     }
 
+    public bool AlreadyOwnsThatWeapon(string name)
+    {
+        return Main_Weapon.name.Contains(name) || (Offhand_Weapon != null && Offhand_Weapon.name.Contains(name));
+    }
+
 
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.tag == "DropeableWeapon")
         {
             PickUpWeaponBillboard.SetActive(true);
+        }
+        else if (hit.tag == "LootBox")
+        {
+            OpenLootBoxBillboard.SetActive(true);
         }
     }
 
@@ -165,12 +176,26 @@ public class Gun_Controller : MonoBehaviour
                 Destroy(hit.transform.parent.gameObject);
             }
         }
+        else if (hit.tag == "LootBox")
+        {
+            OpenLootBoxBillboard.SetActive(true);
+            if (pickUpWeaponAction.IsPressed() && pickup_button_released)
+            {
+                pickup_button_released = false;
+                hit.gameObject.GetComponent<LootBox>().OpenLootBox();
+                OpenLootBoxBillboard.SetActive(false);
+            }
+        }
     }
     private void OnTriggerExit(Collider hit)
     {
         if (hit.tag == "DropeableWeapon")
         {
-            PickUpWeaponBillboard.SetActive(false);
+            OpenLootBoxBillboard.SetActive(false);
+        }
+        else if (hit.tag == "LootBox")
+        {
+            OpenLootBoxBillboard.SetActive(false);
         }
     }
 }

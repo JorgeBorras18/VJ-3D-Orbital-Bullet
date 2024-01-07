@@ -120,7 +120,6 @@ public class Boss : MonoBehaviour
         {
             _Angular_Physics.moveObject(0, 0);
             _Billboard.turn_to_camera(_Angular_Physics.getActualAngle(), 180, true);
-            WakeUpBoss();
             return;
         }
 
