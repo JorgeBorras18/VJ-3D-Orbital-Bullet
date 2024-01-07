@@ -176,6 +176,7 @@ public class Boss : MonoBehaviour
 
     public void WakeUpBoss() 
     { 
-        sleeping = false; 
+        sleeping = false;
+        GameObject.Find("BossHealthBar").SetActive(true);
     }
 }
