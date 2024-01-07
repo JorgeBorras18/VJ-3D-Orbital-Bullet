@@ -47,17 +47,18 @@ public class SceneController : MonoBehaviour
             int currentRing = ringIdentifierLogic.getRingId();
             if (currentRingIsFinished()) {
                 if (currentRing != (number_of_rings - 1)) {
+                    externalRings[currentRing].turnIndicadorOn();
                     if (playerIsInPositionToGoUp())
                     {
                         GoNextLevel.SetActive(true); // *
-                        externalRings[currentRing].turnIndicadorOn();
+                        
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             externalRings[currentRing + 1].triggerPlatformMovementToStart();
                             player.triggerToJumpToTheNextRing();
                             ringIdentifierLogic.setRingId(currentRing + 1);
                             if (currentRing + 1 == 4) FindAnyObjectByType<Boss>().WakeUpBoss();
-                            GoNextLevel.SetActive(false); // *
+                            
                         }
                     }
                 }
@@ -67,7 +68,8 @@ public class SceneController : MonoBehaviour
                     return;
                 }
             }
-     
+            else GoNextLevel.SetActive(false); // *
+
             if (playerCanChangeToInternalOrExternalRing()) {
                 TakeJumpPad.SetActive(true); // *
 
@@ -81,11 +83,14 @@ public class SceneController : MonoBehaviour
 
                     player.changeToInternalOrExternalRing(newRadius);
                     ringIdentifierLogic.setExternal(!isInExternalRing);
-                    GoNextLevel.SetActive(false); // *
+                    TakeJumpPad.SetActive(false); // *
                 }
                 
             }
-            
+            else {
+                TakeJumpPad.SetActive(false); // *
+            }
+
         }
         
     }
