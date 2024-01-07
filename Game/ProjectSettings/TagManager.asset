@@ -10,6 +10,7 @@ TagManager:
   - DropeableWeapon
   - Detector
   - Trap
+  - LootBox
   layers:
   - Default
   - TransparentFX

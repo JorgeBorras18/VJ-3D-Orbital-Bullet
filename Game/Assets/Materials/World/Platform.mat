@@ -21,8 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Platform
-  m_Shader: {fileID: -6465566751694194690, guid: faae4be5365625b4db976b822bfcf24a, type: 3}
-  m_Parent: {fileID: 2100000, guid: 62fe82e21ae43e9469217092c404031f, type: 2}
+  m_Shader: {fileID: -6465566751694194690, guid: d507ea669c1a3734c862fd1b3c7f37f5, type: 3}
+  m_Parent: {fileID: 2100000, guid: c640cd0098ba1344093875d6bd668453, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -35,7 +35,11 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: aa02db65ac8011c44a7bc0a516d7fce1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:
