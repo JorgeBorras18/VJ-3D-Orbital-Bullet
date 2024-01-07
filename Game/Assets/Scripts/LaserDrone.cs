@@ -43,6 +43,9 @@ public class LaserDrone : MonoBehaviour
     public RingIdentifierLogic ringIdentifierLogic;
     public RingIdentifierLogic playerRingIdentifierLogic;
 
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip shootSound;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,9 @@ public class LaserDrone : MonoBehaviour
         ideal_y = transform.position.y;
         angularPhysics.setVerticalSpeed(vertical_speed);
         _WallDetector = transform.GetChild(1).gameObject.GetComponent<WallDetector>();
+
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
     }
 
     // Update is called once per frame
@@ -119,6 +125,7 @@ public class LaserDrone : MonoBehaviour
             {
                 bullet_count = 0;
                 actual_state = STATE.FIRING;
+                soundEffects.playThisSoundEffect(shootSound);
                 animator.PlayInFixedTime("Shoot", 0, 0f);
                 offset_angle_rotation = 0;
             }

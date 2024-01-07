@@ -28,6 +28,9 @@ public class CrystalCharger : MonoBehaviour
     public RingIdentifierLogic ringIdentifierLogic;
     public RingIdentifierLogic playerRingIdentifierLogic;
 
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip shootSound;
 
     private void Awake()
     {
@@ -45,6 +48,9 @@ public class CrystalCharger : MonoBehaviour
         Angular_Physics angularPhysics = transform.parent.gameObject.GetComponent<Angular_Physics>();
         angularPhysics.init(ring_radius, actual_angle);
         //ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
+
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
     }
 
     // Update is called once per frame
@@ -56,6 +62,7 @@ public class CrystalCharger : MonoBehaviour
             if (last_shot_timestamp + time_between_shoots < Time.time)
             {
                 actual_state = STATE.FIRING;
+                soundEffects.playThisSoundEffect(shootSound);
                 channeling_bullet.GetComponent<MeshRenderer>().enabled = true;
                 channeling_bullet.transform.localScale = original_scale_bullet;
                 last_shot_timestamp = Time.time;
