@@ -37,6 +37,10 @@ public class Reaper : MonoBehaviour
     public RingIdentifierLogic ringIdentifierLogic;
     public RingIdentifierLogic playerRingIdentifierLogic;
 
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip slashSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,10 +59,14 @@ public class Reaper : MonoBehaviour
         //radar detection radius
         original_radar_size = GetComponent<CapsuleCollider>().radius;
         wallDetector = GetComponentInChildren<WallDetector>();
+
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+// Update is called once per frame
+void FixedUpdate()
     {
         bool hit_wall = wallDetector.isWallAhead();
 
@@ -121,6 +129,7 @@ public class Reaper : MonoBehaviour
             {
                 // just_look_at_player = true;
                 actual_state = STATE.SLASHING;
+                soundEffects.playThisSoundEffect(slashSound);
                 distance_slashed = 0;
                 ownTrail.enabled = true;
                 just_look_at_player = false;

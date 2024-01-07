@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] GameObject AmmoBoxReward;
     private DMG_Flash DamageFlashComponent;
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip painSound;
+    public AudioClip deathSound;
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        soundEffects = player.GetComponent<PlaySound>();
         health = max_health;
     }
 
@@ -29,6 +34,7 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time - last_damage_timestamp > 0.1) // Avoid 2-Times Dmg Bug
         {
+            soundEffects.playThisSoundEffect(painSound);
             health -= damage;
             healthBar.UpdateHealthBar(health / max_health);
             if (health <= 0) Die();
@@ -39,6 +45,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        soundEffects.playThisSoundEffect(deathSound);
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         if (AmmoBoxReward != null && Random.Range(0f, 1f) > 0.5) Instantiate(AmmoBoxReward, transform.position, Quaternion.identity); //if lucky drop Ammo Box
         float result = Random.Range(0f, 1f);

@@ -513,6 +513,8 @@ MonoBehaviour:
   angularPhysics: {fileID: 6594209148464590953}
   ringIdentifierLogic: {fileID: 0}
   playerRingIdentifierLogic: {fileID: 0}
+  player: {fileID: 0}
+  shootSound: {fileID: 0}
 --- !u!136 &7405605452869011106
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -711,6 +713,9 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   healthBar: {fileID: 3072433398188389459}
   AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
+  player: {fileID: 0}
+  painSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &6594209148464590953
 MonoBehaviour:
   m_ObjectHideFlags: 0
