@@ -40,7 +40,9 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
-        if (Random.Range(0, 1) > 0.5) Instantiate(AmmoBoxReward, transform.position, Quaternion.identity); //if lucky drop Ammo Box
+        float result = Random.Range(0f, 1f);
+        Debug.Log(result);
+        if (result > 0.5f) Instantiate(AmmoBoxReward, transform.position, Quaternion.identity); //if lucky drop Ammo Box
         Destroy(gameObject);
     }
 }

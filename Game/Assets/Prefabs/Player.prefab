@@ -376,7 +376,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.35
+  m_Height: 0.33
   m_Radius: 0.06
   m_SlopeLimit: 30
   m_StepOffset: 0.3
@@ -470,8 +470,9 @@ MonoBehaviour:
   slow_fall_gravity: 0.4
   fast_fall_gravity: 0.5
   radiusRing: 9
-  max_jump_frames: 0
-  jumping_internally_or_externally: 0
+  dyingFrames: 0
+  winning_Game: 0
+  winningFrames: 0
 --- !u!114 &1491585806496149589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +1023,7 @@ MonoBehaviour:
   playerAG: {fileID: 0}
   playerLogic: {fileID: 0}
   DropableWeaponPrefab: {fileID: 3746922494329145514, guid: ef488f4e7f68df649b19fef0556d1fc7, type: 3}
+  AmmoTypeUsed: 0
   fireRate: 0.1
   magazineSize: 13
   upperAccuracyLimit: 4
@@ -1414,7 +1416,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.22, y: 0.08, z: 0.1}
-  m_Center: {x: 0, y: -0.1, z: 0}
+  m_Center: {x: 0, y: -0.115, z: 0}
 --- !u!114 &7601188420428825259
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -136,7 +136,6 @@ public class PlayerLogic : MonoBehaviour
             }
             return;
         }
-        else if (animationController.getActualState() == "Roll") Debug.Log(Time.time);
 
         if (!movement_is_blocked)
         {
@@ -281,7 +280,7 @@ public class PlayerLogic : MonoBehaviour
     public bool TriggerUppwardRollAfterEnemyStomp()
     {
         // HIT ENEMY AND PROPEL UPWARD
-        if (_FeetDetector.isThereEnemyBellow() && angularPhysics.getVerticalSpeed() < 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration)
+        if (angularPhysics.getVerticalSpeed() < 0)
         {
             RollingUpwards = true;
             animationController.changeAnimation("Fast_Roll");

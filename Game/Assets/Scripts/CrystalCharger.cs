@@ -14,6 +14,7 @@ public class CrystalCharger : MonoBehaviour
     [SerializeField] private GameObject channeling_bullet;
     [SerializeField] private GameObject Launchable_Projectile_Prefab;
     [SerializeField] private Static_Billboard_Facing_Player billboard;
+    [SerializeField] private float ring_radius = 17f;
 
     private STATE actual_state = STATE.IDLE;
     private Vector3 original_scale_bullet;
@@ -21,7 +22,6 @@ public class CrystalCharger : MonoBehaviour
     private float last_frame = 0f;
     private float max_size_channeling_time;
     private float actual_angle;
-    private float ring_radius;
     private float temp_angle_to_player;
     private bool calc_angle_player = true;
 
@@ -42,7 +42,7 @@ public class CrystalCharger : MonoBehaviour
         channeling_bullet.GetComponent<MeshRenderer>().enabled = false;
         max_size_channeling_time = channeling_time * 4f / 5f;
         actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
-        ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
+        //ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
     }
 
     // Update is called once per frame

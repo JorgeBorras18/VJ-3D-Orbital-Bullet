@@ -25,6 +25,7 @@ public class LaserDrone : MonoBehaviour
     [SerializeField] private Angular_Physics angularPhysics;
 
     private Animator animator;
+    private WallDetector _WallDetector;
     private STATE actual_state = STATE.PATROLING;
     private float last_shot_timestamp = 0f;
     private float ring_radius;
@@ -57,6 +58,7 @@ public class LaserDrone : MonoBehaviour
         patrol_range = patrol_range * Mathf.PI / 180f;
         ideal_y = transform.position.y;
         angularPhysics.setVerticalSpeed(vertical_speed);
+        _WallDetector = transform.GetChild(1).gameObject.GetComponent<WallDetector>();
     }
 
     // Update is called once per frame
@@ -92,20 +94,23 @@ public class LaserDrone : MonoBehaviour
         }
         else
         {
-            //Move towards or away from player (mantain ideal distance
+            //Move towards or away from player (mantain ideal distance)
+            _WallDetector.setFacingRight(billboard.isFacingRight());
             float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
             if (Mathf.Abs(player_ang - angularPhysics.getActualAngle()) * ring_radius < desired_distance_from_player)
             {
                 //towards player
                 actual_speed = Mathf.Min(max_move_speed, actual_speed + acceleration);
-                if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
+                if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
+                else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
                 else angularPhysics.moveObject(actual_speed, 0);
             }
             else if (Mathf.Abs(player_ang - angularPhysics.getActualAngle()) * ring_radius > desired_distance_from_player)
             {
                 //away from player
                 actual_speed = Mathf.Max(-max_move_speed, actual_speed - acceleration);
-                if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
+                if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
+                else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
                 else angularPhysics.moveObject(actual_speed, 0);
             }
 

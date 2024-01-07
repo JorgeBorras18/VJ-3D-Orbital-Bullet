@@ -25,7 +25,7 @@ public class Animation_Controller : MonoBehaviour
         
         if (new_Animation == ActualAnimation) return;
         ActualAnimation = new_Animation;
-
+        //Debug.Log(Time.time + " " + new_Animation);
         if (new_Animation == "Fast_Roll" || new_Animation == "Roll" || new_Animation == "Death")
         {
             transform.GetChild(0).gameObject.SetActive(false);

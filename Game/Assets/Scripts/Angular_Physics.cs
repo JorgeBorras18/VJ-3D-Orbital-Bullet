@@ -86,7 +86,9 @@ public class Angular_Physics : MonoBehaviour
 
     static public float getRadiusFromPosition(float angle, float posX, float posZ)
     {
-        return Mathf.Max(Mathf.Abs(posZ / Mathf.Sin(angle)), Mathf.Abs(posX / Mathf.Cos(angle)));
+        float result = Mathf.Max(Mathf.Abs(posZ / Mathf.Sin(angle)), Mathf.Abs(posX / Mathf.Cos(angle)));
+        if (result > 10) return 17f;
+        return 4.5f;
     }
 
 }
