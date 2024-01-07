@@ -8083,6 +8083,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 833737525}
     m_Modifications:
     - target: {fileID: 486089848062566977, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 486089848062566977, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0dfb01ebf4a0cb945a112ffd1fb8efcc, type: 3}
+    - target: {fileID: 486089848062566977, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
       propertyPath: BossHealthBar
       value: 
       objectReference: {fileID: 995675485}
@@ -8147,9 +8155,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5621789401071605180, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5621789401071605180, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 995675487}
+    - target: {fileID: 5621789401071605180, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
+      propertyPath: painSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 10431875e6f775f4baf53d972a30bb49, type: 3}
+    - target: {fileID: 5621789401071605180, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e27feb85d40b7b345801bcfccef56204, type: 3}
     - target: {fileID: 5986247128005867509, guid: 88dcfabd6581081408e6e008fe583143, type: 3}
       propertyPath: m_Name
       value: Harvester(Boss)

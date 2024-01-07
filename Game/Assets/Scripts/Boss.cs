@@ -49,6 +49,10 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject BossHealthBar;
     private int action_count = 0;
 
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip shootSound;
+
     private void Awake()
     {
         _EnemyHealth = GetComponent<Enemy>();
@@ -69,6 +73,8 @@ public class Boss : MonoBehaviour
 
         y_tp_bottom_limit = transform.position.y - y_tp_range;
         y_tp_upper_limit = transform.position.y + y_tp_range;
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
     }
 
     // Decide next action
@@ -78,12 +84,21 @@ public class Boss : MonoBehaviour
         if (_EnemyHealth.GetHealthPercent() > start_second_phase)
         {
             // First Phase
-            if (action_count == actions_between_tp_1st_phase) {
+            if (action_count == actions_between_tp_1st_phase)
+            {
                 action_count = 0;
                 ActualAction = BATTLE_ACTION.TELEPORT;
             }
-            else if (random_action < 45) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
-            else ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
+            else if (random_action < 45)
+            {
+                soundEffects.playThisSoundEffect(shootSound);
+                ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
+            }
+            else
+            {
+                soundEffects.playThisSoundEffect(shootSound);
+                ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
+            }
         }
         else
         {
@@ -93,9 +108,20 @@ public class Boss : MonoBehaviour
                 action_count = 0;
                 ActualAction = BATTLE_ACTION.TELEPORT;
             }
-            else if (random_action < 20) ActualAction = BATTLE_ACTION.LINE_ATTACK;
-            else if (random_action < 60) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
-            else ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
+            else if (random_action < 20)
+            {
+                soundEffects.playThisSoundEffect(shootSound);
+                ActualAction = BATTLE_ACTION.LINE_ATTACK;
+            }
+            else if (random_action < 60)
+            {
+                soundEffects.playThisSoundEffect(shootSound);
+                ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
+            }
+            else
+            {
+                ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
+            }
         }
         ++action_count;
     }

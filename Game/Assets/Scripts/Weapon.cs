@@ -51,6 +51,8 @@ public class Weapon : MonoBehaviour
         upperAccuracyLimit = Mathf.Max(lowerAccuracyLimit, upperAccuracyLimit);
 
         // sound
+        player = GameObject.Find("SoundEffects").GetComponent<AudioSource>();
+
         soundEffects = player.GetComponent<PlaySound>();
     }
 
