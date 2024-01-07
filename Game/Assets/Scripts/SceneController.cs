@@ -53,8 +53,9 @@ public class SceneController : MonoBehaviour
                     }
                 }
                 else
-                {
+                { 
                     player.winGame();
+                    return;
                 }
             }
      
@@ -118,6 +119,7 @@ public class SceneController : MonoBehaviour
     private bool currentRingIsFinished()
     {
         int currentRing = ringIdentifierLogic.getRingId();
+        if (currentRing == 4) return externalRings[currentRing].isFinished();
         return externalRings[currentRing].isFinished() && (currentRing % 2 != 0 || internalRings[currentRing].isFinished());
     }
 

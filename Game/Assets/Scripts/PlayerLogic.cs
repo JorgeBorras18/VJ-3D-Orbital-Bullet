@@ -248,7 +248,8 @@ public class PlayerLogic : MonoBehaviour
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }
-        else if (winning_Game)
+        
+        if (winning_Game)
         {
             if (winningFrames <= maxDyingFrames) {
                 ++winningFrames;

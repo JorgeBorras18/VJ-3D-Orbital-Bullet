@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         float result = Random.Range(0f, 1f);
 
         if (result > 0.5f) Instantiate(AmmoBoxReward, transform.position, Quaternion.identity); //if lucky drop Ammo Box
+
         Destroy(gameObject);
     }
 

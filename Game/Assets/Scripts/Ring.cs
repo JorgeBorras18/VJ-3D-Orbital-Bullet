@@ -11,6 +11,7 @@ public class Ring : MonoBehaviour
     public Vector3 positionToGoUp;
     RingIdentifierLogic identifierLogic;
     IndicadorLogic indicadorLogic = new IndicadorLogic();
+    public bool finishedRing = false;
 
 
     // Start is called before the first frame update
@@ -35,7 +36,8 @@ public class Ring : MonoBehaviour
         int ringNum = identifierLogic.getRingId();
         int inside = (identifierLogic.isExternal()) ? 0 : 1;
         missingEnemies = GameObject.Find("enemics_" + ringNum.ToString() + "." + inside.ToString()).gameObject.transform.childCount;
-        return ((platformId == "none" || platformLogic.isFinished()) && missingEnemies == 0);
+        finishedRing = (platformId == "none" || platformLogic.isFinished()) && ((ringNum != 4) || (missingEnemies == 1 && ringNum == 4));
+        return finishedRing;
     }
 
     public void triggerPlatformMovementToStart() { 
