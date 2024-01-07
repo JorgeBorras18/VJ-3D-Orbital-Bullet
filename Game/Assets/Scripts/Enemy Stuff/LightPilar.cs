@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static Unity.VisualScripting.Metadata;
 
 // Class that handles raise of every pilar of Light (Harvester Boss Fight)
 public class LightPilar : MonoBehaviour

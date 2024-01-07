@@ -470,9 +470,11 @@ MonoBehaviour:
   slow_fall_gravity: 0.4
   fast_fall_gravity: 0.5
   radiusRing: 9
-  dyingFrames: 0
-  winning_Game: 0
-  winningFrames: 0
+  player: {fileID: 0}
+  GunSound: {fileID: 0}
+  DeathSound: {fileID: 0}
+  JumpSound: {fileID: 0}
+  PainSound: {fileID: 0}
 --- !u!114 &1491585806496149589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,9 +1032,10 @@ MonoBehaviour:
   lowerAccuracyLimit: -4
   barrelLength: 0.08
   automatic: 0
-  infinite_ammo: 0
   bullets_per_shot: 1
   bullet_spread: 0
+  player: {fileID: 0}
+  shootSound: {fileID: 0}
 --- !u!1 &7617915601525017835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,6 +1317,7 @@ MonoBehaviour:
   Offhand_Weapon: {fileID: 0}
   WeaponInventoryPlaceholder: {fileID: 0}
   PickUpWeaponBillboard: {fileID: 6736728490372149036}
+  OpenLootBoxBillboard: {fileID: 0}
 --- !u!135 &8349536980112414977
 SphereCollider:
   m_ObjectHideFlags: 0
