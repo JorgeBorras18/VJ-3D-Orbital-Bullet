@@ -18,6 +18,7 @@ public class FloatingHealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(transform.position + Camera.forward);
+        if (Camera != null) transform.LookAt(transform.position + Camera.forward);
+        else Debug.Log("WARNING: CAMARA NOT ASSIGNED TO FLOATING HEALTH BAR: " + transform.parent.name);
     }
 }
