@@ -32,6 +32,10 @@ public class Weapon : MonoBehaviour
     private int shotsInChamber = -1;
     private bool released_trigger;
 
+    private PlaySound soundEffects;
+    public AudioSource player;
+    public AudioClip shootSound;
+
     void Start()
     {
         if (playerAG == null) playerAG = GameObject.Find("Player").GetComponent<Angular_Physics>();
@@ -45,6 +49,9 @@ public class Weapon : MonoBehaviour
         //Assert correct values & no break
         lowerAccuracyLimit = Mathf.Min(lowerAccuracyLimit, upperAccuracyLimit);
         upperAccuracyLimit = Mathf.Max(lowerAccuracyLimit, upperAccuracyLimit);
+
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
     }
 
 
@@ -66,10 +73,11 @@ public class Weapon : MonoBehaviour
         float ini_angle = playerAG.getActualAngle();
         float ring_radius = playerAG.getActualRadius() + Random.Range(-0.5f, 0.5f);
         bool PlayerFacingRight = playerLogic.isFacingRight();
+        soundEffects.playThisSoundEffect(shootSound);
 
         // 1 SHOT
         if (bullets_per_shot == 1)
-        {
+        {   
             GameObject new_bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength,  PlayerFacingRight, Random.Range(lowerAccuracyLimit, upperAccuracyLimit));
         }

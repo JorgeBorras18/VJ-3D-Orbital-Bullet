@@ -1134,6 +1134,14 @@ PrefabInstance:
       propertyPath: radiusRing
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 1768049391073207319, guid: 41d24881a68516d488c3116e878be8af, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 1768049391073207319, guid: 41d24881a68516d488c3116e878be8af, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a9d4731cd11dd64a850f145fef14787, type: 3}
     - target: {fileID: 1794038457337111483, guid: 41d24881a68516d488c3116e878be8af, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1874,6 +1882,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8830206260612666825}
@@ -2298,6 +2314,14 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 129736248}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
@@ -3085,6 +3109,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8554635740833915462}
@@ -3746,6 +3778,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 4770390547756614210}
@@ -3880,6 +3920,14 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 129736248}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
@@ -5936,6 +5984,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 4770390547756614210}
@@ -6143,6 +6199,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8641832448634945019}
@@ -6243,6 +6307,14 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 129736248}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
@@ -6588,6 +6660,14 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 129736248}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
@@ -7932,6 +8012,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129736248}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8641832448634945019}
@@ -9039,6 +9127,14 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 129736248}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 5909014363841539889, guid: 9da812045ffc4224786eb026961b35c8, type: 3}
       propertyPath: ring_radius
       value: 4.5
