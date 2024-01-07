@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerLogic : MonoBehaviour
 {
@@ -44,12 +45,23 @@ public class PlayerLogic : MonoBehaviour
 
     // NEXT RING JUMPING PHYSICS
     private bool jumping_to_the_next_ring = false;
-    public int max_jump_frames;
+    private int max_jump_frames;
     private int current_jump_frames = 0;
 
     // INTERNAL-EXTERNAL RING MOVEMENT
     private bool inInternalOrExternalPlatform;
-    public bool jumping_internally_or_externally;
+    private bool jumping_internally_or_externally;
+
+    // player death controller
+    public int dyingFrames = 0;
+    private int maxDyingFrames = 60;
+    private bool isDead = false;
+
+    // player win controller
+    public bool winning_Game = false;
+    public int winningFrames = 0;
+    private int maxWinningFrames = 60;
+
 
     void Start()
     {
@@ -94,7 +106,17 @@ public class PlayerLogic : MonoBehaviour
         float movementInput = MoveAction.ReadValue<Vector2>().x;
 
         //Check animation
-        if (animationController.getActualState() == "Death") return;
+        if (isDead && dyingFrames <= maxDyingFrames)
+        {
+            dyingFrames = dyingFrames + 1;
+            return;
+        }
+        else if (dyingFrames == maxDyingFrames + 1)
+        {
+            SceneManager.LoadScene("GameOver");
+            return;
+        }
+
         if (RollingUpwards)
         {
             if (animationController.getActualState() == "Fast_Roll" && !animationController.animationHasFinished()) next_Animation = "Fast_Roll";
@@ -114,7 +136,6 @@ public class PlayerLogic : MonoBehaviour
             }
             return;
         }
-        else if (animationController.getActualState() == "Roll") Debug.Log(Time.time);
 
         if (!movement_is_blocked)
         {
@@ -211,7 +232,19 @@ public class PlayerLogic : MonoBehaviour
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }
-
+        else if (winning_Game)
+        {
+            if (winningFrames <= maxDyingFrames) {
+                ++winningFrames;
+                angularPhysics.applyJump(jumpSpeed * 2.7f);
+            }
+            else
+            {
+                SceneManager.LoadScene("GamePassed");
+                return;
+            }
+        }
+        
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
         animationController.changeAnimation(next_Animation);
@@ -251,7 +284,7 @@ public class PlayerLogic : MonoBehaviour
     public bool TriggerUppwardRollAfterEnemyStomp()
     {
         // HIT ENEMY AND PROPEL UPWARD
-        if (_FeetDetector.isThereEnemyBellow() && angularPhysics.getVerticalSpeed() < 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration)
+        if (angularPhysics.getVerticalSpeed() < 0)
         {
             RollingUpwards = true;
             animationController.changeAnimation("Fast_Roll");
@@ -276,8 +309,11 @@ public class PlayerLogic : MonoBehaviour
             timestamp_last_dmg_taken = Time.time;
 
             //Die
-            if (player_health <= 0) animationController.changeAnimation("Death");
-
+            if (player_health <= 0)
+            {
+                isDead = true;
+                animationController.changeAnimation("Death");
+            }
             //activate Iframes
             else
             {
@@ -303,13 +339,14 @@ public class PlayerLogic : MonoBehaviour
 
     private void checkIfMovementIsBlocked()
     {
-        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally; // ... || ... || ... missing
+        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally || isDead || winning_Game; // ... || ... || ... missing
     }
 
     public void triggerToJumpToTheNextRing()
     {
         jumping_to_the_next_ring = true;
     }
+
 
     public Vector3 getPosition()
     {
@@ -323,5 +360,11 @@ public class PlayerLogic : MonoBehaviour
     public void changeToInternalOrExternalRing(float newRadius) {
         jumping_internally_or_externally = true;
         angularPhysics.setActualRadius(newRadius);
+    }
+
+    public void winGame()
+    {
+        winning_Game = true;
+        angularPhysics.setActualRadius(0);
     }
 }

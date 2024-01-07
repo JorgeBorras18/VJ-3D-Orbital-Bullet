@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Numerics;
+using UnityEngine.SceneManagement;
 //using System;
 
 public class SceneController : MonoBehaviour
@@ -20,6 +21,7 @@ public class SceneController : MonoBehaviour
     // Rings
     private List<Ring> internalRings = new List<Ring>();
     private List<Ring> externalRings = new List<Ring>();
+    private float winningRadius = 0.0f;
     private float internalRingRadius = 4.5f;
     private float extrenalRingRadius = 17.0f;
 
@@ -38,13 +40,20 @@ public class SceneController : MonoBehaviour
         if (gameIsStarted)
         {
             int currentRing = ringIdentifierLogic.getRingId();
-            if (currentRing != (number_of_rings - 1) && currentRingIsFinished()) {
-                // TODO HERE Interface shows possibility to go change ring
-                externalRings[currentRing].turnIndicadorOn();
-                if (Input.GetKeyDown(KeyCode.E) && playerIsInPositionToGoUp()) {
-                    externalRings[currentRing + 1].triggerPlatformMovementToStart();
-                    player.triggerToJumpToTheNextRing();
-                    ringIdentifierLogic.setRingId(currentRing+1);
+            if (currentRingIsFinished()) {
+                if (currentRing != (number_of_rings - 1)) {
+                    // TODO HERE Interface shows possibility to go change ring
+                    externalRings[currentRing].turnIndicadorOn();
+                    if (Input.GetKeyDown(KeyCode.E) && playerIsInPositionToGoUp())
+                    {
+                        externalRings[currentRing + 1].triggerPlatformMovementToStart();
+                        player.triggerToJumpToTheNextRing();
+                        ringIdentifierLogic.setRingId(currentRing + 1);
+                    }
+                }
+                else
+                {
+                    player.winGame();
                 }
             }
      
@@ -64,7 +73,8 @@ public class SceneController : MonoBehaviour
                     
                 }
                 
-            } 
+            }
+            
         }
         
     }

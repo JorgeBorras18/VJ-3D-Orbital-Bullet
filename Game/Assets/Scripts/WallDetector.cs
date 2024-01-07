@@ -25,6 +25,8 @@ public class WallDetector : MonoBehaviour
 
     public void UpdateOrientation(bool isNowFacingRight) { facingRight = isNowFacingRight; }
 
+    public void setFacingRight(bool willBeFacingRight) { facingRight = willBeFacingRight; }
+
     private void Update()
     {
         transform.LookAt(new Vector3(0, transform.position.y, 0));
