@@ -41,15 +41,17 @@ public class LightPilarController : MonoBehaviour
 
     public void DeployByGroups(int Agrupations)
     {
-        Debug.Log(Agrupations);
         for (int i = 0; i < Agrupations; ++i)
         {
             for (int j = 0; j < number_of_pillars / Agrupations + 1; j += Agrupations)
             {
                 for (int k = 0; k < Agrupations; ++k)
                 {
-                    Debug.Log("GTotal = " + Agrupations + ", [Pilar " + ((i + j) * Agrupations + k) + "] is group: ");
-                    if ((i + j) * Agrupations + k < number_of_pillars) pilar_Array[(i + j) * Agrupations + k].RaisePillar(i * 1f, 2.5f, false);
+                    if ((i + j) * Agrupations + k < number_of_pillars)
+                    {
+                        if (Agrupations != 2) pilar_Array[(i + j) * Agrupations + k].RaisePillar(i * 1f, 2.5f, false);
+                        else pilar_Array[(i + j) * Agrupations + k].RaisePillar(i * 1.75f, 2.5f, false);
+                    }
                 }
             }
         }

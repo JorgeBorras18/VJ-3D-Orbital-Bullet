@@ -73,17 +73,20 @@ public class LightPilar : MonoBehaviour
 
     public void RaisePillar(float event_delay, float warning_delay, bool is_short)
     {
+        if (actual_state != PILAR.INACTIVE) return;
         actual_state = PILAR.SLEEPING;
         sleepTimeout = event_delay;
         if (is_short)
         {
             max_scale = 2.5f;
             choosen_Pilar_Type = _PilarChildShort;
+            StayRaisedDuration = 0.5f;
         }
         else
         {
             max_scale = 7f;
             choosen_Pilar_Type = _PilarChild;
+            StayRaisedDuration = 1f;
         }
         raise_warning_duration = warning_delay;
         raise_event_timestamp = Time.time;

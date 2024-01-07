@@ -49,6 +49,7 @@ public class SceneController : MonoBehaviour
                         externalRings[currentRing + 1].triggerPlatformMovementToStart();
                         player.triggerToJumpToTheNextRing();
                         ringIdentifierLogic.setRingId(currentRing + 1);
+                        if (currentRing+1 == 4) FindAnyObjectByType<Boss>().WakeUpBoss();
                     }
                 }
                 else

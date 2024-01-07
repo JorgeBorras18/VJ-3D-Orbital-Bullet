@@ -77,7 +77,6 @@ public class Homing_Bullet_Physics : MonoBehaviour
 
         // Calc angle to player (with delay)
         float player_y = GameObject.Find("Player").transform.position.y;
-        Debug.Log(player_y);
         float angle_diff = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
         old_pos.Enqueue(player_y);
         old_pos.Enqueue(angle_diff);
@@ -87,7 +86,6 @@ public class Homing_Bullet_Physics : MonoBehaviour
             angle_diff = old_pos.Dequeue();
         }
         else delay_frames--;
-        Debug.Log(player_y);
 
         if (Mathf.Abs(angle_diff) < 0.1) FilpedAngle = true;
         if (facingRight) angle_diff = ((angle_diff - actualAngle) + 2 * Mathf.PI) % (Mathf.PI * 2);

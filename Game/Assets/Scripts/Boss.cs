@@ -10,21 +10,24 @@ public class Boss : MonoBehaviour
     private BATTLE_ACTION ActualAction = BATTLE_ACTION.COOLDOWN;
     private float last_action_timestamp = 0;
     private float time_cooldown = 0;
-    private bool sleeping = false;
+    private bool sleeping = true;
     private bool decidedActionThisFrame = false;
 
     // vertical Movement
     [SerializeField] private float up_down_range = 0.25f;
     [SerializeField] private float vertical_speed = 0.75f;
     [SerializeField] private float y_tp_range = 1f;
+    [SerializeField] private float ring_radius = 17f;
     private float y_tp_bottom_limit;
     private float y_tp_upper_limit;
     private float ideal_y;
     private bool going_up = true;
-    private float ring_radius = 0;
 
     bool waiting_for_tp = true;
 
+    //RING ID
+    public RingIdentifierLogic _RingIdentifierLogic;
+    public RingIdentifierLogic PlayerIdentifierLogic;
 
     private Enemy _EnemyHealth;
     private Animator _Animator;
@@ -42,6 +45,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private float barrel_Length_Offset;
     [SerializeField] private LightPilarController _LightPilarController;
     [SerializeField] private float line_cooldown;
+    [SerializeField] private float square_cooldown;
+    [SerializeField] private GameObject BossHealthBar;
     private int action_count = 0;
 
     private void Awake()
@@ -57,7 +62,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         float actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
-        ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
+        //ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
         _Angular_Physics.init(ring_radius, actual_angle);
         ideal_y = transform.position.y;
         _Angular_Physics.setVerticalSpeed(vertical_speed);
@@ -69,7 +74,6 @@ public class Boss : MonoBehaviour
     // Decide next action
     void DecideOnNextAction()
     {
-
         int random_action = (int)Random.Range(0, 100);
         if (_EnemyHealth.GetHealthPercent() > start_second_phase)
         {
@@ -78,7 +82,7 @@ public class Boss : MonoBehaviour
                 action_count = 0;
                 ActualAction = BATTLE_ACTION.TELEPORT;
             }
-            else if (random_action < 33) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
+            else if (random_action < 45) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
             else ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
         }
         else
@@ -90,7 +94,7 @@ public class Boss : MonoBehaviour
                 ActualAction = BATTLE_ACTION.TELEPORT;
             }
             else if (random_action < 20) ActualAction = BATTLE_ACTION.LINE_ATTACK;
-            else if (random_action < 55) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
+            else if (random_action < 60) ActualAction = BATTLE_ACTION.CIRCLE_ATTACK;
             else ActualAction = BATTLE_ACTION.SQUARE_ATTACK;
         }
         ++action_count;
@@ -112,7 +116,13 @@ public class Boss : MonoBehaviour
 
 
         // Is sleeping
-        if (sleeping) return;
+        if (sleeping)
+        {
+            _Angular_Physics.moveObject(0, 0);
+            _Billboard.turn_to_camera(_Angular_Physics.getActualAngle(), 180, true);
+            WakeUpBoss();
+            return;
+        }
 
 
         // WAIT FOR COOLDOWN && START ACTION
@@ -122,11 +132,11 @@ public class Boss : MonoBehaviour
             {
                 DecideOnNextAction(); // Choose next State
                 decidedActionThisFrame = true;
-                ActualAction = BATTLE_ACTION.TELEPORT;
+                Debug.Log(ActualAction);
             }
         }
 
-        // PERFORM LINE PILAR ATTACK AGAINST PLAYER
+        // PERFORM SQUARE PILAR ATTACK AGAINST PLAYER
         if (ActualAction == BATTLE_ACTION.SQUARE_ATTACK)
         {
             if (decidedActionThisFrame)
@@ -139,7 +149,7 @@ public class Boss : MonoBehaviour
             {
                 _LightPilarController.DeployByGroups(Random.Range(2,6));
                 last_action_timestamp = Time.time;
-                time_cooldown = line_cooldown;
+                time_cooldown = square_cooldown;
                 ActualAction = BATTLE_ACTION.COOLDOWN;
             }
         }
@@ -232,6 +242,6 @@ public class Boss : MonoBehaviour
     public void WakeUpBoss() 
     { 
         sleeping = false;
-        GameObject.Find("BossHealthBar").SetActive(true);
+        BossHealthBar.SetActive(true);
     }
 }

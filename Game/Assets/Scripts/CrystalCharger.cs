@@ -42,6 +42,8 @@ public class CrystalCharger : MonoBehaviour
         channeling_bullet.GetComponent<MeshRenderer>().enabled = false;
         max_size_channeling_time = channeling_time * 4f / 5f;
         actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
+        Angular_Physics angularPhysics = transform.parent.gameObject.GetComponent<Angular_Physics>();
+        angularPhysics.init(ring_radius, actual_angle);
         //ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
     }
 

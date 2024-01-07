@@ -19,6 +19,5 @@ public class FloatingHealthBar : MonoBehaviour
     void Update()
     {
         if (Camera != null) transform.LookAt(transform.position + Camera.forward);
-        else Debug.Log("WARNING: CAMARA NOT ASSIGNED TO FLOATING HEALTH BAR: " + transform.parent.name);
     }
 }

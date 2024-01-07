@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4fb643579c36548842901188f7fd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 1000
+  max_health: 2500
   deathEffect: {fileID: 0}
   healthBar: {fileID: 0}
   AmmoBoxReward: {fileID: 0}
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualAngle: 0
-  radiusRing: 0
+  radiusRing: 17
 --- !u!136 &3044100524521337218
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -399,14 +399,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up_down_range: 0.25
   vertical_speed: 0.75
-  y_tp_range: 1.5
+  y_tp_range: 3
+  ring_radius: 17
+  _RingIdentifierLogic: {fileID: 0}
+  PlayerIdentifierLogic: {fileID: 0}
   start_second_phase: 0.5
   actions_between_tp_1st_phase: 3
-  actions_between_tp_2nd_phase: 4
+  actions_between_tp_2nd_phase: 2
   tp_cooldown: 4
   circle_delay: 1.2
-  circle_cooldown: 4
+  circle_cooldown: 3
   CircleProjectile: {fileID: 8532716960228633665, guid: 14ec2bf7f6dc5144d88a09ef56c4bf9b, type: 3}
   barrel_Length_Offset: -0.1
   _LightPilarController: {fileID: 0}
-  line_cooldown: 8
+  line_cooldown: 5
+  square_cooldown: 7
+  BossHealthBar: {fileID: 0}

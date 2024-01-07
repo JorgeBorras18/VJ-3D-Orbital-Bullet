@@ -192,6 +192,8 @@ GameObject:
   - component: {fileID: 8711614530384959844}
   - component: {fileID: 4625812998547428662}
   - component: {fileID: 6932453902184177173}
+  - component: {fileID: 8988291677134528070}
+  - component: {fileID: 6781644689458590270}
   m_Layer: 0
   m_Name: CrystalCharger
   m_TagString: Enemy
@@ -425,6 +427,46 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8988291677134528070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493563052022708407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472e9af5734ea8c4686ed10a05ae204f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actualAngle: 0
+  radiusRing: 17
+--- !u!143 &6781644689458590270
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493563052022708407}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 0.01
+  m_Radius: 0.05
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: -0.06, z: 0}
 --- !u!1 &4222747592859425588
 GameObject:
   m_ObjectHideFlags: 0
