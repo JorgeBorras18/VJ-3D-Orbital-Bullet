@@ -199,6 +199,7 @@ public class Gun_Controller : MonoBehaviour
             {
                 pickup_button_released = false;
                 hit.gameObject.GetComponent<LootBox>().OpenLootBox();
+                FindAnyObjectByType<PlayerLogic>().RemoteDeactivateIsWallAhead();
                 OpenLootBoxBillboard.SetActive(false);
             }
         }

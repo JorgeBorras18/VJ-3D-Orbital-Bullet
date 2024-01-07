@@ -13,7 +13,11 @@ public class SceneController : MonoBehaviour
     private bool gameIsStarted = false;
 
     //////////// Game elements ////////////
-    
+
+    //Press E Billboards
+    [SerializeField] private GameObject GoNextLevel;
+    [SerializeField] private GameObject TakeJumpPad;
+
     // Player
     private PlayerLogic player;
     RingIdentifierLogic ringIdentifierLogic;
@@ -32,6 +36,7 @@ public class SceneController : MonoBehaviour
        init_rings();
        init_player();
        gameIsStarted = true;
+
     }
 
     // Update is called once per frame
@@ -42,14 +47,18 @@ public class SceneController : MonoBehaviour
             int currentRing = ringIdentifierLogic.getRingId();
             if (currentRingIsFinished()) {
                 if (currentRing != (number_of_rings - 1)) {
-                    // TODO HERE Interface shows possibility to go change ring
-                    externalRings[currentRing].turnIndicadorOn();
-                    if (Input.GetKeyDown(KeyCode.E) && playerIsInPositionToGoUp())
+                    if (playerIsInPositionToGoUp())
                     {
-                        externalRings[currentRing + 1].triggerPlatformMovementToStart();
-                        player.triggerToJumpToTheNextRing();
-                        ringIdentifierLogic.setRingId(currentRing + 1);
-                        if (currentRing+1 == 4) FindAnyObjectByType<Boss>().WakeUpBoss();
+                        GoNextLevel.SetActive(true); // *
+                        externalRings[currentRing].turnIndicadorOn();
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            externalRings[currentRing + 1].triggerPlatformMovementToStart();
+                            player.triggerToJumpToTheNextRing();
+                            ringIdentifierLogic.setRingId(currentRing + 1);
+                            if (currentRing + 1 == 4) FindAnyObjectByType<Boss>().WakeUpBoss();
+                            GoNextLevel.SetActive(false); // *
+                        }
                     }
                 }
                 else
@@ -60,7 +69,7 @@ public class SceneController : MonoBehaviour
             }
      
             if (playerCanChangeToInternalOrExternalRing()) {
-                // TODO HERE Interface shows possibility to go change ring
+                TakeJumpPad.SetActive(true); // *
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -72,7 +81,7 @@ public class SceneController : MonoBehaviour
 
                     player.changeToInternalOrExternalRing(newRadius);
                     ringIdentifierLogic.setExternal(!isInExternalRing);
-                    
+                    GoNextLevel.SetActive(false); // *
                 }
                 
             }

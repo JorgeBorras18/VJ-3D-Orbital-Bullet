@@ -33,6 +33,7 @@ public class Bullet_Physics : MonoBehaviour
         Trail = transform.GetChild(1).gameObject;
         controller = GetComponent<CharacterController>();
         iniTimestamp = Time.time;
+        Debug.Log(GetInstanceID());
     }
 
     // SET VERTICAL ANGULATION
@@ -124,7 +125,7 @@ public class Bullet_Physics : MonoBehaviour
 
         else if (!enemy_bullet && hit.gameObject.tag == "Enemy")
         {
-            hit.GetComponent<Enemy>().TakeDamage(damage_per_bullet);
+            hit.GetComponent<Enemy>().TakeDamage(damage_per_bullet, GetHashCode());
             destroyBullet();
         }
     }

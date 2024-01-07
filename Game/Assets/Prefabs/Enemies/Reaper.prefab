@@ -309,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 3430835693351755610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.035, y: 0.052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -334,7 +334,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0.1}
+  m_Size: {x: 0.3, y: 0.35, z: 0.1}
   m_Center: {x: -0.13, y: 0.015, z: 0}
 --- !u!114 &3310036051026566648
 MonoBehaviour:
@@ -432,6 +432,8 @@ MonoBehaviour:
   gravity: 0.7
   ringIdentifierLogic: {fileID: 0}
   playerRingIdentifierLogic: {fileID: 0}
+  player: {fileID: 0}
+  slashSound: {fileID: 0}
 --- !u!136 &3811203622803927635
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -796,6 +798,9 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   healthBar: {fileID: 2766698217805422355}
   AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
+  player: {fileID: 0}
+  painSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &4085533895377818062
 MonoBehaviour:
   m_ObjectHideFlags: 0

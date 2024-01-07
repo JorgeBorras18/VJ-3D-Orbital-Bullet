@@ -268,6 +268,8 @@ public class PlayerLogic : MonoBehaviour
 
     }
 
+    public void RemoteDeactivateIsWallAhead() { isThereWallAhead = false; }
+
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == ("Terrain"))

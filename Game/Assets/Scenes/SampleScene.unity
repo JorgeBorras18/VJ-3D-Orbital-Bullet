@@ -4233,13 +4233,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801948261}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.71764165, z: -0, w: 0.6964126}
-  m_LocalPosition: {x: 1.631, y: 2.221, z: -0.18}
+  m_LocalRotation: {x: -0, y: -0.7465417, z: -0, w: 0.6653386}
+  m_LocalPosition: {x: 1.6357424, y: 2.2210002, z: -0.127645}
   m_LocalScale: {x: 1.4684998, y: 1.4685, z: 1.4684998}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 917581310}
-  m_LocalEulerAnglesHint: {x: 0, y: 49.665, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -96.583, z: 0}
 --- !u!23 &801948263
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4694,6 +4694,26 @@ PrefabInstance:
       propertyPath: playerRingIdentifierLogic
       value: 
       objectReference: {fileID: 1521690043}
+    - target: {fileID: 1631669916519778853, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631669916519778853, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631669916519778853, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: m_Size.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631669916519778853, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: m_Center.x
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631669916519778853, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: m_Center.y
+      value: -0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2766698217805422355, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
       propertyPath: Camera
       value: 

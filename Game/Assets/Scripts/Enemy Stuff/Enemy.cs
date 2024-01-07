@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public AudioSource player;
     public AudioClip painSound;
     public AudioClip deathSound;
+    private HashSet<int> enemy_dmg = new HashSet<int>();
 
     private void Awake()
     {
@@ -32,8 +33,24 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         if (Time.time - last_damage_timestamp > 0.1) // Avoid 2-Times Dmg Bug
         {
+            soundEffects.playThisSoundEffect(painSound);
+            health -= damage;
+            healthBar.UpdateHealthBar(health / max_health);
+            if (health <= 0) Die();
+            else DamageFlashComponent.GenerateDamageFlash();
+            last_damage_timestamp = Time.time;
+        }
+    }
+
+    public void TakeDamage(int damage, int hashSource)
+    {
+
+        if (!enemy_dmg.Contains(hashSource)) // Avoid 2-Times Dmg Bug
+        {
+            enemy_dmg.Add(hashSource);
             soundEffects.playThisSoundEffect(painSound);
             health -= damage;
             healthBar.UpdateHealthBar(health / max_health);
