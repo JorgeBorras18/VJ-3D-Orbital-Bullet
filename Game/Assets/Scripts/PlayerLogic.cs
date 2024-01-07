@@ -53,14 +53,23 @@ public class PlayerLogic : MonoBehaviour
     private bool jumping_internally_or_externally;
 
     // player death controller
-    public int dyingFrames = 0;
+    private int dyingFrames = 0;
     private int maxDyingFrames = 60;
     private bool isDead = false;
 
     // player win controller
-    public bool winning_Game = false;
-    public int winningFrames = 0;
+    private bool winning_Game = false;
+    private int winningFrames = 0;
     private int maxWinningFrames = 60;
+
+    // Sound Effects
+    public AudioSource player;
+    private PlaySound soundEffects;
+    public AudioClip GunSound;
+    public AudioClip DeathSound;
+    public AudioClip JumpSound;
+    public AudioClip PainSound;
+
 
 
     void Start()
@@ -83,6 +92,9 @@ public class PlayerLogic : MonoBehaviour
         PlayerHealthBar = FindObjectOfType<PlayerHealthBar>();
         PlayerHealthBar.SetMaxHealth(player_health);
         _FeetDetector = GetComponentInChildren<FeetDetector>();
+
+        // sound
+        soundEffects = player.GetComponent<PlaySound>();
     }
 
     // Catch 
@@ -148,13 +160,16 @@ public class PlayerLogic : MonoBehaviour
                     angularPhysics.applyJump(jumpSpeed);
                     up_is_still_pressed = true;
                     doubled_jumped_already = false;
+                    soundEffects.playThisSoundEffect(JumpSound);
                     next_Animation = "Jump";
+                    
                 }
                 else if (!doubled_jumped_already)
                 {
                     angularPhysics.applyJump(jumpSpeed);
                     up_is_still_pressed = true;
                     doubled_jumped_already = true;
+                    soundEffects.playThisSoundEffect(JumpSound);
                     next_Animation = "Mid_Air_Jump";
                 }
                 up_was_pressed = false;
@@ -309,6 +324,7 @@ public class PlayerLogic : MonoBehaviour
             {
                 isDead = true;
                 animationController.changeAnimation("Death");
+                soundEffects.playThisSoundEffect(DeathSound);
             }
             //activate Iframes
             else
@@ -326,6 +342,7 @@ public class PlayerLogic : MonoBehaviour
         if (TakeDamage(damage))
         {
             angularPhysics.applyJump(jumpSpeed*2/3);
+            soundEffects.playThisSoundEffect(PainSound);
             animationController.changeAnimation("Jump");
             doubled_jumped_already = false;
             return true;
@@ -340,6 +357,7 @@ public class PlayerLogic : MonoBehaviour
 
     public void triggerToJumpToTheNextRing()
     {
+        soundEffects.playThisSoundEffect(JumpSound);
         jumping_to_the_next_ring = true;
     }
 
@@ -354,6 +372,7 @@ public class PlayerLogic : MonoBehaviour
     }
 
     public void changeToInternalOrExternalRing(float newRadius) {
+        soundEffects.playThisSoundEffect(JumpSound);
         jumping_internally_or_externally = true;
         angularPhysics.setActualRadius(newRadius);
     }
