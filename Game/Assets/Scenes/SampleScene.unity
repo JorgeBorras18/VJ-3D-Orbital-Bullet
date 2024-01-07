@@ -7566,6 +7566,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8943636348933785386, guid: 4156198c0508ef649a3dbfa12d3a4284, type: 3}
+      propertyPath: m_margin.z
+      value: -17.681396
+      objectReference: {fileID: 0}
+    - target: {fileID: 8943636348933785386, guid: 4156198c0508ef649a3dbfa12d3a4284, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a61b239cf61e0e438f400a27c2298e2, type: 2}
+    - target: {fileID: 8943636348933785386, guid: 4156198c0508ef649a3dbfa12d3a4284, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6024060058063676602, guid: 7a61b239cf61e0e438f400a27c2298e2, type: 2}
+    - target: {fileID: 8943636348933785386, guid: 4156198c0508ef649a3dbfa12d3a4284, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10403,7 +10419,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62fe82e21ae43e9469217092c404031f, type: 2}
+  - {fileID: 2100000, guid: 09c37e271e6f8f541b8dc744f659940f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
