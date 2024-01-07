@@ -321,6 +321,9 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   healthBar: {fileID: 5753416079056745057}
   AmmoBoxReward: {fileID: 2103972439164322132, guid: c41ac2069af3fc24fb1514fe18b0a131, type: 3}
+  player: {fileID: 0}
+  painSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!136 &4625812998547428662
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -784,6 +787,8 @@ MonoBehaviour:
   ring_radius: 17
   ringIdentifierLogic: {fileID: 0}
   playerRingIdentifierLogic: {fileID: 0}
+  player: {fileID: 0}
+  shootSound: {fileID: 0}
 --- !u!136 &3014737763960825591
 CapsuleCollider:
   m_ObjectHideFlags: 0
