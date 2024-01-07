@@ -8,10 +8,6 @@ public class LightPilarController : MonoBehaviour
     [SerializeField] private int number_of_pillars = 360;
     [SerializeField] private float RingRadius = 9;
 
-    // Diferent Pattern Values
-    [SerializeField] private float LineAttackDelay = 0.5f;
-
-
 
     private LightPilar[] pilar_Array;
 

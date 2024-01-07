@@ -21,12 +21,20 @@ public class AmmoBox : MonoBehaviour
     [SerializeField] private float acceleration = 0.01f;
     [SerializeField] private float max_speed = 0.3f;
     private float actual_speed=0;
-    int count = 0;
 
     private void Start()
     {
         //Discover what Ammo Type Am I?
-        ammo_type = GameObject.FindAnyObjectByType<Gun_Controller>().getRandomAvailableAmmoType();
+        Gun_Controller gun_Controller = GameObject.FindAnyObjectByType<Gun_Controller>();
+        if (gun_Controller == null)
+        {
+            //Player is performin Roll, must take extra steps
+            GameObject shoulder = GameObject.Find("Player_Animation_Controller").transform.GetChild(0).gameObject;
+            shoulder.SetActive(true);
+            ammo_type = shoulder.GetComponent<Gun_Controller>().getRandomAvailableAmmoType();
+            shoulder.SetActive(false);
+        }
+        else ammo_type = gun_Controller.getRandomAvailableAmmoType();
 
         if (ammo_type == AMMO_TYPE.BULLET) {
             transform.parent.gameObject.GetComponent<SpriteRenderer>().sprite = AmmoBulletBoxSprite;
