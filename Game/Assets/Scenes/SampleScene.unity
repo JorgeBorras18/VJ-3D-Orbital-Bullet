@@ -1062,7 +1062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6660087447661303354, guid: 41d24881a68516d488c3116e878be8af, type: 3}
       propertyPath: max_jump_frames
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10419,7 +10419,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62fe82e21ae43e9469217092c404031f, type: 2}
+  - {fileID: 2100000, guid: 09c37e271e6f8f541b8dc744f659940f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

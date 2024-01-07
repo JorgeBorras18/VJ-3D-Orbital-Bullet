@@ -43,17 +43,23 @@ public class PlayerLogic : MonoBehaviour
 
     // NEXT RING JUMPING PHYSICS
     private bool jumping_to_the_next_ring = false;
-    public int max_jump_frames;
+    private int max_jump_frames;
     private int current_jump_frames = 0;
 
     // INTERNAL-EXTERNAL RING MOVEMENT
     private bool inInternalOrExternalPlatform;
-    public bool jumping_internally_or_externally;
+    private bool jumping_internally_or_externally;
 
     // player death controller
     public int dyingFrames = 0;
     private int maxDyingFrames = 60;
-    public bool isDead = false;
+    private bool isDead = false;
+
+    // player win controller
+    public bool winning_Game = false;
+    public int winningFrames = 0;
+    private int maxWinningFrames = 60;
+
 
     void Start()
     {
@@ -216,6 +222,18 @@ public class PlayerLogic : MonoBehaviour
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }
+        else if (winning_Game)
+        {
+            if (winningFrames <= maxDyingFrames) {
+                ++winningFrames;
+                angularPhysics.applyJump(jumpSpeed * 2.7f);
+            }
+            else
+            {
+                SceneManager.LoadScene("GamePassed");
+                return;
+            }
+        }
         
         // UPDATE PLAYER MOVEMENT & ANIMATION
         angularPhysics.moveObject(step, selected_gravity);
@@ -293,13 +311,14 @@ public class PlayerLogic : MonoBehaviour
 
     private void checkIfMovementIsBlocked()
     {
-        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally || isDead; // ... || ... || ... missing
+        movement_is_blocked = jumping_to_the_next_ring || jumping_internally_or_externally || isDead || winning_Game; // ... || ... || ... missing
     }
 
     public void triggerToJumpToTheNextRing()
     {
         jumping_to_the_next_ring = true;
     }
+
 
     public Vector3 getPosition()
     {
@@ -313,5 +332,11 @@ public class PlayerLogic : MonoBehaviour
     public void changeToInternalOrExternalRing(float newRadius) {
         jumping_internally_or_externally = true;
         angularPhysics.setActualRadius(newRadius);
+    }
+
+    public void winGame()
+    {
+        winning_Game = true;
+        angularPhysics.setActualRadius(0);
     }
 }
