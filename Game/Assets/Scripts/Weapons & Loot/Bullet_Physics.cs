@@ -33,7 +33,6 @@ public class Bullet_Physics : MonoBehaviour
         Trail = transform.GetChild(1).gameObject;
         controller = GetComponent<CharacterController>();
         iniTimestamp = Time.time;
-        Debug.Log(GetInstanceID());
     }
 
     // SET VERTICAL ANGULATION

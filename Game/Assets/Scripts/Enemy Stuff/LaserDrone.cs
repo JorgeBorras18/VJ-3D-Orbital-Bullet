@@ -102,18 +102,20 @@ public class LaserDrone : MonoBehaviour
         {
             //Move towards or away from player (mantain ideal distance)
             _WallDetector.setFacingRight(billboard.isFacingRight());
-            float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
-            if (Mathf.Abs(player_ang - angularPhysics.getActualAngle()) * ring_radius < desired_distance_from_player)
+            float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getRelativeAngle(angularPhysics.getActualAngle());;
+            if (Mathf.Abs(player_ang - Mathf.PI) * ring_radius < desired_distance_from_player)
             {
                 //towards player
+                Debug.Log("forward");
                 actual_speed = Mathf.Min(max_move_speed, actual_speed + acceleration);
                 if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
                 else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
                 else angularPhysics.moveObject(actual_speed, 0);
             }
-            else if (Mathf.Abs(player_ang - angularPhysics.getActualAngle()) * ring_radius > desired_distance_from_player)
+            else if (Mathf.Abs(player_ang - Mathf.PI) * ring_radius > desired_distance_from_player)
             {
                 //away from player
+                Debug.Log("backward");
                 actual_speed = Mathf.Max(-max_move_speed, actual_speed - acceleration);
                 if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
                 else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
@@ -140,8 +142,7 @@ public class LaserDrone : MonoBehaviour
                     {
                         //Point at player
                         float player_y = GameObject.Find("Player").transform.position.y;
-                        //float player_ang = GameObject.Find("Player").GetComponent<Angular_Physics>().getActualAngle();
-                        temp_angle_to_player = Mathf.Atan((player_y - Fire_Point.transform.position.y) / Mathf.Abs((player_ang - angularPhysics.getActualAngle()) * ring_radius)) * (180f / Mathf.PI);
+                        temp_angle_to_player = Mathf.Atan((player_y - transform.position.y) / Mathf.Abs((player_ang - angularPhysics.getActualAngle()) * ring_radius)) * (180f / Mathf.PI);
                     }
                     bullet_count++;
                     if (bullet_count == bullets_per_pulse)
@@ -167,7 +168,7 @@ public class LaserDrone : MonoBehaviour
         if (actual_state == STATE.PATROLING && ringIdentifierLogic.sameRingAs(playerRingIdentifierLogic) && hit.tag == "Player")
         {
             actual_state = STATE.PLAYER_DETECTED;
-            actual_speed = patrolling_speed;
+            actual_speed = 0;
             just_look_at_player = true;
         }
     }
