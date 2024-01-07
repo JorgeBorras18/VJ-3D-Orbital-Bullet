@@ -1355,6 +1355,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 339656066}
     m_Modifications:
     - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: slashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e6a8be1428db0244a907ef42e5380c8b, type: 3}
+    - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8632055957295217589}
@@ -4448,6 +4456,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 693615639}
     m_Modifications:
     - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
+      propertyPath: slashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e6a8be1428db0244a907ef42e5380c8b, type: 3}
+    - target: {fileID: 1117873975507631426, guid: 9cd333f37dfd4e1409141fc535d5ee8f, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8641832448634945019}
@@ -6511,7 +6527,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
