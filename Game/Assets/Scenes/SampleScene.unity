@@ -1545,6 +1545,14 @@ PrefabInstance:
       value: LaserDrone_3.0.0
       objectReference: {fileID: 0}
     - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 8641832448634945019}
@@ -1720,6 +1728,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserDrone_1.0.0
       objectReference: {fileID: 0}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
@@ -7083,6 +7099,14 @@ PrefabInstance:
       value: LaserDrone_2.0.0
       objectReference: {fileID: 0}
     - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
       objectReference: {fileID: 4770390547756614210}
@@ -7925,6 +7949,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserDrone_1.0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46417547}
+    - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ffde589e9b44d1479ab00dbcda793a5, type: 3}
     - target: {fileID: 8878148386254539245, guid: 2d2e13e8ca8f0064c868443a5df56baa, type: 3}
       propertyPath: ringIdentifierLogic
       value: 
