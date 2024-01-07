@@ -22,7 +22,10 @@ public class Gun_Controller : MonoBehaviour
     private PlayerInput _playerInput;
     private InputAction swapWeaponAction;
     private InputAction pickUpWeaponAction;
+    private InputAction GodModeAction;
     private bool button_released = true;
+    private bool GodModeActive = false;
+    private bool godmode_button_released = true;
     private bool pickup_button_released = true;
 
     void Start()
@@ -31,6 +34,7 @@ public class Gun_Controller : MonoBehaviour
 
         _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
         swapWeaponAction = _playerInput.actions["Swap Weapon"];
+        GodModeAction = _playerInput.actions["GodMode"];
         pickUpWeaponAction = _playerInput.actions["Use"];
 
         Main_Weapon.SetActive(true);
@@ -58,6 +62,18 @@ public class Gun_Controller : MonoBehaviour
         }
 
         if (!pickUpWeaponAction.IsPressed()) pickup_button_released = true;
+
+
+        //GODMODE
+        if (!GodModeAction.IsPressed()) godmode_button_released = true;
+        else if (GodModeAction.IsPressed() && godmode_button_released)
+        {
+            GodModeActive = !GodModeActive;
+            Weapon.setInfiniteAmmo(GodModeActive);
+            FindAnyObjectByType<PlayerLogic>().setGodMode(GodModeActive);
+            GameObject.Find("Player UI").transform.GetChild(3).gameObject.SetActive(GodModeActive);
+            godmode_button_released = false;
+        }
     }
 
     private void SwapWeapon()

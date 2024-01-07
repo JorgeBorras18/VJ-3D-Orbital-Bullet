@@ -17,6 +17,7 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField] private PlayerHealthBar PlayerHealthBar;
 
     // DMG Handlers
+    private bool GODMODE = false;
     public float IFramesDuration = 1.5f;
     private float timestamp_last_dmg_taken = 0;
     private DMG_Flash _DamageFlashEffect;
@@ -79,7 +80,7 @@ public class PlayerLogic : MonoBehaviour
         _DamageFlashEffect = GetComponent<DMG_Flash>();
         animationController = GameObject.Find("Player_Animation_Controller").gameObject.GetComponent<Animation_Controller>();
         angularPhysics = GetComponent<Angular_Physics>();
-        angularPhysics.init(radiusRing, 0);
+        //angularPhysics.init(radiusRing, -2.4f);
 
         //load input watchers
         _playerInput = GetComponent<PlayerInput>();
@@ -316,6 +317,7 @@ public class PlayerLogic : MonoBehaviour
     // Take DMG and handle death
     public bool TakeDamage(int damage)
     {
+        if (GODMODE) return false;
         if (player_health > 0 && Time.time - timestamp_last_dmg_taken > IFramesDuration && animationController.getActualState() != "Roll")
         {
             if (animationController.getActualState() != "Fast_Roll") animationController.changeAnimation("Air_Fall");
@@ -386,4 +388,6 @@ public class PlayerLogic : MonoBehaviour
         winning_Game = true;
         angularPhysics.setActualRadius(0);
     }
+
+    public void setGodMode(bool activate_or_deactivate) { GODMODE = activate_or_deactivate; }
 }

@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "GodMode",
+                    "type": "Button",
+                    "id": "75eb57a3-5e46-4d28-9182-6f94a909c15e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "75eaf211-8b5f-4ba5-9d7f-9e69d4c7330e",
@@ -232,6 +241,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "347fef11-ef67-42a8-adc0-7192ddceabcd",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

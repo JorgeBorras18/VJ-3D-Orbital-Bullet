@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     public float lowerAccuracyLimit = 0f;
     public float barrelLength = 0f;
     public bool automatic = false;
-    public bool infinite_ammo = false;
+    static public bool infinite_ammo = false;
 
 
     //For certain weapons
@@ -66,7 +66,7 @@ public class Weapon : MonoBehaviour
             Shoot();
             released_trigger = false;
             lastShotTimestamp = Time.time;
-            shotsInChamber--;
+            if (!infinite_ammo) shotsInChamber--;
         }
     }
 
@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
                 new_bullet.GetComponent<Bullet_Physics>().init(ini_angle, ring_radius, barrelLength, PlayerFacingRight, lowerAccuracyLimit + angle_per_bullet * i * Random.Range(0.7f, 1.3f));
             }
         }
-        FindObjectOfType<WeaponsControllerUI>().DecreaseAmmoByOne();
+        if (!infinite_ammo) FindObjectOfType<WeaponsControllerUI>().DecreaseAmmoByOne();
     }
 
     public float getBarrelLengthOffset() { return barrelLength; }
@@ -120,4 +120,6 @@ public class Weapon : MonoBehaviour
     public AMMO_TYPE GetAmmoType() { return AmmoTypeUsed; }
 
     public GameObject getDroppableVersion() { return DropableWeaponPrefab; }
+
+    static public void setInfiniteAmmo(bool activate_or_deactivate) { infinite_ammo = activate_or_deactivate; }
 }
