@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 95
+  controlID: 91
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 19
+  controlID: 39
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 139
+  controlID: 90
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,8 +172,8 @@ MonoBehaviour:
     y: 0
     width: 494
     height: 939
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -462,9 +462,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 1e174cf4b3615754e82af6ca020ec44f, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 2d145a7dff1e0e347aa7e9d156e272a5, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -831466714333076394, guid: 1e174cf4b3615754e82af6ca020ec44f, type: 2}
+  - m_Target: {fileID: 4592504945107590412, guid: 2d145a7dff1e0e347aa7e9d156e272a5, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -547,7 +547,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1332
+  m_LastSelectedObjectID: 105266
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -593,7 +593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/Enemies
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -601,16 +601,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/Enemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jordi\Documents\GitHub\VJ-3D-Orbital-Bullet\Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 21}
-    m_SelectedIDs: 1c7e0000
-    m_LastClickedID: 32284
-    m_ExpandedIDs: 00000000047e0000067e0000087e00000a7e00000c7e00000e7e0000107e0000127e0000147e0000167e0000187e00001a7e00001c7e00001e7e0000207e0000287e000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 9a080000
+    m_LastClickedID: 2202
+    m_ExpandedIDs: 000000000a0600006e060000020700009a08000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -638,7 +638,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 240}
     m_SelectedIDs: d2590000
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000047e0000067e0000087e00000a7e00000c7e00000e7e0000107e0000127e0000147e0000167e0000187e00001a7e00001c7e00001e7e0000207e0000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -669,18 +669,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000aa5b0000285a0000385a0000345a0000aa7f0000a8730000820300000c780000707f0000de730000fc700000b8700000747100002c750000847500008c75000012750000887500009075000030ca0000000000002efd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Weapons & Loot
-      m_OriginalName: Weapons & Loot
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 32340
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 4}
     m_CreateAssetUtility:
@@ -778,20 +778,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ba04fbff
-      m_LastClickedID: -326470
-      m_ExpandedIDs: 6008fbffa0e5ffffeee7ffff0cf9ffff12f9ffffcefaffff547100008c710000d871000004720000487200007272000086720000447300004a73000080730000ca7c0200427d0200e07d0200a67e0200ac7e0200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: ca12feff2016feffde17feff2c1b0100541b0100b21b0100cc1b01006a1c0100301d0100361d0100901d0100de1d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: LaserDrone_1.0.1
-        m_OriginalName: LaserDrone_1.0.1
+        m_Name: AR_Bullet(Clone)
+        m_OriginalName: AR_Bullet(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -326470
+        m_UserData: -138944
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -1238,9 +1238,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.4610904, y: 5.166604, z: 18.133778}
+    m_Target: {x: 279.6959, y: 268.0981, z: -226.85248}
     speed: 2
-    m_Value: {x: 0.4610904, y: 5.166604, z: 18.133778}
+    m_Value: {x: 279.6959, y: 268.0981, z: -226.85248}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1286,13 +1286,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.025188088, y: 0.7927973, z: -0.032838795, w: 0.60808045}
+    m_Target: {x: -0.21847703, y: 0.41341466, z: -0.102879874, w: -0.87793857}
     speed: 2
-    m_Value: {x: 0.02523729, y: 0.79188347, z: -0.032800943, w: 0.6092683}
+    m_Value: {x: -0.21715942, y: 0.41356763, z: -0.10225942, w: -0.8782634}
   m_Size:
-    m_Target: 3.8679824
+    m_Target: 30.130547
     speed: 2
-    m_Value: 3.7014186
+    m_Value: 28.83306
   m_Ortho:
     m_Target: 1
     speed: 2

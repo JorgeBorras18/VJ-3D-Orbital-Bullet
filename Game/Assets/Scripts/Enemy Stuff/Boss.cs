@@ -157,7 +157,6 @@ public class Boss : MonoBehaviour
             {
                 DecideOnNextAction(); // Choose next State
                 decidedActionThisFrame = true;
-                Debug.Log(ActualAction);
             }
         }
 

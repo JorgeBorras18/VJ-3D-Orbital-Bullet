@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         float ini_angle = playerAG.getActualAngle();
-        float ring_radius = playerAG.getActualRadius() + Random.Range(-0.5f, 0.5f);
+        float ring_radius = playerAG.getActualRadius() + Random.Range(-0.4f, 0.4f);
         bool PlayerFacingRight = playerLogic.isFacingRight();
         soundEffects.playThisSoundEffect(shootSound);
 
@@ -113,7 +113,6 @@ public class Weapon : MonoBehaviour
         else total_ammo_added = Mathf.RoundToInt(magazineSize * Random.Range(0.5f, 1.3f));
 
         shotsInChamber += total_ammo_added;
-        Debug.Log(name + " - " + total_ammo_added);
         return total_ammo_added;
     }
 

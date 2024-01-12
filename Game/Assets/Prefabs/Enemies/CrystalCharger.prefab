@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualAngle: 0
+  controller: {fileID: 6781644689458590270}
   radiusRing: 17
 --- !u!143 &6781644689458590270
 CharacterController:

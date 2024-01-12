@@ -104,9 +104,9 @@ MonoBehaviour:
   playerLogic: {fileID: 0}
   DropableWeaponPrefab: {fileID: 6798591208965085137, guid: 90303540a3a5555458bb7d53b1946e74, type: 3}
   AmmoTypeUsed: 0
-  fireRate: 0.08
-  magazineSize: 25
-  upperAccuracyLimit: 17
+  fireRate: 0.05
+  magazineSize: 12
+  upperAccuracyLimit: 8
   lowerAccuracyLimit: -13
   barrelLength: 0.08
   automatic: 1

@@ -106,7 +106,6 @@ public class LaserDrone : MonoBehaviour
             if (Mathf.Abs(player_ang - Mathf.PI) * ring_radius < desired_distance_from_player)
             {
                 //towards player
-                Debug.Log("forward");
                 actual_speed = Mathf.Min(max_move_speed, actual_speed + acceleration);
                 if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
                 else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);
@@ -115,7 +114,6 @@ public class LaserDrone : MonoBehaviour
             else if (Mathf.Abs(player_ang - Mathf.PI) * ring_radius > desired_distance_from_player)
             {
                 //away from player
-                Debug.Log("backward");
                 actual_speed = Mathf.Max(-max_move_speed, actual_speed - acceleration);
                 if (_WallDetector.isWallAhead()) angularPhysics.moveObject(0, 0);
                 else if (billboard.isFacingRight()) angularPhysics.moveObject(-actual_speed, 0);

@@ -10,7 +10,7 @@ public class Angular_Physics : MonoBehaviour
 {
     public float actualAngle = 0f;
 
-    CharacterController controller;
+    [SerializeField] private CharacterController controller;
     public float radiusRing = 17f;
     private float verticalSpeed = 0f;
     private Vector3 speed;
@@ -18,7 +18,7 @@ public class Angular_Physics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        if (controller == null) controller = GetComponent<CharacterController>();
     }
 
 

@@ -84,7 +84,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.051689655
+        value: 0.16341451
         inSlope: 0.5018246
         outSlope: 0.5018246
         tangentMode: 0
@@ -92,7 +92,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.14627509
       - serializedVersion: 3
-        time: 0.682251
+        time: 0.8631592
         value: 0
         inSlope: 0.11165262
         outSlope: 0.11165262
@@ -282,7 +282,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.07, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.14, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7597847302564522035}
@@ -353,10 +353,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 105
   gravity: 0
-  lifetime: 0.2
+  lifetime: 0.15
   allowed_bounces: 0
   explosive: 0
-  damage_per_bullet: 23
+  damage_per_bullet: 27
   enemy_bullet: 0
 --- !u!143 &6565535809177042944
 CharacterController:

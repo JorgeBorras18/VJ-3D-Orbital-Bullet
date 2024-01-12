@@ -138,9 +138,10 @@ MonoBehaviour:
   fireRate: 0.13
   magazineSize: 32
   upperAccuracyLimit: 5
-  lowerAccuracyLimit: -5
+  lowerAccuracyLimit: -4
   barrelLength: 0.08
   automatic: 1
-  infinite_ammo: 0
   bullets_per_shot: 1
   bullet_spread: 0
+  player: {fileID: 0}
+  shootSound: {fileID: 0}

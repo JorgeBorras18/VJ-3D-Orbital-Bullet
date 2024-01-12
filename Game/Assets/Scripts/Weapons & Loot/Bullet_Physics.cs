@@ -104,14 +104,18 @@ public class Bullet_Physics : MonoBehaviour
     {
         if (hit.gameObject.tag == "Terrain")
         {
-            if (allowed_bounces == 0 || (hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position).y >= 0) destroyBullet();
+            if (allowed_bounces <= 0 || (hit.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position) - transform.position).y >= 0) destroyBullet();
             else
             {
                 allowed_bounces -= 1;
-                speed.y = -speed.y;
+                speed.y = Mathf.Abs(speed.y);
             }
         }
-        else if (enemy_bullet && hit.gameObject.tag == "Player")
+    }
+
+    private void OnTriggerStay(Collider hit)
+    {
+        if (enemy_bullet && hit.gameObject.tag == "Player")
         {
             bool dealt_dmg = false;
             if (transform.lossyScale.x > 0.5) dealt_dmg = hit.GetComponent<PlayerLogic>().TakeDamageAndHitBack(damage_per_bullet);

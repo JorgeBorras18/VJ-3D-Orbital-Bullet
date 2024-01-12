@@ -47,6 +47,7 @@ public class CrystalCharger : MonoBehaviour
         actual_angle = Angular_Physics.getAngleFromCoordinades(transform.position.x, transform.position.z);
         Angular_Physics angularPhysics = transform.parent.gameObject.GetComponent<Angular_Physics>();
         angularPhysics.init(ring_radius, actual_angle);
+        angularPhysics.moveObject(0, 0);
         //ring_radius = Angular_Physics.getRadiusFromPosition(actual_angle, transform.position.x, transform.position.z);
 
         // sound

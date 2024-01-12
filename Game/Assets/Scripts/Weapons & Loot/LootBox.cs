@@ -37,13 +37,11 @@ public class LootBox : MonoBehaviour
             if (result > chancesGettingGun)
             {
                 //Drop Ammo
-                Debug.Log(result + " > AMMO > " + chancesGettingGun);
                 Instantiate(AmmoBoxPrefab, loot_placement[i].position, Quaternion.identity);
             }
             else
             {
                 // Drop Weapon that Player Doesn't Own
-                Debug.Log(result + " > GUN > " + chancesGettingGun);
                 int result2 = Random.Range(0, random_gun.Length);
                 while (_Gun_Controller.AlreadyOwnsThatWeapon(random_gun[result2].name.Substring(0, 2))) result2 = (result2 + 1) % random_gun.Length;
                 Instantiate(random_gun[result2], loot_placement[i].position, Quaternion.identity);
