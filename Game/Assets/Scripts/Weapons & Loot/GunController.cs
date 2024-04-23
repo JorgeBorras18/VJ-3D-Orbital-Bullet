@@ -163,6 +163,12 @@ public class Gun_Controller : MonoBehaviour
         return Main_Weapon.name.Contains(name) || (Offhand_Weapon != null && Offhand_Weapon.name.Contains(name));
     }
 
+    public int getWeaponsInHand()
+    {
+        if (Offhand_Weapon != null) return 2;
+        return 1;
+    } 
+
 
     private void OnTriggerEnter(Collider hit)
     {

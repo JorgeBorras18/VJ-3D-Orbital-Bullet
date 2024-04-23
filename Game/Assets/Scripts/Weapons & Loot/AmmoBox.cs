@@ -57,8 +57,11 @@ public class AmmoBox : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, playerTransform.transform.position) <= minimum_distance_pickup)
             {
-                FindAnyObjectByType<Gun_Controller>().addAmmoToCurrentWeapons(ammo_type);
-                Destroy(transform.parent.gameObject);
+                Gun_Controller temp = FindAnyObjectByType<Gun_Controller>();
+                if (temp != null) {
+                    temp.addAmmoToCurrentWeapons(ammo_type);
+                    Destroy(transform.parent.gameObject);
+                }
             }
             else
             {

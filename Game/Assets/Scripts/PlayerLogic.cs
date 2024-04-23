@@ -244,7 +244,7 @@ public class PlayerLogic : MonoBehaviour
         }
         else if (jumping_internally_or_externally)
         {
-            angularPhysics.applyJump(jumpSpeed * 2.0f);
+            angularPhysics.applyJump(jumpSpeed * 1.2f);
             next_Animation = "Jump";
             jumping_internally_or_externally = false;
         }

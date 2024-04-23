@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
             soundEffects.playThisSoundEffect(painSound);
             health -= damage;
             healthBar.UpdateHealthBar(health / max_health);
-            if (health <= 0) Die();
+            if (health <= 5) Die();
             else DamageFlashComponent.GenerateDamageFlash();
             last_damage_timestamp = Time.time;
         }
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             soundEffects.playThisSoundEffect(painSound);
             health -= damage;
             healthBar.UpdateHealthBar(health / max_health);
-            if (health <= 0) Die();
+            if (health <= 5) Die();
             else DamageFlashComponent.GenerateDamageFlash();
             last_damage_timestamp = Time.time;
         }
