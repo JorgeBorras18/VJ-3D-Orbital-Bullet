@@ -4,7 +4,8 @@ Developed using <b>Unity Engine</b>.
 
 
 
-https://github.com/JorgeBorras18/VJ-3D-Orbital-Bullet/assets/104654988/00bdddb8-7085-4b34-9f79-36d6b0098b16
+
+https://github.com/JorgeBorras18/VJ-3D-Orbital-Bullet/assets/104654988/fc73e6b1-8827-4430-990b-20b8404466bb
 
 
 ## About the Project
