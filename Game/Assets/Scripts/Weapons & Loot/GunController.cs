@@ -214,7 +214,7 @@ public class Gun_Controller : MonoBehaviour
     {
         if (hit.tag == "DropeableWeapon")
         {
-            OpenLootBoxBillboard.SetActive(false);
+            PickUpWeaponBillboard.SetActive(false);
         }
         else if (hit.tag == "LootBox")
         {

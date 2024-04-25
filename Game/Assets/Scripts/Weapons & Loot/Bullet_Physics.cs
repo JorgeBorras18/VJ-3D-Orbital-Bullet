@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -63,6 +64,7 @@ public class Bullet_Physics : MonoBehaviour
         //if bullet was destroyed still render frames
         if (destroyed)
         {
+            Debug.Log("LOLA");
             if ((Time.time - iniTimestamp) > 0.5)
             {
                 Destroy(Trail.GetComponent<TrailRenderer>());
@@ -126,7 +128,7 @@ public class Bullet_Physics : MonoBehaviour
             }
         }
 
-        else if (!enemy_bullet && hit.gameObject.tag == "Enemy")
+        else if (!enemy_bullet && hit.gameObject.tag == "Enemy" && !destroyed)
         {
             hit.GetComponent<Enemy>().TakeDamage(damage_per_bullet, GetHashCode());
             destroyBullet();
@@ -138,7 +140,14 @@ public class Bullet_Physics : MonoBehaviour
         destroyed = true;
         iniTimestamp = Time.time;
         GetComponent<MeshRenderer>().enabled = false;
-        transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
+        try
+        {
+            GetComponent<BoxCollider>().enabled = false;
+            this.gameObject.GetComponentInChildren<SphereCollider>().enabled = false;
+        }
+        catch (Exception e)
+        { }
+            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (explosive)
         {
             GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
