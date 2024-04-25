@@ -3,6 +3,10 @@ By Neus Mayol & Jorge Borras
 Developed using <b>Unity Engine</b>.
 
 
+
+https://github.com/JorgeBorras18/VJ-3D-Orbital-Bullet/assets/104654988/00bdddb8-7085-4b34-9f79-36d6b0098b16
+
+
 ## About the Project
 As students tasked with creating our final project for VJ, we embarked on the challenge of developing a small playable demo for the game [Orbital Bullet – The 360° Rogue-lite](https://store.steampowered.com/app/1167680/Orbital_Bullet__The_360_Roguelite/). Drawing heavy inspiration from its "Rogue-Like" elements and impressive "3D Orbital/Circular Physics," we sought to replicate its essence. The project was undertaken between November 2023 and January 2024.
 
